@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f3f8;
+}
+
+.container {
+    width: 90%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin: 0 0 10px;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    vertical-align: center;
+}
+
+.tab {
+    padding: 10px 35px 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: white;
+    color: #BDD0E7;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+}
+
+.tab-active {
+    padding: 10px 35px 10px 15px;
+    background-color: white;
+    color: #1976D2;
+    border: none;
+}
+
+.tabs .button button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tabs .button img {
+    width: 30px;
+    height: 30px;
+}
+
+.search-box {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-left: auto;
+}
+
+.lines {
+    display: flex;
+    height: 2px;
+    width: 100%;
+    background-color: #BDD0E7;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.active {
+    height: 3px;
+    width: 12%;
+    background-color: #1976D2;
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: 0 0 1px #1976D2;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background-color: #f0f3f8;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.filter-icon::before {
+    content: "⏷";
+    /* Icon */
+    margin-right: 5px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th {
+    text-align: left;
+    font-weight: normal;
+    padding: 12px;
+    color: #666;
+    background-color: #f0f3f8;
+}
+
+tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    padding: 12px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: white;
+}
+
+.status.waiting {
+    background-color: #ffe8b3;
+    color: #ff9800;
+}
+
+.status.confirmed {
+    background-color: #e0f7fa;
+    color: #00bcd4;
+}
+
+.option-btn {
+    background-color: #f0f3f8;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+}
