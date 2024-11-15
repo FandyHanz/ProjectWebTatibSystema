@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Pelanggaran Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>List Pelanggaran Mahasiswa</h2>
+        <div class="tabs">
+            <div class="button">
+                <button class="tab-active"><img src="logo/student-active.svg" alt="Student-Logo"> Mahasiswa</button>
+                <button class="tab"><img src="logo/teacher-non.svg" alt="Dosen-Logo"> Dosen</button>
+                <button class="tab"><img src="logo/karyawan-non.svg" alt="Karyawan-Logo"> Karyawan</button>
+            </div>
+        </div>
+        <div class="lines">
+            <div class="active"></div>
+        </div>
+        <div class="filters">
+            <button class="filter-btn">Program Studi</button>
+            <button class="filter-btn">Kelas</button>
+            <button class="filter-btn filter-icon">Filter</button>
+            <input type="text" class="search-box" placeholder="Search">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Status</th>
+                    <th>Tanggal/Waktu</th>
+                    <th>Kategori</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mamang Bilaghunnah</td>
+                    <td>2341720123</td>
+                    <td><span class="status waiting">Menunggu Konfirmasi</span></td>
+                    <td>2024-10-30, 15:39</td>
+                    <td>1</td>
+                    <td><button class="option-btn">Option</button></td>
+                </tr>
+                <tr>
+                    <td>Ki Raden Jimanangtunggal</td>
+                    <td>2341720143</td>
+                    <td><span class="status confirmed">Telah Dikonfirmasi</span></td>
+                    <td>2024-10-23, 12:29</td>
+                    <td>2</td>
+                    <td><button class="option-btn">Option</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
