@@ -16,6 +16,12 @@ function initializeTabs() {
             const activeTabText = this.textContent.trim();
             let fileToLoad = '';
 
+             // Memperbarui teks judul berdasarkan tab yang aktif
+             const titleElement = document.querySelector('h1'); // Memilih elemen judul (h1)
+             if (titleElement) {
+                 titleElement.textContent = `List Pelanggaran ${activeTabText}`;
+             }
+
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
