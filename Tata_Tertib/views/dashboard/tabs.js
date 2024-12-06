@@ -16,14 +16,23 @@ function initializeTabs() {
             const activeTabText = this.textContent.trim();
             let fileToLoad = '';
 
+<<<<<<< HEAD:Tata_Tertib/views/Admin/tabs.js
+=======
+            // Memperbarui teks judul berdasarkan tab yang aktif
+            const titleElement = document.querySelector('h1'); // Memilih elemen judul (h1)
+            if (titleElement) {
+                titleElement.textContent = `List Pelanggaran ${activeTabText}`;
+            }
+
+>>>>>>> 5f7a2ba (add : routes, controller, logging features. update : dashboard design, package structure):Tata_Tertib/views/dashboard/tabs.js
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
-                fileToLoad = 'table-mahasiswa.php';
+                fileToLoad = 'views/dashboard/admin/table-mahasiswa.php';
             } else if (activeTabText === "Dosen") {
-                fileToLoad = 'table-dosen.php';
+                fileToLoad = 'views/dashboard/admin/table-dosen.php';
             } else if (activeTabText === "Karyawan") {
-                fileToLoad = 'table-karyawan.php';
+                fileToLoad = 'views/dashboard/admin/table-karyawan.php';
             }
 
             // Memuat konten sesuai tab yang dipilih
@@ -50,7 +59,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    loadTableContent('views/dashboard/admin/table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {
@@ -71,13 +80,13 @@ function updateTabNavUnderline(button) {
 
     if (button === "Mahasiswa") {
         line.style.marginLeft = '0px';
-        line.style.width = '152.03px';
+        line.style.width = '165.02px';
     } else if (button === "Dosen") {
-        line.style.marginLeft = '152.03px';
-        line.style.width = '118.25px';
+        line.style.marginLeft = '165.02px';
+        line.style.width = '131.23px';
     } else if (button === "Karyawan") {
-        line.style.marginLeft = '270.28px';
-        line.style.width = '143.16px';
+        line.style.marginLeft = '296.25px';
+        line.style.width = '156.13px';
     }
 }
 

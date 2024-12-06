@@ -17,7 +17,7 @@ echo '<thead>';
 echo '<tr>';
 echo '<th></th>';
 echo '<th>Nama</th>';
-echo '<th>NIMDD</th>';
+echo '<th>NIM</th>';
 echo '<th>Status</th>';
 echo '<th>Tanggal/Waktu</th>';
 echo '<th>Kategori</th>';
@@ -34,7 +34,7 @@ for ($i = 0; $i < count($data); $i++) {
     echo '<td>' . $data[$i]["Status"] . '</td>';
     echo '<td>' . $data[$i]["Tanggal_Waktu"] . '</td>';
     echo '<td>' . $data[$i]["Kategori"] . '</td>';
-    echo '<td><button class="btn btn-light">Option<img src="../../assets/icon/caret-down-icon.svg" style="width: 13px; height: 13px; margin-left: 5px" alt=""></button></td>';
+    echo '<td><button class="btn btn-light">Option<img src="assets/icon/caret-down-icon.svg" style="width: 13px; height: 13px; margin-left: 5px" alt=""></button></td>';
     echo '</tr>';
 }
 
