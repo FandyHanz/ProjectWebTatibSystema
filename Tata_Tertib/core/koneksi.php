@@ -1,12 +1,15 @@
 <?php
-$username = 'root';
-$password = '';
-$database = 'pbl_tatibsi';
-try {
-    $db = new mysqli('localhost', $username, $password, $database);
-    if ($db->connect_error) {
-        die('Connection DB failed: ' . $db->connect_error);
+class Koneksi{
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $database = "pbl_tatibsi";
+    public $db;
+
+    public function __construct(){
+        $this -> db = new mysqli($this -> host, $this -> username,  $this -> password,  $this -> database);
+        if ($this -> db -> connect_error){
+            die("connection failed: ". $this -> db -> connect_error);
+        }
     }
-} catch (Exception $e) {
-    die($e->getMessage());
 }

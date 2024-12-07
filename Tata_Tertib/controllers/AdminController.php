@@ -32,7 +32,7 @@ class AdminController
 
     public function history()
     {
-        // Logika untuk halaman riwayat admin
+        
 
         echo "Admin History";
     }
