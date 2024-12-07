@@ -53,10 +53,14 @@
         } from './views/dashboard/tabs.js';
         document.addEventListener('DOMContentLoaded', () => {
             initializeTabs(); // Menjalankan fungsi untuk menginisialisasi tab
+
+            const tabs = document.querySelectorAll(".nav-table-button a"); // Semua tab
+            const filterButton = document.getElementById("filter-button"); // Elemen filter-button
         });
     </script>
 
     <script src="views/dashboard/script.js"></script>
+
 </body>
 
 </html>

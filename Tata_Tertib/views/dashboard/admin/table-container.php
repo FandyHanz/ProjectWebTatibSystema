@@ -13,14 +13,21 @@
         <div class="line-active" id="line-active"></div>
     </div>
 
-    <div class="filter">
-        <div class="filter-button">
-            <button>pp</button>
-            <button>pp</button>
-            <button>pp</button>
+    <div class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
+        <div class="filter-button" id="filter-button">
+            <a href="#" class="btn btn-light d-inline-flex" style="gap:10px;">
+                <img src="assets/icon/book-open-icon.svg" alt=""> Program Studi
+                <img src="assets/icon/caret-down-icon-filter.svg" alt="">
+            </a>
+            <a href="#" class="btn btn-light d-inline-flex" style="gap:10px;"><img src="assets/icon/classroom-icon.svg" alt="">Kelas<img src="assets/icon/caret-down-icon-filter.svg" alt=""></a>
+            <a href="#" class="btn btn-light d-inline-flex" style="gap:10px;">Karyawan</a>
         </div>
         <div class="search">
-            <form action=""><input type="text" name="" id="" placeholder="SearchS"></form>
+            <form action="">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                </div>
+            </form>
         </div>
     </div>
 
