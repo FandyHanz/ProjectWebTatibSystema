@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2024 at 07:02 AM
+-- Generation Time: Dec 07, 2024 at 04:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,8 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `nip` varchar(50) NOT NULL,
-  `nama` int(50) NOT NULL,
-  `status` int(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `foto_profile` blob NOT NULL,
   `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -168,7 +169,7 @@ CREATE TABLE `prodi` (
 
 CREATE TABLE `role` (
   `id_role` int(11) NOT NULL,
-  `nama` int(11) NOT NULL
+  `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
