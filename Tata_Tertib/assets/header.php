@@ -4,7 +4,7 @@
         <p>Sistem Tata Tertib | Polinema</p>
     </div>
     <div class="header-kanan">
-        <img src="assets/foto-mahasiswa/contoh-profile.png" alt="">
+        <img src="assets/foto-mhs/contoh-profile.png" alt="">
         <p>
             <!-- Diganti sql -->
             <span class="nama-header">Mahmoed Joendi M.</span><br> <!-- Nama -->

@@ -1,7 +1,16 @@
 <?php
+include 'models/Admin.php';
 class AdminController {
+    private $data;
+
+    public function __construct() {
+        $this->data = new Admin();
+    }
     public function dashboard() {
         // Logika untuk halaman dashboard admin
+
+        $table = $this->data->getTabelMhs();
+        $dummy = "ASODKASODKASODKASDOKASODKADOKASDOKASDOASDK";
 
         require 'views/dashboard/dashboard.php';
     }

@@ -10,6 +10,8 @@ class Admin {
     }
 
     public function getTabelMhs() {
-
+        $sql = "SELECT * FROM mahasiswa";
+        $result = $this->db->query($sql);
+        return $result;
     }
 }

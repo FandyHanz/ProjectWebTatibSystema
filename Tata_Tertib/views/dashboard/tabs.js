@@ -16,15 +16,12 @@ function initializeTabs() {
             const activeTabText = this.textContent.trim();
             let fileToLoad = '';
 
-<<<<<<< HEAD:Tata_Tertib/views/Admin/tabs.js
-=======
             // Memperbarui teks judul berdasarkan tab yang aktif
             const titleElement = document.querySelector('h1'); // Memilih elemen judul (h1)
             if (titleElement) {
                 titleElement.textContent = `List Pelanggaran ${activeTabText}`;
             }
 
->>>>>>> 5f7a2ba (add : routes, controller, logging features. update : dashboard design, package structure):Tata_Tertib/views/dashboard/tabs.js
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {

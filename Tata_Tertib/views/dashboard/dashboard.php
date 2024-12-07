@@ -11,22 +11,41 @@
 
 <body>
     <!-- Sidebar -->
-    <?php include 'assets/sidebar.php';?>
+    <?php include 'assets/sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
-        <?php 
+        <?php
         include 'assets/header.php';
         
         // Content
-        include 'views/dashboard/admin/table-container.php';
+        switch ($_SESSION['level']) {
+            case '1':
+                # code...
+                include 'views/dashboard/admin/table-container.php';
+                break;
+            case '2':
+                include 'views/dashboard/dpa/table-container.php';
+                # code...
+                break;
+            case '3':
+                include 'views/dashboard/tendik/table-container.php';
+                # code...
+                break;
+            case '4':
+                include 'views/dashboard/mhs/table-container.php';
+                # code...
+                break;
+            default:
+                echo "Error: Invalid level";
+                break;
+        }
 
         // Footer
-        include 'assets/footer.php'; 
+        include 'assets/footer.php';
         ?>
     </div>
-
     <script type="module">
         // Mengimpor dan menjalankan fungsi dari tabs.js
         import {
@@ -36,6 +55,7 @@
             initializeTabs(); // Menjalankan fungsi untuk menginisialisasi tab
         });
     </script>
+
     <script src="views/dashboard/script.js"></script>
 </body>
 
