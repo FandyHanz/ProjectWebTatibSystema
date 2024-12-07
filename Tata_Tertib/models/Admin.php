@@ -1,14 +1,13 @@
 <?php
+include_once 'core/koneksi.php';
 class Admin extends Koneksi
 {
-    private $db;
-    public function __construct($db) {
-        $this->db = $db;
+    public function __construct() {
+        parent::__construct();
     }
 
     public function getTabelPelMhs()
     {
-        include 'core/koneksi.php';
         $sql = "SELECT * FROM pelanggaran_mahasiswa";
         $result = $this->db->query($sql);
         return $result;

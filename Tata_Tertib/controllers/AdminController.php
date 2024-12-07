@@ -1,17 +1,14 @@
 <?php
 include 'models/Admin.php';
+
 class AdminController
 {
-
     private $data;
-    private $db;
 
     public function __construct()
     {
-        include_once 'core/koneksi.php';
         // instansiasi objek
-        $this->db = $db;
-        $this->data = new Admin($db);
+        $this->data = new Admin();
     }
 
     public function dashboard()
