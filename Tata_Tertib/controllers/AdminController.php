@@ -1,16 +1,20 @@
 <?php
 include 'models/Admin.php';
 class AdminController {
+
     private $data;
+    private $db;
 
     public function __construct() {
-        $this->data = new Admin();
+        include_once 'core/koneksi.php';
+        // instansiasi objek
+        $this->db = $db;
+        $this->data = new Admin($db);
     }
     public function dashboard() {
         // Logika untuk halaman dashboard admin
 
-        $table = $this->data->getTabelMhs();
-        $dummy = "ASODKASODKASODKASDOKASODKADOKASDOKASDOASDK";
+        $tableMhs = $this->data->getTabelPelMhs();
 
         require 'views/dashboard/dashboard.php';
     }

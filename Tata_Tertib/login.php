@@ -1,9 +1,10 @@
 <?php
-include('../core/Session.php');
+include('core/Session.php');
 
 $session = new Session();
 
 if ($session->get('is_login') === true) {
+    echo "DI LOGIIIN";
     header('Location: /dashboard');
 }
 ?>

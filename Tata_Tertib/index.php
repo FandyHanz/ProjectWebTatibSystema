@@ -41,7 +41,7 @@ function initialization()
     static $controller = null;
 
     if ($controller === null) {
-        if (!isset($_SESSION['is_login']) || !$_SESSION['is_login']) {
+        if (!$_SESSION['is_login']) {
             header('Location: login.php', true, 302);
             exit();
         }

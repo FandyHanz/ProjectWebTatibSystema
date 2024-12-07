@@ -18,7 +18,7 @@
         <!-- Header -->
         <?php
         include 'assets/header.php';
-        
+
         // Content
         switch ($_SESSION['level']) {
             case '1':

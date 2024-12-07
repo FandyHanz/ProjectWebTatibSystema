@@ -13,6 +13,17 @@
         <div class="line-active" id="line-active"></div>
     </div>
 
+    <div class="filter">
+        <div class="filter-button">
+            <button>pp</button>
+            <button>pp</button>
+            <button>pp</button>
+        </div>
+        <div class="search">
+            <form action=""><input type="text" name="" id="" placeholder="SearchS"></form>
+        </div>
+    </div>
+
     <!-- Tempat untuk memuat konten tabel -->
     <div id="table-content-container" class="table-content-container">
         <!-- Konten tabel akan dimuat di sini -->
