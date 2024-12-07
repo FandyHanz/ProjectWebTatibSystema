@@ -1,5 +1,5 @@
 <?php
-class Admin
+class Admin extends Koneksi
 {
     private $db;
     public function __construct($db) {
