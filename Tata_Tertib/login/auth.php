@@ -20,7 +20,7 @@ if ($act == 'login-mhs') {
         $session->set('username', $data['nim']);
         $session->set('level', $data['role']);
         $session->commit();
-        header('Location: ../index.php', false);
+        header('Location: ../dashboard', false);
     } else {
         $session->setFlash('status', false);
         $session->setFlash('message', 'Username dan password salah.');
@@ -56,7 +56,7 @@ if ($act == 'login-mhs') {
         echo "$username";
         echo "$password";
         echo "Login Berhasil Teman";
-        header('Location: ../index.php', false);
+        header('Location: ../dashboard', false);
     } else {
         $session->setFlash('status', false);
         $session->setFlash('message', 'Username dan password salah.');

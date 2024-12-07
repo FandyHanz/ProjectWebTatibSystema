@@ -28,7 +28,9 @@ switch ($path) {
     case '/manajemen-user':
         $controller->manajemenUser();
         break;
-
+    case '/logout':
+        header('Location: login/auth.php?act=logout');
+        break;
     default:
         // Handle 404 error
         http_response_code(404);
