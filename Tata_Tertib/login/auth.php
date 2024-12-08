@@ -5,6 +5,8 @@ include('../core/koneksi.php');
 $session = new Session();
 $act = isset($_GET['act']) ? strtolower($_GET['act']) : '';
 
+$koneksi = new Koneksi(); // Akan menggunakan nilai default
+$db = $koneksi->db;
 if ($act == 'login-mhs') {
     $username = $_POST['username'];
     $password = $_POST['password'];

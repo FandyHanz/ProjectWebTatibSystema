@@ -29,14 +29,17 @@ class AdminController
 
     public function history()
     {
-        
+
 
         echo "Admin History";
     }
     public function manajemenUser()
     {
-        // Logika untuk halaman riwayat admin
-
-        echo "Admin History";
+        // Logika untuk halaman manajemen user admin
+        $tabelMahasiswa = $this->data->getTabelUserMahasiswa();
+        
+        $text = "TEST";
+        // Passing variabel secara eksplisit
+        require 'views/manajemen-user/manajemen-user.php';
     }
 }

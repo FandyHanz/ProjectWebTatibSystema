@@ -1,6 +1,6 @@
 <div class="table-container">
     <h1>List Pelanggaran Mahasiswa</h1>
-
+<?= $text?>
     <!-- toggle button untuk navigasi table -->
     <div class="table-nav" data-toggle="buttons">
         <ul id="tab-nav">
@@ -12,7 +12,6 @@
     <div class="line">
         <div class="line-active" id="line-active"></div>
     </div>
-
     <div class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
         <div class="filter-button" id="filter-button">
             <a href="#" class="btn btn-light d-inline-flex" style="gap:10px;">

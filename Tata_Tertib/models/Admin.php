@@ -30,4 +30,10 @@ class Admin extends Koneksi
         $result = $this->db->query($sql);
         return $result;
     }
+
+    public function getTabelUserMahasiswa() {
+        $sql = "SELECT * FROM mahasiswa";
+        $result = $this->db->query($sql);
+        return $result;
+    }
 }

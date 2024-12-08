@@ -25,7 +25,7 @@ switch ($path) {
         $controller->history();
         break;
 
-    case '/manajemen-user':
+    case '/manajemenUser':
         $controller->manajemenUser();
         break;
     case '/logout':
