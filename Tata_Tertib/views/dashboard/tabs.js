@@ -6,7 +6,7 @@ function initializeTabs() {
         button.addEventListener('click', function () {
             // Menghapus class 'active' dari semua tab
             document.querySelectorAll('.nav-table-button').forEach(btn => btn.classList.remove('active'));
-
+            const button = document.getElementById('filter-button');
             // Menambahkan class 'active' pada tab yang diklik
             this.classList.add('active');
 
@@ -25,10 +25,13 @@ function initializeTabs() {
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
+                button.style.display = 'flex';
                 fileToLoad = 'views/dashboard/admin/table-mahasiswa.php';
             } else if (activeTabText === "Dosen") {
+                button.style.display = 'none';
                 fileToLoad = 'views/dashboard/admin/table-dosen.php';
             } else if (activeTabText === "Karyawan") {
+                button.style.display = 'none';
                 fileToLoad = 'views/dashboard/admin/table-karyawan.php';
             }
 

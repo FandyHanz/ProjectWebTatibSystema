@@ -1,17 +1,18 @@
 <?php
 include 'models/Admin.php';
-class AdminController {
 
+class AdminController
+{
     private $data;
-    private $db;
 
-    public function __construct() {
-        include_once 'core/koneksi.php';
+    public function __construct()
+    {
         // instansiasi objek
-        $this->db = $db;
-        $this->data = new Admin($db);
+        $this->data = new Admin();
     }
-    public function dashboard() {
+
+    public function dashboard()
+    {
         // Logika untuk halaman dashboard admin
 
         $tableMhs = $this->data->getTabelPelMhs();
@@ -19,21 +20,23 @@ class AdminController {
         require 'views/dashboard/dashboard.php';
     }
 
-    public function report() {
+    public function report()
+    {
         // Logika untuk halaman laporan admin
 
         echo "Admin Report";
     }
 
-    public function history() {
+    public function history()
+    {
         
 
         echo "Admin History";
     }
-    public function manajemenUser() {
+    public function manajemenUser()
+    {
         // Logika untuk halaman riwayat admin
 
         echo "Admin History";
     }
 }
-?>
