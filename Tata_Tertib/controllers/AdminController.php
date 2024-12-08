@@ -33,18 +33,17 @@ class AdminController
             include 'models/Report.php';
             $report = new Report();
 
-            if($nama){
+            if($option == 'nama'){
                 $data = $report -> searchingName($nama, $kelas, $prodi, $option);
                 return $data;
-            } else if($nip){
+            } else if($option == 'nim'){
                 $data = $report -> searchingName($nip, $kelas, $prodi, $option);
                 return $data;
-            } else if ($nim){
+            } else if ($option == 'nim'){
                 $data = $report -> searchingName($nim, $kelas, $prodi, $option);
                 return $data;
             }
         }
-
         $tableMhs = $this->data->getTabelPelMhs();
 
         require 'views/report/report.php';
