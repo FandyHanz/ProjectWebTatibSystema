@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2024 at 04:39 AM
+-- Generation Time: Dec 08, 2024 at 03:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -79,7 +79,7 @@ CREATE TABLE `karyawan` (
 
 CREATE TABLE `kelas` (
   `id_kelas` int(11) NOT NULL,
-  `nama` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `id_prodi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -92,7 +92,6 @@ CREATE TABLE `kelas` (
 CREATE TABLE `mahasiswa` (
   `nim` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `id_prodi` int(50) NOT NULL,
   `id_kelas` int(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
@@ -132,7 +131,9 @@ CREATE TABLE `pelanggaran_mahasiswa` (
   `status_pelanggaran` varchar(50) NOT NULL,
   `lampiran` blob NOT NULL,
   `bukti_selesai` varchar(50) NOT NULL,
-  `nim` varchar(50) NOT NULL
+  `nim` varchar(50) NOT NULL,
+  `id_pelapor` varchar(50) NOT NULL,
+  `id_role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -144,10 +145,13 @@ CREATE TABLE `pelanggaran_mahasiswa` (
 CREATE TABLE `pelanggaran_tendik` (
   `id_pelanggaran_tendik` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
+  `status_pelanggaran` varchar(50) NOT NULL,
   `deskripsi` varchar(50) NOT NULL,
   `sanksi` varchar(50) NOT NULL,
   `lampiran` blob NOT NULL,
-  `nip` varchar(50) NOT NULL
+  `nip` varchar(50) NOT NULL,
+  `id_pelapor` varchar(50) NOT NULL,
+  `id_role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -221,9 +225,8 @@ ALTER TABLE `kelas`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`nim`),
-  ADD KEY `id_prodi` (`id_prodi`,`id_kelas`),
-  ADD KEY `role` (`role`),
-  ADD KEY `id_kelas` (`id_kelas`);
+  ADD KEY `id_prodi` (`id_kelas`),
+  ADD KEY `role` (`role`);
 
 --
 -- Indexes for table `pelanggaran`
@@ -343,7 +346,6 @@ ALTER TABLE `kelas`
 -- Constraints for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`),
   ADD CONSTRAINT `mahasiswa_ibfk_2` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`),
   ADD CONSTRAINT `mahasiswa_ibfk_3` FOREIGN KEY (`role`) REFERENCES `role` (`id_role`);
 
