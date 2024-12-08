@@ -25,6 +25,7 @@ class AdminController
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $nama = $_POST['nama'];
             $nip = $_POST['nip'];
+            $nim = $_POST['nim'];
             $kelas = $_POST['kelas'];
             $prodi = $_POST['prodi'];
             $option = $_POST['option'];
@@ -37,6 +38,9 @@ class AdminController
                 return $data;
             } else if($nip){
                 $data = $report -> searchingName($nip, $kelas, $prodi, $option);
+                return $data;
+            } else if ($nim){
+                $data = $report -> searchingName($nim, $kelas, $prodi, $option);
                 return $data;
             }
         }
