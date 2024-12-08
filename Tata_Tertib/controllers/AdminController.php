@@ -24,7 +24,9 @@ class AdminController
     {
         // Logika untuk halaman laporan admin
 
-        echo "Admin Report";
+        $tableMhs = $this->data->getTabelPelMhs();
+
+        require 'views/report/report.php';
     }
 
     public function history()
