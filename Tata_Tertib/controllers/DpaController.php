@@ -1,5 +1,5 @@
 <?php
-class DpaController
+class DpaController extends Koneksi
 {
     public function dashboard_dpa()
     {

@@ -65,4 +65,15 @@ class Admin extends Koneksi
             return []; // Jika tidak ada data, kembalikan array kosong
         }
     }
+
+    public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu){
+        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu)
+        VALUES ($nim, $password, $kelas, $status, $nama, $notelp, $email, $alamat, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu)";
+        $result = $this->db->query($sql);
+        if($result){
+            echo "data berhasil ditambah";
+        } else {
+            echo "gagal";
+        }
+    }
 }

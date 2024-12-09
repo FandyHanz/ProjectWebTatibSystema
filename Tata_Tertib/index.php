@@ -39,6 +39,9 @@ switch ($path) {
     case '/tambahUserMhs':
         $controller->tambahMhs();
         break;
+    case '/tambahMhsAction':
+        $controller->actionTambahMhs();
+        break;
     case '/logout':
         header('Location: login/auth.php?act=logout');
         break;

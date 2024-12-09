@@ -1,7 +1,7 @@
 <?php
 include 'models/Admin.php';
 
-class AdminController
+class AdminController extends Koneksi
 {
     private $data;
 
@@ -80,8 +80,47 @@ class AdminController
     }
 
     public function tambahMhs() {
-        
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $nama = $_POST['nama'];
+            $nim = $_POST['nim'];
+            $password = $_POST['password'];
+            $kelas = $_POST['kelas'];
+            $status = $_POST['status'];
+            $noTelp = $_POST['no_telp'];
+            $alamat = $_POST['alamat'];
+            $email = $_POST['email'];
+            $namaAyah = $_POST['nama_ayah'];
+            $noTelpAyah = $_POST['no_telp_ayah'];
+            $namaIbu = $_POST['nama_ibu'];
+            $noTelpIbu = $_POST['no_telp_ibu'];
+
+            $data = new Admin(); 
+            $tabelMahasiswa = $this->data->addTabelUserMahasiswa($nama, $password, $status, $nim ,$kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu);
+            return $tabelMahasiswa;
+        }
         require 'views/manajemen-user/tambah/mhs.php';
+    }
+
+    public function actionTambahMhs() {
+
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $nama = $_POST['nama'];
+            $nim = $_POST['nim'];
+            $kelas = $_POST['kelas'];
+            $status = $_POST['status'];
+            $noTelp = $_POST['no_telp'];
+            $alamat = $_POST['alamat'];
+            $email = $_POST['email'];
+            $namaAyah = $_POST['nama_ayah'];
+            $noTelpAyah = $_POST['no_telp_ayah'];
+            $namaIbu = $_POST['nama_ibu'];
+            $noTelpIbu = $_POST['no_telp_ibu'];
+
+            $data = new Admin(); 
+            $tabelMahasiswa = $this->data->getTabelUserKaryawan();
+            return $tabelMahasiswa;
+        }
+        require 'views/manajemen-user/tambah/mhs.php';    
     }
     public function tambahDosen() {
 
