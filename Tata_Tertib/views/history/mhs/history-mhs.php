@@ -20,7 +20,7 @@
             <li class="sidebar-nav">
                 <div class="circle-outside">
                     <div class="circle-inside">
-                        <a href="/dashboardMhs"><img src="../../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                        <a href="/views/dashboard/mhs/dashboard-mhs.php"><img src="../../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                     </div>
                 </div>
             </li>
