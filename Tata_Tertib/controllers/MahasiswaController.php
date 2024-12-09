@@ -24,7 +24,7 @@ class MahasiswaController
             if($option == 'nama'){
                 $data = $report -> searchingName($nama, $kelas, $prodi, $option);
                 return $data;
-            } else if($option == 'nim'){
+            } else if($option == 'nip'){
                 $data = $report -> searchingName($nip, $kelas, $prodi, $option);
                 return $data;
             } else if ($option == 'nim'){

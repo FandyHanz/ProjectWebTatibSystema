@@ -16,7 +16,7 @@ class DpaController extends Koneksi
 
     public function report()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_SERVER['METHOD_REQUEST'] == 'POST'){
             $nama = $_POST['nama'];
             $nip = $_POST['nip'];
             $nim = $_POST['nim'];
@@ -30,7 +30,7 @@ class DpaController extends Koneksi
             if($option == 'nama'){
                 $data = $report -> searchingName($nama, $kelas, $prodi, $option);
                 return $data;
-            } else if($option == 'nim'){
+            } else if($option == 'nip'){
                 $data = $report -> searchingName($nip, $kelas, $prodi, $option);
                 return $data;
             } else if ($option == 'nim'){
