@@ -12,7 +12,7 @@ class Admin extends Koneksi
         $result = $this->db->query($sql);
         return $result;
     }
-    
+
     public function getTabelPelDosen() {
         $sql = "SELECT *
         FROM pelanggaran_tendik p
@@ -42,6 +42,7 @@ class Admin extends Koneksi
             return []; // Jika tidak ada data, kembalikan array kosong
         }
     }
+
     public function getTabelUserDosen() {
         $sql = "SELECT * FROM dosen";
         $result = $this->db->query($sql);
@@ -51,7 +52,7 @@ class Admin extends Koneksi
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return []; // Jika tidak ada data, kembalikan array kosong
-        }
+        } 
     }
 
     public function getTabelUserKaryawan() {

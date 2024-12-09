@@ -49,6 +49,10 @@ class AdminController
         require 'views/report/report.php';
     }
 
+    public function reportMhsAction() {
+        
+    }
+
     public function history()
     {
 

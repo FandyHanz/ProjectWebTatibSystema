@@ -42,7 +42,13 @@
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Kelas:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <select class="form-select" id="kelas" name="kelas" required>
+                        <?php 
+                        foreach ($kelas as $row) {
+                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama_kelas'] . '</option>';
+                        }
+                        ?>
+                    </select>
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nim">Status:</label>
@@ -77,7 +83,7 @@
                         <label class="" for="nim">No Telepon Ayah:</label>
                     </div>
                     <input class="col-3" type="text" id="nim" name="nim" required>
-                </div>
+                </div>f
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama Ibu:</label>
