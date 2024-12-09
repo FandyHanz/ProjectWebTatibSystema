@@ -37,7 +37,7 @@
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="history.php"><img src="../../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
+                    <a href="../../history/mhs/history-mhs.php"><img src="../../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
                 </div>
             </div>
         </li>

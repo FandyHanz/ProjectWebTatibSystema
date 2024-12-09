@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website with Sidebar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             <li class="sidebar-nav">
                 <div class="circle-outside">
                     <div class="circle-inside">
-                        <a href="dashboard-mhs.php"><img src="../../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                        <a href="/dashboardMhs"><img src="../../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                     </div>
                 </div>
             </li>
@@ -34,7 +34,7 @@
             <li class="sidebar-nav">
                 <div class="circle-outside">
                     <div class="circle-inside">
-                        <a href="History.php"><img src="../../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
+                        <a href=""><img src="../../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
                     </div>
                 </div>
             </li>
