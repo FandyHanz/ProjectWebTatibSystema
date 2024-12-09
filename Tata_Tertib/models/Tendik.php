@@ -4,7 +4,7 @@ Class Tendik extends Koneksi{
     public function __construct(){
         parent :: __construct();
     }
-    public function getTabelpelanggaranTendik(){
+    public function getTabelPelanggaranTendik(){
         $sql = "SELECT * FROM pelanggaran_tendik";
         $result = $this -> db -> query($sql);
         return $result;
