@@ -168,7 +168,41 @@ CREATE TABLE `pelanggaran` (
 --
 
 INSERT INTO `pelanggaran` (`id_pelanggaran`, `nama_pelanggaran`, `kategori`) VALUES
-(1, 'Mencuri', 1);
+(1, 'Berkomunikasi dengan tidak sopan, baik tertulis atau tidak tertulis kepada mahasiswa, dosen, karyawan, atau orang lain', 5),
+(2, 'Berbusana tidak sopan dan tidak rapi. Yaitu antara lain adalah: berpakaian ketat, transparan, memakai t-shirt (baju kaos tidak berkerah), tank top, hipster, you can see, rok mini, backless, celanapendek, celana tiga per empat, legging, model celana atau baju koyak, sandal, sepatu sandal di lingkungan kampus', 4),
+(3, 'Mahasiswa laki-laki berambut tidak rapi, gondrong yaitu panjang rambutnya melewati batas alis mata di bagian depan, telinga di bagian samping atau menyentuh kerah baju di bagian leher', 4),
+(4, 'Mahasiswa berambut dengan model punk, dicat selain hitam dan/atau skinned.', 4),
+(5, 'Makan, atau minum di dalam ruang kuliah/laboratorium/bengkel.', 4),
+(6, 'Melanggar peraturan/ketentuan yang berlaku di Polinema baik di Jurusan/Program Studi', 3),
+(7, 'Tidak menjaga kebersihan di seluruh area Polinema', 3),
+(8, 'Membuat kegaduhan yang mengganggu pelaksanaan perkuliahan atau praktikum yang sedang berlangsung.', 3),
+(9, 'Merokok di luar area kawasan merokok', 3),
+(10, 'Bermain kartu, game online di area kampus', 3),
+(11, 'Mengotori atau mencoret-coret meja, kursi, tembok, dan lain-lain di lingkungan Polinema', 3),
+(12, 'Bertingkah laku kasar atau tidak sopan kepada mahasiswa, dosen, dan/atau karyawan.', 3),
+(13, 'Merusak sarana dan prasarana yang ada di area Polinema', 2),
+(14, 'Tidak menjaga ketertiban dan keamanan di seluruh area Polinema (misalnya: parkir tidak pada tempatnya, konvoi selebrasi wisuda dll)', 2),
+(15, 'Melakukan pengotoran/pengrusakan barang milik orang lain termasuk milik Politeknik Negeri Malang', 2),
+(16, 'Mengakses materi pornografi di kelas atau area kampus', 2),
+(17, 'Membawa dan/atau menggunakan senjata tajam dan/atau senjata api untuk hal kriminal', 2),
+(18, 'Melakukan perkelahian, serta membentuk geng/kelompok yang bertujuan negatif.', 2),
+(19, 'Melakukan kegiatan politik praktis di dalam kampus', 2),
+(20, 'Melakukan tindakan kekerasan atau perkelahian di dalam kampus.', 2),
+(21, 'Melakukan penyalahgunaan identitas untuk perbuatan negatif', 2),
+(22, 'Mengancam, baik tertulis atau tidak tertulis kepada mahasiswa, dosen, dan/atau karyawan.', 2),
+(23, 'Mencuri dalam bentuk apapun', 1),
+(24, 'Melakukan kecurangan dalam bidang akademik, administratif, dan keuangan.', 1),
+(25, 'Melakukan pemerasan dan/atau penipuan', 1),
+(26, 'Melakukan pelecehan dan/atau tindakan asusila dalam segala bentuk di dalam dan di luar kampus', 1),
+(27, 'Berjudi, mengkonsumsi minum-minuman keras, dan/atau bermabuk-mabukan di lingkungan dan di luar lingkungan Kampus Polinema', 1),
+(28, 'Mengikuti organisasi dan atau menyebarkan faham-faham yang dilarang oleh Pemerintah.', 1),
+(29, 'Melakukan pemalsuan data / dokumen / tanda tangan.', 1),
+(30, 'Melakukan plagiasi (copy paste) dalam tugas-tugas atau karya ilmiah', 1),
+(31, 'Tidak menjaga nama baik Polinema di masyarakat dan/atau mencemarkan nama baik Polinema melalui media apapun', 1),
+(32, 'Melakukan kegiatan atau sejenisnya yang dapat menurunkan kehormatan atau martabat Negara, Bangsa dan Polinema.', 1),
+(33, 'Menggunakan barang-barang psikotropika dan/atau zat-zat Adiktif lainnya', 1),
+(34, 'Mengedarkan serta menjual barang-barang psikotropika dan/atau zat-zat Adiktif lainnya', 1),
+(35, 'Terlibat dalam tindakan kriminal dan dinyatakan bersalah oleh Pengadilan', 1);
 
 -- --------------------------------------------------------
 
