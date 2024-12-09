@@ -1,11 +1,27 @@
 <?php
+include_once 'models/Mahasiswa.php';
+
 class MahasiswaController
 {
+    private $data;
+    public function __construct()
+    {
+        // instansiasi objek
+        $this->data = new Mahasiswa();
+    }
     public function dashboard()
     {
         // Logika untuk halaman dashboard Mahasiswa
+        $tabelPelanggaran = $this->data->getTablePelanggaranMahasiswa();
 
         require 'views/dashboard/dashboard.php';
+    }
+
+    public function dashboard_mhs()
+    {
+        // Logika untuk halaman dashboard DPA
+
+        require 'views/dashboard/mhs/dashboard-mhs.php';
     }
 
     public function report()
