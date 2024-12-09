@@ -19,7 +19,7 @@ class MahasiswaController
 
     public function dashboard_mhs()
     {
-        // Logika untuk halaman dashboard DPA
+        $dashboardMhs = $this->data->getUserInfoMahasiswa();
 
         require 'views/dashboard/mhs/dashboard-mhs.php';
     }
