@@ -6,7 +6,7 @@
         <ul id="tab-nav">
             <li class="nav-table-button active"><a href="#Mahasiswa"><img src="assets/icon/student-icon.svg" class="icon" style="opacity: 1;" alt="">Mahasiswa</a></li>
             <li class="nav-table-button"><a href="#Dosen"><img src="assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt="">Dosen</a></li>
-            <li class="nav-table-button"><a href="#Contact"><img src="assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt="">Karyawan</a></li>
+            <li class="nav-table-button"><a href="#Karyawan"><img src="assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt="">Karyawan</a></li>
         </ul>
     </div>
     <div class="line">

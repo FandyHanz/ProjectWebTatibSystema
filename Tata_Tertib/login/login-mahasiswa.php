@@ -73,15 +73,15 @@ if ($session->get('is_login') === true) {
     <div class="login-container">
         <img src="..\assets\img\logo_polinema.png" alt="Polinema Logo">
         <form action="auth.php?act=login-mhs" method="post" id="form-login">
-            <input type="text" id="username" placeholder="NIM">
-            <input type="password" id="password" placeholder="Password">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <div class="dropdown">
                 <select id="role" onchange="redirectToPage()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                     <option value="" disabled selected>Pilih Role</option>
                     <option value="login-mahasiswa.php">Mahasiswa</option>
                     <option value="login-tendik.php">Tenaga Kependidikan</option>
                 </select>
-                <button type="button" onclick="login()">Login</button>
+                <button type="submit">Login</button>
         </form>
         <p><a href="#">Lupa Password?</a></p>
     </div>
@@ -95,38 +95,6 @@ if ($session->get('is_login') === true) {
             } else {
                 alert("Please select a valid role.");
             }
-        }
-
-        function login() {
-            const nim = document.getElementById("nim").value;
-            const password = document.getElementById("password").value;
-            const role = document.getElementById("role").value;
-
-            if (nim === "" || password === "") {
-                alert("Please fill in all fields.");
-                return;
-            }
-
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "login_proses.php");
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    const response = xhr.responseText;
-                    if (response === "success") {
-                        if (role === "mahasiswa") {
-                            window.location.href = "mahasiswa_dashboard.php";
-                        } else if (role === "admin") {
-                            window.location.href = "admin_dashboard.php";
-                        }
-                    } else {
-                        alert("Invalid credentials");
-                    }
-                } else {
-                    alert("An error occurred.");
-                }
-            };
-            xhr.send(`nim=${nim}&password=${password}&role=${role}`);
         }
     </script>
 </body>

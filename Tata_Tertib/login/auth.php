@@ -17,7 +17,7 @@ if ($act == 'login-mhs') {
     // untuk ambil datanya
     $data = $query->get_result()->fetch_assoc();
     // jika password sesuai
-    if (password_verify($password, $data['nim'])) {
+    if ($password == $data['password']) {
         $session->set('is_login', true);
         $session->set('username', $data['nim']);
         $session->set('level', $data['role']);

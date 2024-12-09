@@ -91,6 +91,16 @@ if ($session->get('is_login') === true) {
         <p><a href="#">Lupa Password?</a></p>
     </div>
 
+    <script>
+        function redirectToPage() {
+            const role = document.getElementById("role").value;
+            if (role) {
+                window.location.href = role;
+            } else {
+                alert("Please select a valid role.");
+            }
+        }
+    </script>
 </body>
 
 </html>

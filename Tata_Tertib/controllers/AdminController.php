@@ -23,7 +23,6 @@ class AdminController
     public function report()
     {
         // Logika untuk halaman laporan admin
-
         echo "Admin Report";
     }
 
@@ -33,13 +32,38 @@ class AdminController
 
         echo "Admin History";
     }
-    public function manajemenUser()
+    public function manajemenUserMhs()
     {
         // Logika untuk halaman manajemen user admin
         $tabelMahasiswa = $this->data->getTabelUserMahasiswa();
-        
-        $text = "TEST";
+
         // Passing variabel secara eksplisit
-        require 'views/manajemen-user/manajemen-user.php';
+        require 'views/manajemen-user/manajemen-user-mhs.php';
+    }
+    public function manajemenUserDosen()
+    {
+        // Logika untuk halaman manajemen user admin
+        $tabelDosen = $this->data->getTabelUserDosen();
+
+        // Passing variabel secara eksplisit
+        require 'views/manajemen-user/manajemen-user-dosen.php';
+    }
+    public function manajemenUserKaryawan()
+    {
+        // Logika untuk halaman manajemen user admin
+        $tabelKaryawan = $this->data->getTabelUserKaryawan();
+        // Passing variabel secara eksplisit
+        require 'views/manajemen-user/manajemen-user-karyawan.php';
+    }
+
+    public function tambahMhs() {
+        
+        require 'views/manajemen-user/tambah/mhs.php';
+    }
+    public function tambahDosen() {
+
+    }
+    public function tambahKaryawan() {
+
     }
 }
