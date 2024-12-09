@@ -22,7 +22,7 @@
         <div class="table-container">
             <div class="d-flex flex-row justify-content-between align-items-center p-4 pb-0">
                 <h1 class="m-0 p-0">List User Karyawan</h1>
-                <a href="/tambahUserMhs" class="btn btn-primary">Tambah Karyawan</a>
+                <a href="/tambahUserKaryawan" class="btn btn-primary">Tambah Karyawan</a>
             </div>
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
