@@ -24,7 +24,7 @@
         <?php
         include 'assets/header.php';
         ?>
-        <div class="table-container p-4 pb-0">
+        <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
             <form action="" method="post">
                 <div class="baris-satu d-flex flex-row mb-3">
@@ -39,55 +39,61 @@
                     <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
-                    <div class="form-group col-2 d-flex flex-row ">
+                    <div class="form-group col-2 d-flex flex-row">
                         <label class="" for="nama">Kelas:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <select class="form-select" id="kelas" name="kelas" required>
+                        <?php
+                        foreach ($kelas as $row) {
+                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama_kelas'] . '</option>';
+                        }
+                        ?>
+                    </select>
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nim">Status:</label>
                     </div>
-                    <input class="col-3" type="text" id="nim" name="nim" required>
+                    <input class="col-3" type="text" id="status" name="status" required>
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nama">No Telepon:</label>
+                        <label class="" for="no_telp">No Telepon:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="no_telp" name="no_telp" required>
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nim">Email:</label>
+                        <label class="" for="email">Email:</label>
                     </div>
-                    <input class="col-3" type="text" id="nim" name="nim" required>
+                    <input class="col-3" type="text" id="email" name="email" required>
                 </div>
                 <div class="baris-empat d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nama">Alamat:</label>
+                        <label class="" for="alamat">Alamat:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="alamat" name="alamat" required>
                     <div class="col-2"></div>
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nama">Nama Ayah:</label>
+                        <label class="" for="nama_ayah">Nama Ayah:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="nama_ayah" name="namaa_ayah" required>
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nim">No Telepon Ayah:</label>
+                        <label class="" for="no_telp_ayah">No Telepon Ayah:</label>
                     </div>
-                    <input class="col-3" type="text" id="nim" name="nim" required>
+                    <input class="col-3" type="text" id="no_telp_ayah" name="no_telp_ayah" required>
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nama">Nama Ibu:</label>
+                        <label class="" for="nama_ibu">Nama Ibu:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="nama_ibu" name="nama_ibu" required>
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nim">No Telepon Ibu:</label>
+                        <label class="" for="no_telp_ibu">No Telepon Ibu:</label>
                     </div>
-                    <input class="col-3" type="text" id="nim" name="nim" required>
+                    <input class="col-3" type="text" id="no_telp_ibu" name="no_telp_ibu" required>
                 </div>
                 <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

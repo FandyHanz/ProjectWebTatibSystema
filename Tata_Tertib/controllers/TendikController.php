@@ -1,5 +1,5 @@
 <?php
-class TendikController
+class TendikController extends Koneksi
 {
     public function dashboard()
     {

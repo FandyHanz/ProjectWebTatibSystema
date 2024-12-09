@@ -181,7 +181,7 @@ body {
 /* Tabel Container */ /* Container Content Setiap Halaman Menu*/
 .table-container {
     width: 98%;
-    height: 65%;
+    height: 75%;
     background-color: white;
     margin-left: 1%;
     margin-right: 1%;
@@ -272,7 +272,7 @@ body {
 }
 
 .masukkan-nama-header{
-    font-size: 31px;
+    font-size: 27px;
     color: #333;
     letter-spacing: 1.3px;
    
@@ -286,8 +286,8 @@ body {
     border: 1px solid #007bff;
     border-radius: 20px;
     padding: 5px 15px;
-    height: 31px;
-    width: 401px;
+    height: 27px;
+    width: 397px;
   }
 
   .search-bar-container input {
@@ -308,8 +308,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 31px;
-    height: 31px;
+    width: 27px;
+    height: 27px;
     border: 1px solid #007bff;
     border-radius: 8px;
     color: #007bff;
@@ -319,7 +319,7 @@ body {
 
   /* Styling untuk Dropdown */
   .dropdown-menu {
-    width: 300px;
+    width: 296px;
     padding: 15px;
     border-radius: 8px;
     border: 1px solid #ccc;
@@ -411,3 +411,4 @@ body {
     border-top: 1px solid #ddd;
     margin-top: auto;
 }
+
