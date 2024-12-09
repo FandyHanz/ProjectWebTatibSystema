@@ -24,7 +24,7 @@
         <?php
         include 'assets/header.php';
         ?>
-        <div class="table-container p-4 pb-0">
+        <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
             <form action="" method="post">
                 <div class="baris-satu d-flex flex-row mb-3">
@@ -39,14 +39,11 @@
                     <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
-                    <div class="form-group col-2 d-flex flex-row ">
+                    <div class="form-group col-2 d-flex flex-row">
                         <label class="" for="nama">Kelas:</label>
                     </div>
                     <select class="form-select" id="kelas" name="kelas" required>
                         <?php
-                        include 'controllers/AdminController.php';
-                        $dataPlus = new AdminController();
-                        $kelas = $this -> dataPlus -> tambahMhs();
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama_kelas'] . '</option>';
                         }

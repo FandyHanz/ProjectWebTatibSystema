@@ -1,5 +1,5 @@
 <?php
-class MahasiswaController extends Koneksi
+class MahasiswaController
 {
     public function dashboard()
     {
