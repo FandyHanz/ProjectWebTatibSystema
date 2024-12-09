@@ -1,6 +1,12 @@
 <?php
-class DpaController
+class DpaController extends Koneksi
 {
+    public function dashboard_dpa()
+    {
+        // Logika untuk halaman dashboard DPA
+
+        require 'views/dashboard/dashboard_dpa/table-container.php';
+    }
     public function dashboard()
     {
         // Logika untuk halaman dashboard DPA
@@ -10,7 +16,29 @@ class DpaController
 
     public function report()
     {
-        // Logika untuk halaman laporan DPA
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $nama = $_POST['nama'];
+            $nip = $_POST['nip'];
+            $nim = $_POST['nim'];
+            $kelas = $_POST['kelas'];
+            $prodi = $_POST['prodi'];
+            $option = $_POST['option'];
+
+            include 'models/Report.php';
+            $report = new Report();
+
+            if($option == 'nama'){
+                $data = $report -> searchingName($nama, $kelas, $prodi, $option);
+                return $data;
+            } else if($option == 'nim'){
+                $data = $report -> searchingName($nip, $kelas, $prodi, $option);
+                return $data;
+            } else if ($option == 'nim'){
+                $data = $report -> searchingName($nim, $kelas, $prodi, $option);
+                return $data;
+            }
+        }
+        require 'views/report/report.php';
 
         echo "DPA Report";
     }

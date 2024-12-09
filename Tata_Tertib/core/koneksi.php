@@ -1,5 +1,5 @@
 <?php
-class Koneksi{
+Class Koneksi{
     private $host = "localhost";
     private $username = "root";
     private $password = "";

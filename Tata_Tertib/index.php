@@ -17,16 +17,30 @@ switch ($path) {
         $controller->dashboard();
         break;
 
+    case '/dashboardDpa':
+        $controller->dashboard_dpa();
+        break;
+
     case '/report':
         $controller->report();
         break;
-
     case '/history':
         $controller->history();
         break;
-
-    case '/manajemenUser':
-        $controller->manajemenUser();
+    case '/manajemenUserMhs':
+        $controller->manajemenUserMhs();
+        break;
+    case '/manajemenUserDosen':
+        $controller->manajemenUserDosen();
+        break;
+    case '/manajemenUserKaryawan':
+        $controller->manajemenUserKaryawan();
+        break;
+    case '/tambahUserMhs':
+        $controller->tambahMhs();
+        break;
+    case '/tambahMhsAction':
+        $controller->actionTambahMhs();
         break;
     case '/logout':
         header('Location: login/auth.php?act=logout');
@@ -72,6 +86,7 @@ function initialization()
                 break;
 
             default:
+                header('Location: login/auth.php?act=logout');
                 echo "Unauthorized";
                 exit();
         }

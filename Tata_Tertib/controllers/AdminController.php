@@ -1,7 +1,7 @@
 <?php
 include 'models/Admin.php';
 
-class AdminController
+class AdminController extends Koneksi
 {
     private $data;
 
@@ -22,8 +22,28 @@ class AdminController
 
     public function report()
     {
-        // Logika untuk halaman laporan admin
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $nama = $_POST['nama'];
+            $nip = $_POST['nip'];
+            $nim = $_POST['nim'];
+            $kelas = $_POST['kelas'];
+            $prodi = $_POST['prodi'];
+            $option = $_POST['option'];
 
+            include 'models/Report.php';
+            $report = new Report();
+
+            if($option == 'nama'){
+                $data = $report -> searchingName($nama, $kelas, $prodi, $option);
+                return $data;
+            } else if($option == 'nim'){
+                $data = $report -> searchingName($nip, $kelas, $prodi, $option);
+                return $data;
+            } else if ($option == 'nim'){
+                $data = $report -> searchingName($nim, $kelas, $prodi, $option);
+                return $data;
+            }
+        }
         $tableMhs = $this->data->getTabelPelMhs();
 
         require 'views/report/report.php';
@@ -35,13 +55,77 @@ class AdminController
 
         echo "Admin History";
     }
-    public function manajemenUser()
+    public function manajemenUserMhs()
     {
         // Logika untuk halaman manajemen user admin
         $tabelMahasiswa = $this->data->getTabelUserMahasiswa();
-        
-        $text = "TEST";
+
         // Passing variabel secara eksplisit
-        require 'views/manajemen-user/manajemen-user.php';
+        require 'views/manajemen-user/manajemen-user-mhs.php';
+    }
+    public function manajemenUserDosen()
+    {
+        // Logika untuk halaman manajemen user admin
+        $tabelDosen = $this->data->getTabelUserDosen();
+
+        // Passing variabel secara eksplisit
+        require 'views/manajemen-user/manajemen-user-dosen.php';
+    }
+    public function manajemenUserKaryawan()
+    {
+        // Logika untuk halaman manajemen user admin
+        $tabelKaryawan = $this->data->getTabelUserKaryawan();
+        // Passing variabel secara eksplisit
+        require 'views/manajemen-user/manajemen-user-karyawan.php';
+    }
+
+    public function tambahMhs() {
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $nama = $_POST['nama'];
+            $nim = $_POST['nim'];
+            $password = $_POST['password'];
+            $kelas = $_POST['kelas'];
+            $status = $_POST['status'];
+            $noTelp = $_POST['no_telp'];
+            $alamat = $_POST['alamat'];
+            $email = $_POST['email'];
+            $namaAyah = $_POST['nama_ayah'];
+            $noTelpAyah = $_POST['no_telp_ayah'];
+            $namaIbu = $_POST['nama_ibu'];
+            $noTelpIbu = $_POST['no_telp_ibu'];
+
+            $data = new Admin(); 
+            $tabelMahasiswa = $this->data->addTabelUserMahasiswa($nama, $password, $status, $nim ,$kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu);
+            return $tabelMahasiswa;
+        }
+        require 'views/manajemen-user/tambah/mhs.php';
+    }
+
+    public function actionTambahMhs() {
+
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $nama = $_POST['nama'];
+            $nim = $_POST['nim'];
+            $kelas = $_POST['kelas'];
+            $status = $_POST['status'];
+            $noTelp = $_POST['no_telp'];
+            $alamat = $_POST['alamat'];
+            $email = $_POST['email'];
+            $namaAyah = $_POST['nama_ayah'];
+            $noTelpAyah = $_POST['no_telp_ayah'];
+            $namaIbu = $_POST['nama_ibu'];
+            $noTelpIbu = $_POST['no_telp_ibu'];
+
+            $data = new Admin(); 
+            $tabelMahasiswa = $this->data->getTabelUserKaryawan();
+            return $tabelMahasiswa;
+        }
+        require 'views/manajemen-user/tambah/mhs.php';    
+    }
+    public function tambahDosen() {
+
+    }
+    public function tambahKaryawan() {
+
     }
 }

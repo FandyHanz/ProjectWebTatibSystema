@@ -1,10 +1,40 @@
 <?php
-include('../core/Session.php');
+session_start();
+include('../core/Session.php'); 
 
-$session = new Session();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nip = $_POST['username']; // Ubah 'nipd' menjadi 'nip' untuk konsistensi
+    $password = $_POST['password'];
+    
+    $db = new $pbl();
+    $conn = $db->getConnection(); // Tambahkan titik koma di akhir baris ini
 
-if ($session->get('is_login') === true) {
-    header('Location: /dashboard');
+    $stmt = $conn->prepare("SELECT * FROM dosen WHERE nip = :nip");
+    $stmt->bindParam(':nip', $nip); 
+    $stmt->execute();
+    
+    $dosen = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($dosen && password_verify($password, $dosen['password'])) { 
+        $session->set('is_login', true);
+        $session->set('username', $dosen['nip']); 
+        $session->set('level', $dosen['role']); 
+        $session->commit();
+        echo "Login Berhasil Teman";
+        header('Location: ../dashboard_dpa', true, 302); 
+        exit(); 
+    } else {
+        $session->setFlash('status', false);
+        $session->setFlash('message', 'Username dan password salah.');
+        $session->commit();
+        echo "Login Gagal Teman";
+        header('Location: ../login.php', true, 302); 
+        exit(); 
+    }
+} else if (isset($_GET['act']) && $_GET['act'] == 'logout') { 
+    $session->deleteAll();
+    header('Location: ../login.php', true, 302); 
+    exit(); 
 }
 ?>
 
@@ -91,6 +121,16 @@ if ($session->get('is_login') === true) {
         <p><a href="#">Lupa Password?</a></p>
     </div>
 
+    <script>
+        function redirectToPage() {
+            const role = document.getElementById("role").value;
+            if (role) {
+                window.location.href = role;
+            } else {
+                alert("Please select a valid role.");
+            }
+        }
+    </script>
 </body>
 
 </html>
