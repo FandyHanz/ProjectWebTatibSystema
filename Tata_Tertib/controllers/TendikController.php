@@ -21,6 +21,7 @@ class TendikController extends Koneksi
     public function dashboard_tendik()
     {
         // Logika untuk halaman dashboard DPA
+        $tabelPelTendik = $this->data->getTabelPelanggaranTendik();
 
         require 'views/dashboard/tendik/dashboard-tendik.php';
     }
