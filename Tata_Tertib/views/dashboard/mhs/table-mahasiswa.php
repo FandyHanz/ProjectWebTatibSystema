@@ -35,7 +35,7 @@ for ($i = 0; $i < count($data); $i++) {
     echo '</button>';
     echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $i . '">';
     echo '<li><a class="dropdown-item" href="lampiran.php">Lampiran</a></li>';
-    echo '<li><a class="dropdown-item" href="#">Konfirmasi Bukti</a></li>';
+    echo '<li><a class="dropdown-item" href="konfirmasiBukti.php">Konfirmasi Bukti</a></li>';
     echo '</ul>';
     echo '</div>';
     echo '</td>';
