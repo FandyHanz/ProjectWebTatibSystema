@@ -20,7 +20,7 @@
             <li class="sidebar-nav">
                 <div class="circle-outside">
                     <div class="circle-inside">
-                        <a href="/dashboardMhs"><img src="../../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                        <a href="../../../views/dashboard/tendik/dashboard-tendik.php"><img src="../../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                     </div>
                 </div>
             </li>
@@ -64,8 +64,8 @@
                 <img src="../../../assets/foto-mhs/contoh-profile.png" alt="">
                 <p>
                     <!-- Diganti sql -->
-                    <span class="nama-header">Mahmoed Joendi M.</span><br> <!-- Nama -->
-                    <span class="status-header">DPA</span> <!-- Status -->
+                    <span class="nama-header">AMIN</span><br> <!-- Nama -->
+                    <span class="status-header">Karyawan Aktif</span> <!-- Status -->
                 </p>
             </div>
         </header>
@@ -76,7 +76,7 @@
             <div class="table-nav" data-toggle="buttons">
                 <ul id="tab-nav" class="nav nav-tabs">
                     <li class="nav-table-button active"><a href="#Mahasiswa" class="nav-link"><img src="../../../assets/icon/student-icon.svg" class="icon" alt="">Pelanggaran Pribadi</a></li>
-                    <li class="nav-table-button"><a href="#Kelas" class="nav-link"><img src="../../../assets/icon/teacher-icon.svg" class="icon" alt="">Kelas</a></li>
+                    <!-- <li class="nav-table-button"><a href="#Kelas" class="nav-link"><img src="../../../assets/icon/teacher-icon.svg" class="icon" alt="">Kelas</a></li> -->
                 </ul>
             </div>
             <div class="line">

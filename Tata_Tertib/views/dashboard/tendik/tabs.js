@@ -50,7 +50,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    loadTableContent('table-karyawan.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {

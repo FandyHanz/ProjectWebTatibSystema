@@ -65,12 +65,12 @@
                 <p>
                     <!-- Diganti sql -->
                     <span class="nama-header">Mahmoed Joendi M.</span><br> <!-- Nama -->
-                    <span class="status-header">DPA</span> <!-- Status -->
+                    <span class="status-header">Mahasiswa Aktif</span> <!-- Status -->
                 </p>
             </div>
         </header>
         <div class="table-container">
-            <h1>List Pelanggaran DPA</h1>
+            <h1>List Pelanggaran Pribadi</h1>
 
             <!-- Toggle button for table navigation -->
             <div class="table-nav" data-toggle="buttons">

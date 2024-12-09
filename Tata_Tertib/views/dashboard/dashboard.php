@@ -31,7 +31,7 @@
                 break;
             case '3':
                
-                header('location: /dashboardTendik');
+                header('location: views/dashboard/tendik/dashboard-tendik.php');
                 # code...
                 break;
             case '4':
