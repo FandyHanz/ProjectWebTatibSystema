@@ -1,0 +1,332 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #4a4a4a;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 70px;
+    background-color: #1976D2;
+    color: white;
+    height: 100%;
+    position: flex;
+    transition: width 0.3s;
+    overflow: hidden;
+}
+
+.sidebar:hover,
+.sidebar.expanded {
+    width: 200px;
+}
+
+.sidebar-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: center;
+    padding: 15px 20px 15px 20px;
+}
+
+.sidebar-logo img {
+    width: 40px;
+    max-width: 40px;
+    margin-bottom: 15px;
+}
+
+.sidebar-logo p {
+    display: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar:hover .sidebar-logo img,
+.sidebar:hover .sidebar-logo p,
+.sidebar.expanded .sidebar-logo img,
+.sidebar.expanded .sidebar-logo p {
+    display: inline-block;
+}
+
+.sidebar-menu {
+    position: absolute;
+    top: 120px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 0px 20px 40px 22px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu li img {
+    display: flex;
+    padding-bottom: 2px;
+    margin-right: 10px;
+}
+
+.sidebar-menu li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu li a span {
+    margin-left: 10px;
+    display: none;
+}
+
+.sidebar:hover .sidebar-menu li a span,
+.sidebar.expanded .sidebar-menu li a span {
+    display: inline-block;
+}
+
+/* Main Content Styles */
+.main-content {
+    background-color: #E0E2F1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Header */
+.header {
+    height: 70px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    position: sticky;
+    /* Menjadikan header sticky */
+    top: 0;
+    /* Menempatkan header di atas halaman */
+    z-index: 1000;
+    /* Pastikan header tetap di atas konten lainnya */
+}
+
+
+.header .header-kiri {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-direction: row;
+    margin: 10px 0px 10px 10px;
+}
+
+.header .header-kiri img {
+    cursor: pointer;
+    margin-right: 20px;
+    vertical-align: center;
+}
+
+.header .header-kiri p {
+    margin: 0;
+    font-size: 20px;
+    align-items: center;
+    vertical-align: center;
+    display: inline-block;
+}
+
+.header-kanan {
+    display: flex;
+    height: 40px;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: center;
+    gap: 30px;
+    margin-right: 40px;
+}
+
+.header-kanan img {
+    width: 40px;
+    /* Ubah sesuai ukuran yang diinginkan */
+    height: 40px;
+    /* Sama dengan width agar perbandingannya 1:1 */
+    object-fit: cover;
+    /* Potong gambar agar tidak terdistorsi */
+    border-radius: 50%;
+    /* Membuatnya menjadi lingkaran */
+    overflow: hidden;
+    /* Pastikan tidak ada bagian gambar yang keluar */
+}
+
+.header-kanan p {
+    margin: 0;
+    font-size: 20px;
+    flex-direction: column;
+    vertical-align: center;
+    display: flex;
+    line-height: 12px;
+    padding-top: 5px;
+}
+
+.status-header {
+    font-size: 13px;
+}
+
+/* Tabel Container */
+.table-container {
+    width: 98%;
+    height: 65%;
+    background-color: white;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container h1 {
+    font-size: 30px;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+/* Table Nav Button */
+/* Styling dasar untuk tab */
+.table-nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 2%;
+    transition: all 0.3s ease;
+}
+
+.table-nav .nav-table-button {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.table-nav .nav-table-button.active a {
+    color: #1976D2;
+    transition: color 0.3s ease;
+}
+
+.table-nav .nav-table-button a {
+    text-decoration: none;
+    color: #BDD0E7;
+    transition: color 0.3s ease;
+}
+
+.table-nav .nav-table-button:hover {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: #f1f1f1;
+    transition: color 0.5s ease;
+}
+
+.line {
+    display: flex;
+    height: 2px;
+    width: 94%;
+    background-color: #BDD0E7;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    margin-left: 2%;
+    margin-right: 2%;
+    z-index: 1;
+}
+
+.line-active {
+    height: 3px;
+    width: 152px;
+    background-color: #1976D2;
+    z-index: 2;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Tabel */
+.custom-table {
+    width: 98%;
+    height: 60%;
+    border-collapse: separate;
+    border-spacing: 0 0px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.custom-table tbody tr {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.custom-table td,
+.custom-table th {
+    padding: 15px;
+    text-align: left;
+}
+
+.custom-table thead th {
+    background-color: #F4F4FB;
+    color: #858585;
+    font-size: 14px;
+}
+
+.custom-table tbody th {
+    color: #3E3D46;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #FAFAFC;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #F1F1F1;
+}
+
+.custom-table thead tr th:nth-child(7) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.custom-table thead tr th:nth-child(1) {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.custom-table tbody tr td:nth-child(1) {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.custom-table tbody tr td:nth-child(7) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.custom-table tbody tr td button {
+    color: #3E3D46;
+}
+
+.table-content-container {
+    height: 60%;
+    overflow-y: auto;
+}
+
+/* Footer */
+.footer {
+    height: 70px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    margin-top: auto;
+}
