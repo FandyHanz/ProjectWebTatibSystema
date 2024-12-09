@@ -1,5 +1,7 @@
 <?php
-class DpaController
+include 'models/Dpa.php';
+
+class DpaController 
 {
     private $data;
 
@@ -25,26 +27,28 @@ class DpaController
 
     public function report()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $nama = $_POST['nama'];
-            $nip = $_POST['nip'];
-            $nim = $_POST['nim'];
-            $kelas = $_POST['kelas'];
-            $prodi = $_POST['prodi'];
-            $option = $_POST['option'];
+        $data = null; // Inisialisasi variabel data
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $nama = $_POST['nama'] ?? '';
+            $nip = $_POST['nip'] ?? '';
+            $nim = $_POST['nim'] ?? '';
+            $kelas = $_POST['kelas'] ?? '';
+            $prodi = $_POST['prodi'] ?? '';
+            $option = $_POST['option'] ?? '';
 
             include 'models/Report.php';
             $report = new Report();
 
-            if($option == 'nama'){
-                $data = $report -> searchingName($nama, $kelas, $prodi, $option);
-                return $data;
-            } else if($option == 'nim'){
-                $data = $report -> searchingName($nip, $kelas, $prodi, $option);
-                return $data;
-            } else if ($option == 'nim'){
-                $data = $report -> searchingName($nim, $kelas, $prodi, $option);
-                return $data;
+            // Validasi input
+            if (!empty($kelas) && !empty($prodi)) {
+                if ($option == 'nama') {
+                    $data = $report->searchingName($nama, $kelas, $prodi, $option);
+                } elseif ($option == 'nip') {
+                    $data = $report->searchingName($nip, $kelas, $prodi, $option);
+                } elseif ($option == 'nim') {
+                    $data = $report->searchingName($nim, $kelas, $prodi, $option);
+                }
             }
         }
 
