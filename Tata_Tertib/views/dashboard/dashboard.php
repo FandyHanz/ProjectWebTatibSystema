@@ -26,7 +26,7 @@
                 include 'views/dashboard/admin/table-container.php';
                 break;
             case '2':
-                file_get_contents('/dashboardDpa');
+                header('location: views/dashboard/dashboard_dpa/dashboard.php');
                 # code...
                 break;
             case '3':
