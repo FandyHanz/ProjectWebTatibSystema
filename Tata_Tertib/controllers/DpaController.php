@@ -16,7 +16,7 @@ class DpaController
         // Logika untuk halaman dashboard DPA
         $tableDpa = $this->data->getTabelPelDosen();
 
-        require 'views/dashboard/dashboard_dpa/dasboard.php';
+        require 'views/dashboard/dashboard_dpa/dashboard.php';
     }
 
     public function dashboard()

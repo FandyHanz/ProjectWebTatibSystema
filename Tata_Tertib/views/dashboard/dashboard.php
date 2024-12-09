@@ -30,7 +30,8 @@
                 # code...
                 break;
             case '3':
-                include 'views/dashboard/tendik/table-container.php';
+               
+                header('location: /dashboardTendik');
                 # code...
                 break;
             case '4':

@@ -25,6 +25,10 @@ switch ($path) {
         $controller->dashboard_mhs();
         break;
 
+    case '/dashboardTendik':
+        $controller->dashboard_tendik();
+        break;
+
     case '/report':
         $controller->report();
         break;
