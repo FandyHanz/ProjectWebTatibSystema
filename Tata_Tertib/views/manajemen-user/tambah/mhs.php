@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="views/dashboard/style.css">
     <style>
         .form-group {
-            gap:35px
+            gap: 35px
         }
     </style>
 </head>
@@ -25,26 +25,42 @@
         include 'assets/header.php';
         ?>
         <div class="table-container p-4">
-            <h4>Input Data Mahasiswa</h4>
+            <h4 class="mb-4">Input Data Mahasiswa</h4>
             <form action="" method="post">
-                <div class="baris-satu d-flex flex-row">
-                    <div class="form-group col-3 d-flex flex-row ">
-                        <label for="nama">Nama:</label>
+                <div class="baris-satu d-flex flex-row mb-3">
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nama">Nama:</label>
                     </div>
                     <input class="col-3" type="text" id="nama" name="nama" required>
-                    <div class="form-group col-3 d-flex flex-row ">
-                        <label for="nim">NIM:</label>
+                    <div class="col-2"></div>
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nim">NIM:</label>
                     </div>
                     <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
-                <div class="baris-dua d-flex flex-row ">
-                    <label for="prodi">Program Studi:</label>
-                    <input class="col-3" type="text" id="prodi" name="prodi" required>
+                <div class="baris-dua d-flex flex-row mb-3">
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nama">Kelas:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <div class="col-2"></div>
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nim">Status:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
-                <div class="form-group d-flex flex-row ">
-                    <label for="kelas">Kelas:</label>
-                    <input class="col-3" type="text" id="kelas" name="kelas" required>
+                <div class="baris-tiga d-flex flex-row mb-3">
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nama">No Telepon:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <div class="col-2"></div>
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nim">Email:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
+                <label for="alamat">Admin : </label>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

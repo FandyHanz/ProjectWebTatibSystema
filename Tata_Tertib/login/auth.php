@@ -58,7 +58,7 @@ if ($act == 'login-mhs') {
         echo "$username";
         echo "$password";
         echo "Login Berhasil Teman";
-        header('Location: ../dashboard_dpa/dashboard_dpa.php', false);
+        header('Location: ../dashboard', false);
     } else {
         $session->setFlash('status', false);
         $session->setFlash('message', 'Username dan password salah.');
