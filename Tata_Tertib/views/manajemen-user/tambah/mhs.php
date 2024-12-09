@@ -24,7 +24,7 @@
         <?php
         include 'assets/header.php';
         ?>
-        <div class="table-container p-4">
+        <div class="table-container p-4 pb-0">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
             <form action="" method="post">
                 <div class="baris-satu d-flex flex-row mb-3">
@@ -60,8 +60,38 @@
                     </div>
                     <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
-                <label for="alamat">Admin : </label>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="baris-empat d-flex flex-row mb-3">
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nama">Alamat:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <div class="col-2"></div>
+                </div>
+                <div class="baris-tiga d-flex flex-row mb-3">
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nama">Nama Ayah:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <div class="col-2"></div>
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nim">No Telepon Ayah:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nim" name="nim" required>
+                </div>
+                <div class="baris-tiga d-flex flex-row mb-3">
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nama">Nama Ibu:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <div class="col-2"></div>
+                    <div class="form-group col-2 d-flex flex-row ">
+                        <label class="" for="nim">No Telepon Ibu:</label>
+                    </div>
+                    <input class="col-3" type="text" id="nim" name="nim" required>
+                </div>
+                <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
         <?php
