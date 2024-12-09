@@ -1,8 +1,8 @@
 <?php
 // Membuat array yang menyimpan data tabel
 $data = [
-    ["No" => 1, "Pelanggaran" => "Memukul mahasiswa", "Kategori" => "1", "Status" => "Menuggu konfirmasi", "Tanggal_Waktu" => "2024-12-01 10:00", "Lampiran" => "Lampiran"],
-    ["No" => 2, "Pelanggaran" => "Menerima suap nilai", "Kategori" => "2", "Status" => "Telah dikonfirmasi", "Tanggal_Waktu" => "2024-12-01 09:45", "Lampiran" => "Lampiran"]
+    ["No" => 1, "Pelanggaran" => "Terlambat memasuki kelas", "Kategori" => "1", "Status" => "1", "Tanggal_Waktu" => "2024-12-01 10:00", "Lampiran" => "Lampiran"],
+    ["No" => 2, "Pelanggaran" => "Merokok tidak apda tempatnya", "Kategori" => "2", "Status" => "2", "Tanggal_Waktu" => "2024-12-01 09:45", "Lampiran" => "Lampiran"]
 ];
 
 // Menampilkan tabel dengan perulangan for

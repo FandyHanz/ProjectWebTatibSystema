@@ -21,6 +21,10 @@ switch ($path) {
         $controller->dashboard_dpa();
         break;
 
+    case '/dashboardMhs':
+        $controller->dashboard_mhs();
+        break;
+
     case '/report':
         $controller->report();
         break;
