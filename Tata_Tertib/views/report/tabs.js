@@ -29,6 +29,17 @@ function initializeTabs() {
             
             updateTabNavUnderline(activeTabText);
 
+            // Menyembunyikan/memunculkan elemen Program Studi dan Kelas
+            const programStudiElement = document.querySelector('.mb-3:nth-child(1)'); // Elemen Program Studi
+            const kelasElement = document.querySelector('.mb-3:nth-child(2)'); // Elemen Kelas
+            if (activeTabText === "Mahasiswa") {
+                programStudiElement.style.display = 'block';
+                kelasElement.style.display = 'block';
+            } else {
+                programStudiElement.style.display = 'none';
+                kelasElement.style.display = 'none';
+            }
+
              // Mengubah radio button sesuai tab yang dipilih
              const radioNim = document.getElementById('radio-nim');
              const label = radioNim.nextElementSibling; // Mengambil label yang berada setelah input radio

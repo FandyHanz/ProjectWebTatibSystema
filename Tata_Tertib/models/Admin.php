@@ -12,7 +12,7 @@ class Admin extends Koneksi
         $result = $this->db->query($sql);
         return $result;
     }
-    
+
     public function getTabelPelDosen() {
         $sql = "SELECT *
         FROM pelanggaran_tendik p
@@ -42,6 +42,7 @@ class Admin extends Koneksi
             return []; // Jika tidak ada data, kembalikan array kosong
         }
     }
+
     public function getTabelUserDosen() {
         $sql = "SELECT * FROM dosen";
         $result = $this->db->query($sql);
@@ -51,7 +52,7 @@ class Admin extends Koneksi
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return []; // Jika tidak ada data, kembalikan array kosong
-        }
+        } 
     }
 
     public function getTabelUserKaryawan() {
@@ -63,6 +64,40 @@ class Admin extends Koneksi
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return []; // Jika tidak ada data, kembalikan array kosong
+        }
+    }
+
+    public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile){
+        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, foto_profile)
+        VALUES ($nim, $password, $kelas, $status, $nama, $notelp, $email, $alamat, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile)";
+        $result = $this->db->query($sql);
+        if($result){
+            echo "data berhasil ditambah";
+        } else {
+            echo "gagal";
+        }
+    }
+
+
+    public function addTabelUserDosen($nama, $password, $status, $nip, $notelp, $email, $fotoprofile, $id_kelas){
+        $sql = "INSERT INTO tendik (nim, password, id_kelas, status, nama, no_telp, email,  id_kelas, foto_profile, role)
+        VALUES ($nama, $password, $status, $nip, $notelp, $email,  $id_kelas, $fotoprofile, 3)";
+        $result = $this->db->query($sql);
+        if($result){
+            echo "data berhasil ditambah";
+        } else {
+            echo "gagal";
+        }
+    }
+
+    public function addTabelUserKaryawan($nama, $password, $status, $nip, $notelp, $email, $fotoprofile){
+        $sql = "INSERT INTO tendik (nim, password, id_kelas, status, nama, no_telp, email, foto_profile, role)
+        VALUES ($nama, $password, $status, $nip, $notelp, $email, $fotoprofile, 3)";
+        $result = $this->db->query($sql);
+        if($result){
+            echo "data berhasil ditambah";
+        } else {
+            echo "gagal";
         }
     }
 }

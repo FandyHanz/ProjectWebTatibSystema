@@ -37,33 +37,68 @@ function initializeTabFilter() {
 }
 
 // Menambahkan event listener untuk ikon filter
-document.querySelector('.filter-button').addEventListener('click', function() {
-    // Ambil elemen <i> di dalam filter-button
-    var icon = this.querySelector('i');
-    
-    // Toggle antara bi-funnel dan bi-funnel-fill pada elemen <i>
-    icon.classList.toggle('bi-funnel');
-    icon.classList.toggle('bi-funnel-fill');
-
-    // Menampilkan atau menyembunyikan dropdown filter
-    var dropdownMenu = document.querySelector('.dropdown-menu');
-    dropdownMenu.classList.toggle('d-none'); // Menyembunyikan/menampilkan dropdown
-});
-
-// Event listener untuk menutup dropdown dan mengembalikan ikon ke semula
 document.addEventListener('click', function(event) {
-    // Cek apakah klik terjadi di luar filter-button atau dropdown-menu
+    // Seleksi elemen
     var filterButton = document.querySelector('.filter-button');
     var dropdownMenu = document.querySelector('.dropdown-menu');
-    
-    if (!filterButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        // Jika klik di luar filter-button dan dropdown, sembunyikan dropdown dan reset ikon
+    var icon = filterButton.querySelector('i');
+
+    // Periksa apakah klik terjadi di dalam filter-button (termasuk anak elemen)
+    if (filterButton.contains(event.target)) {
+        // Toggle menu dropdown
+        if (dropdownMenu.classList.contains('d-none')) {
+            dropdownMenu.classList.remove('d-none'); // Tampilkan dropdown
+            icon.classList.remove('bi-funnel'); 
+            icon.classList.add('bi-funnel-fill');
+        } else {
+            dropdownMenu.classList.add('d-none'); // Sembunyikan dropdown
+            icon.classList.remove('bi-funnel-fill');
+            icon.classList.add('bi-funnel');
+        }
+        return; // Hentikan eksekusi lebih lanjut
+    }
+
+    // Periksa apakah klik terjadi di dalam dropdown-menu
+    if (dropdownMenu.contains(event.target)) {
+        // Elemen interaktif tidak menutup dropdown
+        var clickableElements = ['BUTTON', 'A', 'INPUT', 'SELECT'];
+        if (clickableElements.includes(event.target.tagName)) {
+            return; // Jangan tutup dropdown
+        }
+        
+        // Klik area kosong di dalam dropdown, sembunyikan dropdown
         dropdownMenu.classList.add('d-none');
-        var icon = filterButton.querySelector('i');
         icon.classList.remove('bi-funnel-fill');
         icon.classList.add('bi-funnel');
+        return;
     }
-}); 
+
+    // Klik di luar filter-button dan dropdown-menu
+    dropdownMenu.classList.add('d-none');
+    icon.classList.remove('bi-funnel-fill');
+    icon.classList.add('bi-funnel');
+});
+
+//fungsi ketika radio button nim dipilih, akan menyembunyikan dropdown
+    const radioNama = document.getElementById('radio-nama');
+    const radioNim = document.getElementById('radio-nim');
+    const filterButton = document.querySelector('.filter-button');
+
+    radioNama.addEventListener('change', () => {
+        if (radioNama.checked) {
+            filterButton.style.display = 'inline-block';
+        }
+    });
+
+    radioNim.addEventListener('change', () => {
+        if (radioNim.checked) {
+            filterButton.style.display = 'none';
+        }
+    });
+
+
+
+
 
 // Panggil fungsi untuk inisialisasi filter saat halaman dimuat
 document.addEventListener('DOMContentLoaded', initializeTabFilter);

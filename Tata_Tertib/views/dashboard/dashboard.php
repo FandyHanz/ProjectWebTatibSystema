@@ -34,7 +34,8 @@
                 # code...
                 break;
             case '4':
-                include 'views/dashboard/mhs/table-container.php';
+                file_get_contents('/dashboardAdmin');
+                header('location: views/dashboard/mhs/dashboard-admin.php');
                 # code...
                 break;
             default:

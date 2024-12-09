@@ -21,27 +21,53 @@ switch ($path) {
         $controller->dashboard_dpa();
         break;
 
+    case '/dashboardMhs':
+        $controller->dashboard_mhs();
+        break;
+
     case '/report':
         $controller->report();
         break;
+    case '/report/reportMhsAction':
+        $controller->reportMhsAction();
+        break;
+
     case '/history':
         $controller->history();
         break;
+
     case '/manajemenUserMhs':
         $controller->manajemenUserMhs();
         break;
+
     case '/manajemenUserDosen':
         $controller->manajemenUserDosen();
         break;
+
     case '/manajemenUserKaryawan':
         $controller->manajemenUserKaryawan();
         break;
+
     case '/tambahUserMhs':
         $controller->tambahMhs();
         break;
+
+    case '/tambahUserDosen':
+        $controller->tambahDosen();
+        break;
+
+    case '/tambahUserKaryawan':
+        $controller->tambahKaryawan();
+        break;
+
+    case '/tambahMhsAction':
+        $controller->actionTambahMhs();
+        break;
+
     case '/logout':
         header('Location: login/auth.php?act=logout');
         break;
+
     default:
         // Handle 404 error
         http_response_code(404);

@@ -1,7 +1,7 @@
 <?php
 include 'models/Admin.php';
 
-class AdminController
+class AdminController extends Koneksi
 {
     private $data;
 
@@ -22,7 +22,7 @@ class AdminController
 
     public function report()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nama = $_POST['nama'];
             $nip = $_POST['nip'];
             $nim = $_POST['nim'];
@@ -33,20 +33,24 @@ class AdminController
             include 'models/Report.php';
             $report = new Report();
 
-            if($option == 'nama'){
-                $data = $report -> searchingName($nama, $kelas, $prodi, $option);
+            if ($option == 'nama') {
+                $data = $report->searchingName($nama, $kelas, $prodi, $option);
                 return $data;
-            } else if($option == 'nim'){
-                $data = $report -> searchingName($nip, $kelas, $prodi, $option);
+            } else if ($option == 'nim') {
+                $data = $report->searchingName($nip, $kelas, $prodi, $option);
                 return $data;
-            } else if ($option == 'nim'){
-                $data = $report -> searchingName($nim, $kelas, $prodi, $option);
+            } else if ($option == 'nim') {
+                $data = $report->searchingName($nim, $kelas, $prodi, $option);
                 return $data;
             }
         }
         $tableMhs = $this->data->getTabelPelMhs();
 
         require 'views/report/report.php';
+    }
+
+    public function reportMhsAction()
+    {
     }
 
     public function history()
@@ -79,14 +83,75 @@ class AdminController
         require 'views/manajemen-user/manajemen-user-karyawan.php';
     }
 
-    public function tambahMhs() {
-        
+    public function tambahMhs()
+    {
+       
         require 'views/manajemen-user/tambah/mhs.php';
     }
-    public function tambahDosen() {
 
+    public function actionTambahMhs()
+    {
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nama = $_POST['nama'];
+            $nim = $_POST['nim'];
+            $password = $_POST['password'];
+            $kelas = $_POST['kelas'];
+            $status = $_POST['status'];
+            $noTelp = $_POST['no_telp'];
+            $alamat = $_POST['alamat'];
+            $email = $_POST['email'];
+            $namaAyah = $_POST['nama_ayah'];
+            $noTelpAyah = $_POST['no_telp_ayah'];
+            $namaIbu = $_POST['nama_ibu'];
+            $noTelpIbu = $_POST['no_telp_ibu'];
+            $fotoProfile = $_POST['foto_profile'];
+
+            $tabelMahasiswa = $this->data->addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile);
+            return $tabelMahasiswa;
+        }
+        require 'views/manajemen-user/tambah/mhs.php';
     }
-    public function tambahKaryawan() {
+    public function tambahDosen()
+    {
+        require 'views/manajemen-user/tambah/dosen.php';
+    }
+    public function actionTambahDosen()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nama = $_POST['nama'];
+            $password = $_POST['password'];
+            $status = $_POST['status'];
+            $nip = $_POST['nip'];
+            $noTelp = $_POST['no_telp'];
+            $email = $_POST['email'];
+            $id_kelas = $_POST['id_kelas'];
+            $fotoProfile = $_POST['foto_profile'];
 
+            $tabelDosen = $this->data->addTabelUserDosen($nama, $password, $status, $nip, $noTelp, $email, $id_kelas, $fotoprofile);
+            return $tabelDosen;
+        }
+        require 'views/manajemen-user/tambah/dosen.php';
+    }
+    public function tambahKaryawan()
+    {
+       
+        require 'views/manajemen-user/tambah/karyawan.php';
+    }
+    public function actionTambahKaryawan()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nip = $_POST['nip'];
+            $password = $_POST['password'];
+            $nama = $_POST['nama'];
+            $status = $_POST['status'];
+            $noTelp = $_POST['no_telp'];
+            $email = $_POST['email'];
+            $fotoProfile = $_POST['foto_profile'];
+
+            $tabelKaryawan = $this->data->addTabelUserkaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoprofile);
+            return $tabelKaryawan;
+        }
+        require 'views/manajemen-user/tambah/karyawan.php';
     }
 }
