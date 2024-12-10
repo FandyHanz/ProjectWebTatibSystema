@@ -27,7 +27,7 @@ class AdminController
     {
         require 'views/report/report.php';
     }
-    
+
     public function reportMhsAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -74,7 +74,7 @@ class AdminController
 
     public function tambahMhs()
     {
-       
+
         require 'views/manajemen-user/tambah/mhs.php';
     }
 
@@ -117,14 +117,14 @@ class AdminController
             $id_kelas = $_POST['id_kelas'];
             $fotoProfile = $_POST['foto_profile'];
 
-            $tabelDosen = $this->data->addTabelUserDosen($nama, $password, $status, $nip, $noTelp, $email, $id_kelas, $fotoprofile);
+            $tabelDosen = $this->data->addTabelUserDosen($nama, $password, $status, $nip, $noTelp, $email, $id_kelas, $fotoProfile);
             return $tabelDosen;
         }
         require 'views/manajemen-user/tambah/dosen.php';
     }
     public function tambahKaryawan()
     {
-       
+
         require 'views/manajemen-user/tambah/karyawan.php';
     }
     public function actionTambahKaryawan()
@@ -138,7 +138,7 @@ class AdminController
             $email = $_POST['email'];
             $fotoProfile = $_POST['foto_profile'];
 
-            $tabelKaryawan = $this->data->addTabelUserkaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoprofile);
+            $tabelKaryawan = $this->data->addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile);
             return $tabelKaryawan;
         }
         require 'views/manajemen-user/tambah/karyawan.php';
