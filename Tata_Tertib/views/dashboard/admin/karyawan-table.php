@@ -30,7 +30,7 @@
             <li class="sidebar-nav">
                 <div class="circle-outside">
                     <div class="circle-inside">
-                        <a href="report.php"><img src="../../../assets/icon/warning-icon.svg" alt=""><span>Report</span></a>
+                        <a href="report"><img src="../../../assets/icon/warning-icon.svg" alt=""><span>Report</span></a>
                     </div>
                 </div>
             </li>
@@ -74,7 +74,7 @@
 
         <!-- Content -->
         <div class="table-container">
-            <h1>List Pelanggaran Mahasiswa</h1>
+            <h1>List Pelanggaran Karyawan</h1>
 
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">

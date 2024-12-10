@@ -31,6 +31,22 @@ class AdminController
 
         require 'views/dashboard/admin/dashboard-admin.php';
     }
+    public function dashboard_tableDosen()
+    {
+        // Logika untuk halaman dashboard admin
+
+        $dataMhs = $this->data->getTabelPelMhs();
+
+        require 'views/dashboard/admin/dosen-table.php';
+    }
+    public function dashboard_tableKaryawan()
+    {
+        // Logika untuk halaman dashboard admin
+
+        $dataMhs = $this->data->getTabelPelMhs();
+
+        require 'views/dashboard/admin/karyawan-table.php';
+    }
 
     public function report()
     {

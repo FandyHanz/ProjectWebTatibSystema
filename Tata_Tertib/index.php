@@ -20,6 +20,12 @@ switch ($path) {
     case '/dashboardAdmin':
         $controller->dashboard_admin();
         break;
+    case '/dashboardAdminTableDosen':
+        $controller->dashboard_tableDosen();
+        break;
+    case '/dashboardAdminTableKaryawan':
+        $controller->dashboard_tableKaryawan();
+        break;
 
     case '/dashboardDpa':
         $controller->dashboard_dpa();

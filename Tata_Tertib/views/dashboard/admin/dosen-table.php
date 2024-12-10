@@ -74,7 +74,7 @@
 
         <!-- Content -->
         <div class="table-container">
-            <h1>List Pelanggaran Mahasiswa</h1>
+            <h1>List Pelanggaran Dosen</h1>
 
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
