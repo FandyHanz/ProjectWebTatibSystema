@@ -1,11 +1,29 @@
 <?php
+include 'models/Tendik.php';
+
 class TendikController extends Koneksi
 {
+
+    private $data;
+    public function __construct()
+    {
+        // instansiasi objek
+        $this->data = new Tendik();
+    }
     public function dashboard()
     {
-        // Logika untuk halaman dashboard Tendik
+        // Logika untuk halaman dashboard Mahasiswa
+        $tabelPelanggaran = $this->data->getTabelPelanggaranTendik();
 
         require 'views/dashboard/dashboard.php';
+    }
+
+    public function dashboard_tendik()
+    {
+        // Logika untuk halaman dashboard DPA
+        $tabelPelTendik = $this->data->getTabelPelanggaranTendik();
+
+        require 'views/dashboard/tendik/dashboard-tendik.php';
     }
 
     public function report()

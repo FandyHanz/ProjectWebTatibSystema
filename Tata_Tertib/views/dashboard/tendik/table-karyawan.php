@@ -1,8 +1,8 @@
 <?php
 // Membuat array yang menyimpan data tabel
 $data = [
-    ["No" => 1, "Pelanggaran" => "Terlambat memasuki kelas", "Kategori" => "1", "Status" => "1", "Tanggal_Waktu" => "2024-12-01 10:00", "Lampiran" => "Lampiran"],
-    ["No" => 2, "Pelanggaran" => "Merokok tidak apda tempatnya", "Kategori" => "2", "Status" => "2", "Tanggal_Waktu" => "2024-12-01 09:45", "Lampiran" => "Lampiran"]
+    ["No" => 1, "Pelanggaran" => "Tidak menyapu ruang kelas LSI 1", "Kategori" => "1", "Status" => "Menunggu Konfirmasi", "Tanggal_Waktu" => "2024-12-01 10:00", "Lampiran" => "Lampiran"],
+    ["No" => 2, "Pelanggaran" => "Merokok tidak pada tempatnya", "Kategori" => "2", "Status" => "Menunggu Konfirmasi", "Tanggal_Waktu" => "2024-12-01 09:45", "Lampiran" => "Lampiran"]
 ];
 
 // Menampilkan tabel dengan perulangan for
@@ -34,8 +34,8 @@ for ($i = 0; $i < count($data); $i++) {
     echo 'Option';
     echo '</button>';
     echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $i . '">';
-    echo '<li><a class="dropdown-item" href="lampiran.php">Lampiran</a></li>';
-    echo '<li><a class="dropdown-item" href="konfirmasiBukti.php">Konfirmasi Bukti</a></li>';
+    echo '<li><a class="dropdown-item" href="#">Lampiran</a></li>';
+    echo '<li><a class="dropdown-item" href="#">Konfirmasi Bukti</a></li>';
     echo '</ul>';
     echo '</div>';
     echo '</td>';

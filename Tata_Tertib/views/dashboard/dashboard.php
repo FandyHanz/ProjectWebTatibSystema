@@ -26,15 +26,17 @@
                 include 'views/dashboard/admin/table-container.php';
                 break;
             case '2':
-                file_get_contents('/dashboardDpa');
+                header('location: views/dashboard/dashboard_dpa/dashboard.php');
                 # code...
                 break;
             case '3':
-                include 'views/dashboard/tendik/table-container.php';
+               
+                header('location: views/dashboard/tendik/dashboard-tendik.php');
                 # code...
                 break;
             case '4':
-                include 'views/dashboard/mhs/table-container.php';
+                file_get_contents('/dashboardAdmin');
+                header('location: views/dashboard/mhs/dashboard-admin.php');
                 # code...
                 break;
             default:

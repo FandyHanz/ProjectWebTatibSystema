@@ -22,7 +22,14 @@ switch ($path) {
         $controller->dashboard_dpa();
         break;
 
-        // report
+    case '/dashboardMhs':
+        $controller->dashboard_mhs();
+        break;
+
+    case '/dashboardTendik':
+        $controller->dashboard_tendik();
+        break;
+
     case '/report':
         $controller->report();
         break;
@@ -53,9 +60,19 @@ switch ($path) {
     case '/tambahUserMhs':
         $controller->tambahMhs();
         break;
+
+    case '/tambahUserDosen':
+        $controller->tambahDosen();
+        break;
+
+    case '/tambahUserKaryawan':
+        $controller->tambahKaryawan();
+        break;
+
     case '/tambahMhsAction':
         $controller->actionTambahMhs();
         break;
+
     case '/logout':
         header('Location: login/auth.php?act=logout');
         break;

@@ -22,7 +22,7 @@ if ($act == 'login-mhs') {
         $session->set('username', $data['nim']);
         $session->set('level', $data['role']);
         $session->commit();
-        header('Location: ../dashboard', false);
+        header('Location: /views/dashboard/mhs/dashboard-mhs.php', false);
     } else {
         $session->setFlash('status', false);
         $session->setFlash('message', 'Username dan password salah.');

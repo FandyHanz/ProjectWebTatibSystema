@@ -1,11 +1,27 @@
 <?php
+include_once 'models/Mahasiswa.php';
+
 class MahasiswaController
 {
+    private $data;
+    public function __construct()
+    {
+        // instansiasi objek
+        $this->data = new Mahasiswa();
+    }
     public function dashboard()
     {
         // Logika untuk halaman dashboard Mahasiswa
+        $tabelPelanggaran = $this->data->getTablePelanggaranMahasiswa();
 
         require 'views/dashboard/dashboard.php';
+    }
+
+    public function dashboard_mhs()
+    {
+        $dashboardMhs = $this->data->getUserInfoMahasiswa();
+
+        require 'views/dashboard/mhs/dashboard-mhs.php';
     }
 
     public function report()
@@ -24,7 +40,7 @@ class MahasiswaController
             if($option == 'nama'){
                 $data = $report -> searchingName($nama, $kelas, $prodi, $option);
                 return $data;
-            } else if($option == 'nim'){
+            } else if($option == 'nip'){
                 $data = $report -> searchingName($nip, $kelas, $prodi, $option);
                 return $data;
             } else if ($option == 'nim'){
