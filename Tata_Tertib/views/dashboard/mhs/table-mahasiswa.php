@@ -1,33 +1,33 @@
 <?php
 // Membuat array yang menyimpan data tabel
-$data = [
-    ["No" => 1, "Pelanggaran" => "Terlambat memasuki kelas", "Kategori" => "1", "Status" => "1", "Tanggal_Waktu" => "2024-12-01 10:00", "Lampiran" => "Lampiran"],
-    ["No" => 2, "Pelanggaran" => "Merokok tidak apda tempatnya", "Kategori" => "2", "Status" => "2", "Tanggal_Waktu" => "2024-12-01 09:45", "Lampiran" => "Lampiran"]
-];
+
+
+include('../../../models/Mahasiswa.php');
+$model = new Mahasiswa();
+$data = $model -> getTablePelanggaranMahasiswa();
 
 // Menampilkan tabel dengan perulangan for
 echo '<div class="scrollable-table">';
 echo '<table class="custom-table">';
 echo '<thead>';
 echo '<tr>';
-echo '<th></th>';
+echo '<th>No.</th>';
 echo '<th>Pelanggaran</th>';
-echo '<th>Kategori</th>';
+echo '<th>Deskripsi</th>';
 echo '<th>Status</th>';
-echo '<th>Tanggal/Waktu</th>';
 echo '<th>Lampiran</th>';
 echo '<th></th>';
 echo '</tr>';
 echo '</thead>';
 echo '<tbody>';
-
-for ($i = 0; $i < count($data); $i++) {
+$i=0;
+foreach($data as $row) {
+    $i++;
     echo '<tr>';
-    echo '<td>' . $data[$i]["No"] . '.</td>';
-    echo '<td>' . $data[$i]["Pelanggaran"] . '</td>';
-    echo '<td>' . $data[$i]["Kategori"] . '</td>';
-    echo '<td>' . $data[$i]["Status"] . '</td>';
-    echo '<td>' . $data[$i]["Tanggal_Waktu"] . '</td>';
+    echo '<td>' . $i. '.</td>';
+    echo '<td>' . $row['id_pelanggaran']. '</td>';
+    echo '<td>' . $row['deskripsi'] . '</td>';
+    echo '<td>' . $row['status_pelanggaran'] . '</td>';
     echo '<td>';
     echo '<div class="dropdown">';
     echo '<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton' . $i . '" data-bs-toggle="dropdown" aria-expanded="false">';

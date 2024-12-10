@@ -1,5 +1,5 @@
 <?php
-include_once 'core/koneksi.php';
+include_once '../../../core/koneksi.php';
 
 Class Mahasiswa extends Koneksi{
     public function __construct()
