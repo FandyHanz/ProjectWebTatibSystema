@@ -54,11 +54,10 @@
                 <div class="d-flex justify-content-center flex-row" style="gap: 20px;">
                     <div class="foto bg-secondary" style="height: 200px; width: 150px;">
                     </div>
-                    <div class="text d-">
-                        <p>Nama : <?php echo $results['nama'] ?></p>
-                        <p>NIM : <?php echo $results['nim'] ?></p>
-                        <p>Kelas : <?php echo $results['nama_kelas'] ?></p>
-                        <a href="/reportMhsForm?nim=<?php echo $results['nim']; ?>&name=<?php echo $results['nama']; ?>" class="btn btn-danger">Report</a>
+                    <div class="text">
+                        <p><?php echo $nama?></p>
+                        <p><?php echo $nim?></p>
+                        <a href="/reportMhsForm" class="btn btn-danger">Report</a>
                         <a href="#" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>

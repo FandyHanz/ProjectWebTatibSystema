@@ -9,9 +9,26 @@ class Admin extends Koneksi
 
     public function getTabelPelMhs()
     {
-        $sql = "SELECT * FROM pelanggaran_mahasiswa";
+        $sql = "SELECT 
+        mahasiswa.nim,
+        mahasiswa.nama AS nama_mahasiswa,
+        mahasiswa.status AS status_mahasiswa,
+        pelanggaran_mahasiswa.id_pelanggaran_mhs,
+        pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
+        pelanggaran_mahasiswa.status_pelanggaran,
+        pelanggaran_mahasiswa.bukti_selesai,
+        pelanggaran.id_pelanggaran,
+        pelanggaran.nama_pelanggaran,
+        pelanggaran.kategori
+    FROM 
+        mahasiswa
+    JOIN 
+        pelanggaran_mahasiswa ON mahasiswa.nim = pelanggaran_mahasiswa.nim
+    JOIN 
+        pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
+    ";
         $result = $this->db->query($sql);
-        return $result;
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getTabelPelDosen()

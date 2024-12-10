@@ -23,6 +23,15 @@ class AdminController
         require 'views/dashboard/dashboard.php';
     }
 
+    public function dashboard_admin()
+    {
+        // Logika untuk halaman dashboard admin
+
+        $dataMhs = $this->data->getTabelPelMhs();
+
+        require 'views/dashboard/admin/dashboard-admin.php';
+    }
+
     public function report()
     {
         require 'views/report/report.php';
@@ -42,10 +51,17 @@ class AdminController
         }
         require 'views/report/confirm-user.php';
     }
+    
+    public function reportMhsForm() {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $nim = $_GET['nim'] ?? ''; // Ambil query dari parameter GET
+            $nama = $_GET['nama'] ?? ''; // Ambil query dari parameter GET
+        }
+        require 'views/report/report-form-mhs.php';
+    }
 
     public function history()
     {
-
         echo "Admin History";
     }
     public function manajemenUserMhs()

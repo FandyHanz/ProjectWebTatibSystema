@@ -17,6 +17,9 @@ switch ($path) {
     case '/dashboard':
         $controller->dashboard();
         break;
+    case '/dashboardAdmin':
+        $controller->dashboard_admin();
+        break;
 
     case '/dashboardDpa':
         $controller->dashboard_dpa();
@@ -35,6 +38,9 @@ switch ($path) {
         break;
     case '/reportMhsAction':
         $controller->reportMhsAction();
+        break;
+    case '/reportMhsForm':
+        $controller->reportMhsForm();
         break;
 
 
