@@ -2,7 +2,8 @@
 include_once 'core/koneksi.php';
 class Admin extends Koneksi
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -13,7 +14,8 @@ class Admin extends Koneksi
         return $result;
     }
 
-    public function getTabelPelDosen() {
+    public function getTabelPelDosen()
+    {
         $sql = "SELECT *
         FROM pelanggaran_tendik p
         JOIN dosen d
@@ -22,7 +24,8 @@ class Admin extends Koneksi
         return $result;
     }
 
-    public function getTabelPelKaryawan() {
+    public function getTabelPelKaryawan()
+    {
         $sql = "SELECT *
         FROM pelanggaran_tendik p
         JOIN karyawan k
@@ -31,7 +34,31 @@ class Admin extends Koneksi
         return $result;
     }
 
-    public function getTabelUserMahasiswa() {
+    public function getRekomPelanggaranMhs()
+    {
+        $sql = "
+    SELECT mahasiswa.nama, kelas.nama_kelas, kelas.id_prodi
+    FROM mahasiswa
+    JOIN kelas ON mahasiswa.id_kelas = kelas.id
+    WHERE mahasiswa.nama LIKE ?
+    AND (kelas.id = ? OR ? = '')
+    AND (kelas.id_prodi = ? OR ? = '')
+    LIMIT 10
+";
+
+        $stmt = $this->db->prepare($sql);
+
+        // $searchTerm = '%' . $query . '%';  
+        $idKelas = $_GET['id_kelas'] ?? ''; // Bisa null jika tidak ada input
+        $idProdi = $_GET['id_prodi'] ?? ''; // Bisa null jika tidak ada input
+
+        $stmt->bind_param('sssss', $searchTerm, $idKelas, $idKelas, $idProdi, $idProdi);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    }
+
+    public function getTabelUserMahasiswa()
+    {
         $sql = "SELECT * FROM mahasiswa";
         $result = $this->db->query($sql);
 
@@ -43,7 +70,8 @@ class Admin extends Koneksi
         }
     }
 
-    public function getTabelUserDosen() {
+    public function getTabelUserDosen()
+    {
         $sql = "SELECT * FROM dosen";
         $result = $this->db->query($sql);
 
@@ -52,10 +80,11 @@ class Admin extends Koneksi
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return []; // Jika tidak ada data, kembalikan array kosong
-        } 
+        }
     }
 
-    public function getTabelUserKaryawan() {
+    public function getTabelUserKaryawan()
+    {
         $sql = "SELECT * FROM karyawan";
         $result = $this->db->query($sql);
 
@@ -67,11 +96,12 @@ class Admin extends Koneksi
         }
     }
 
-    public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu){
+    public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu)
+    {
         $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu)
         VALUES ($nim, $password, $kelas, $status, $nama, $notelp, $email, $alamat, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu)";
         $result = $this->db->query($sql);
-        if($result){
+        if ($result) {
             echo "data berhasil ditambah";
         } else {
             echo "gagal";

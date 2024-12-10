@@ -1,14 +1,17 @@
 <?php
 include 'models/Admin.php';
+include_once 'models/Report.php';
 
-class AdminController extends Koneksi
+class AdminController
 {
     private $data;
+    private $reportModel;
 
     public function __construct()
     {
         // instansiasi objek
         $this->data = new Admin();
+        $this->reportModel = new Report();
     }
 
     public function dashboard()
@@ -22,40 +25,26 @@ class AdminController extends Koneksi
 
     public function report()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $nama = $_POST['nama'];
-            $nip = $_POST['nip'];
-            $nim = $_POST['nim'];
-            $kelas = $_POST['kelas'];
-            $prodi = $_POST['prodi'];
-            $option = $_POST['option'];
-
-            include 'models/Report.php';
-            $report = new Report();
-
-            if($option == 'nama'){
-                $data = $report -> searchingName($nama, $kelas, $prodi, $option);
-                return $data;
-            } else if($option == 'nim'){
-                $data = $report -> searchingName($nip, $kelas, $prodi, $option);
-                return $data;
-            } else if ($option == 'nim'){
-                $data = $report -> searchingName($nim, $kelas, $prodi, $option);
-                return $data;
-            }
-        }
-        $tableMhs = $this->data->getTabelPelMhs();
-
         require 'views/report/report.php';
     }
+    
+    public function reportMhsAction()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $query = $_GET['query'] ?? ''; // Ambil query dari parameter GET
 
-    public function reportMhsAction() {
-        
+            $results = $this->reportModel->searchNim($query); // Method ini harus dikembangkan di model
+            if ($results === null) {
+                echo "Not Found";
+                require 'views/report/report.php';
+                exit;
+            }
+        }
+        require 'views/report/confirm-user.php';
     }
 
     public function history()
     {
-
 
         echo "Admin History";
     }
@@ -83,8 +72,9 @@ class AdminController extends Koneksi
         require 'views/manajemen-user/manajemen-user-karyawan.php';
     }
 
-    public function tambahMhs() {
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+    public function tambahMhs()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nama = $_POST['nama'];
             $nim = $_POST['nim'];
             $password = $_POST['password'];
@@ -98,16 +88,16 @@ class AdminController extends Koneksi
             $namaIbu = $_POST['nama_ibu'];
             $noTelpIbu = $_POST['no_telp_ibu'];
 
-            $data = new Admin(); 
-            $tabelMahasiswa = $this->data->addTabelUserMahasiswa($nama, $password, $status, $nim ,$kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu);
+            $tabelMahasiswa = $this->data->addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu);
             return $tabelMahasiswa;
         }
         require 'views/manajemen-user/tambah/mhs.php';
     }
 
-    public function actionTambahMhs() {
+    public function actionTambahMhs()
+    {
 
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nama = $_POST['nama'];
             $nim = $_POST['nim'];
             $kelas = $_POST['kelas'];
@@ -120,16 +110,12 @@ class AdminController extends Koneksi
             $namaIbu = $_POST['nama_ibu'];
             $noTelpIbu = $_POST['no_telp_ibu'];
 
-            $data = new Admin(); 
             $tabelMahasiswa = $this->data->getTabelUserKaryawan();
             return $tabelMahasiswa;
         }
-        require 'views/manajemen-user/tambah/mhs.php';    
+        require 'views/manajemen-user/tambah/mhs.php';
     }
-    public function tambahDosen() {
 
-    }
-    public function tambahKaryawan() {
-
-    }
+    public function tambahDosen() {}
+    public function tambahKaryawan() {}
 }

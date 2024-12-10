@@ -12,6 +12,7 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Routing
 switch ($path) {
+        // dasboard
     case '/':
     case '/dashboard':
         $controller->dashboard();
@@ -21,17 +22,21 @@ switch ($path) {
         $controller->dashboard_dpa();
         break;
 
+        // report
     case '/report':
         $controller->report();
         break;
-    case '/report/reportMhsAction':
+    case '/reportMhsAction':
         $controller->reportMhsAction();
         break;
 
+
+        // history
     case '/history':
         $controller->history();
         break;
 
+        // manajemen user
     case '/manajemenUserMhs':
         $controller->manajemenUserMhs();
         break;
@@ -44,6 +49,7 @@ switch ($path) {
         $controller->manajemenUserKaryawan();
         break;
 
+        // manajemen user bagian tambah
     case '/tambahUserMhs':
         $controller->tambahMhs();
         break;
