@@ -7,6 +7,18 @@
     <title>Website with Sidebar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="views/report/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .recommendation-item {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .recommendation-item:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,17 +51,16 @@
             </div>
 
             <!-- Tempat untuk memuat konten tabel -->
-            <div id="table-content-container" class="table-content-container text-center ">
+            <div id="table-content-container" class="table-content-container text-center">
                 <!-- Konten tabel akan dimuat di sini -->
 
                 <!-- =================================================================================================================== -->
 
                 <div class="container-laporkan">
-                    <form id="search-form">
+                    <form id="search-form" action="reportMhsAction" method="GET">
                         <div class="container-laporkan">
                             <span class="masukkan-nama-header text-start" id="masukkan-nama-header">Masukkan Nama
                                 Mahasiswa</span>
-
                             <div class="d-flex justify-content-center mt-4">
                                 <div class="search-bar-container">
                                     <i class="bi bi-search"></i>
@@ -61,7 +72,7 @@
                                 </div>
 
                                 <div class="dropdown-menu d-none">
-                                    <div class="mb-3 id=" filter-program-studi">
+                                    <div class="mb-3" id=" filter-program-studi">
                                         <label><strong>Program Studi</strong></label>
                                         <div>
                                             <div class="form-check">
@@ -84,20 +95,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3 id=" filter-kelas">
-                                        <label><strong>Kelas</strong></label>
-                                        <select class="form-select-kelas" name="kelas">
-                                            <option value=""></option>
-                                            <option value="TI-2A">TI-2A</option>
-                                            <option value="TI-2B">TI-2B</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label><strong>Urutkan Secara</strong></label>
-                                        <select class="form-select-urut" name="urutkan">
-                                            <option value="ascending">Ascending</option>
-                                            <option value="descending">Descending</option>
-                                        </select>
+                                    <div class="d-flex flex-row" style="gap: 30px;">
+                                        <div class="mb-3 mr-3" id="filter-kelas">
+                                            <label><strong>Kelas</strong></label>
+                                            <select class="form-select-kelas" name="kelas">
+                                                <option value=""></option>
+                                                <option value="TI-2A">TI-2A</option>
+                                                <option value="TI-2B">TI-2B</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label><strong>Urutkan Secara</strong></label>
+                                            <select class="form-select-urut" name="urutkan">
+                                                <option value="ascending">Ascending</option>
+                                                <option value="descending">Descending</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +133,7 @@
                         </div>
                     </form>
                     <div id="recommendations" class="mt-3">
-                        <!-- Hasil rekomendasi akan muncul di sini -->
+
                     </div>
 
                 </div>
@@ -143,6 +156,37 @@
         });
     </script>
     <script src="views/report/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.querySelector('input[name="query"]');
+            const recommendationsContainer = document.getElementById('recommendations');
+
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value;
+
+                if (query.length > 2) { // Mulai mencari jika input lebih dari 2 karakter
+                    fetch(`index.php?controller=Admin&action=reportAutocomplete&query=${encodeURIComponent(query)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            recommendationsContainer.innerHTML = '';
+                            if (data.length > 0) {
+                                data.forEach(item => {
+                                    const div = document.createElement('div');
+                                    div.textContent = item.nama;
+                                    div.classList.add('recommendation-item');
+                                    recommendationsContainer.appendChild(div);
+                                });
+                            } else {
+                                recommendationsContainer.innerHTML = '<p>No results found.</p>';
+                            }
+                        })
+                        .catch(error => console.error('Error fetching data:', error));
+                } else {
+                    recommendationsContainer.innerHTML = '';
+                }
+            });
+        });
+    </script>
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">

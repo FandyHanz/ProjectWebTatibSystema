@@ -1,14 +1,17 @@
 <?php
 include 'models/Admin.php';
+include_once 'models/Report.php';
 
-class AdminController extends Koneksi
+class AdminController
 {
     private $data;
+    private $reportModel;
 
     public function __construct()
     {
         // instansiasi objek
         $this->data = new Admin();
+        $this->reportModel = new Report();
     }
 
     public function dashboard()
@@ -20,43 +23,61 @@ class AdminController extends Koneksi
         require 'views/dashboard/dashboard.php';
     }
 
+    public function dashboard_admin()
+    {
+        // Logika untuk halaman dashboard admin
+
+        $dataMhs = $this->data->getTabelPelMhs();
+
+        require 'views/dashboard/admin/dashboard-admin.php';
+    }
+    public function dashboard_tableDosen()
+    {
+        // Logika untuk halaman dashboard admin
+
+        $dataMhs = $this->data->getTabelPelMhs();
+
+        require 'views/dashboard/admin/dosen-table.php';
+    }
+    public function dashboard_tableKaryawan()
+    {
+        // Logika untuk halaman dashboard admin
+
+        $dataMhs = $this->data->getTabelPelMhs();
+
+        require 'views/dashboard/admin/karyawan-table.php';
+    }
+
     public function report()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $nama = $_POST['nama'];
-            $nip = $_POST['nip'];
-            $nim = $_POST['nim'];
-            $kelas = $_POST['kelas'];
-            $prodi = $_POST['prodi'];
-            $option = $_POST['option'];
-
-            include 'models/Report.php';
-            $report = new Report();
-
-            if ($option == 'nama') {
-                $data = $report->searchingName($nama, $kelas, $prodi, $option);
-                return $data;
-            } else if ($option == 'nim') {
-                $data = $report->searchingName($nip, $kelas, $prodi, $option);
-                return $data;
-            } else if ($option == 'nim') {
-                $data = $report->searchingName($nim, $kelas, $prodi, $option);
-                return $data;
-            }
-        }
-        $tableMhs = $this->data->getTabelPelMhs();
-
         require 'views/report/report.php';
     }
 
     public function reportMhsAction()
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $query = $_GET['query'] ?? ''; // Ambil query dari parameter GET
+
+            $results = $this->reportModel->searchNim($query); // Method ini harus dikembangkan di model
+            if ($results === null) {
+                echo "Not Found";
+                require 'views/report/report.php';
+                exit;
+            }
+        }
+        require 'views/report/confirm-user.php';
+    }
+    
+    public function reportMhsForm() {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $nim = $_GET['nim'] ?? ''; // Ambil query dari parameter GET
+            $nama = $_GET['nama'] ?? ''; // Ambil query dari parameter GET
+        }
+        require 'views/report/report-form-mhs.php';
     }
 
     public function history()
     {
-
-
         echo "Admin History";
     }
     public function manajemenUserMhs()
@@ -85,7 +106,7 @@ class AdminController extends Koneksi
 
     public function tambahMhs()
     {
-       
+
         require 'views/manajemen-user/tambah/mhs.php';
     }
 
@@ -128,14 +149,14 @@ class AdminController extends Koneksi
             $id_kelas = $_POST['id_kelas'];
             $fotoProfile = $_POST['foto_profile'];
 
-            $tabelDosen = $this->data->addTabelUserDosen($nama, $password, $status, $nip, $noTelp, $email, $id_kelas, $fotoprofile);
+            $tabelDosen = $this->data->addTabelUserDosen($nama, $password, $status, $nip, $noTelp, $email, $id_kelas, $fotoProfile);
             return $tabelDosen;
         }
         require 'views/manajemen-user/tambah/dosen.php';
     }
     public function tambahKaryawan()
     {
-       
+
         require 'views/manajemen-user/tambah/karyawan.php';
     }
     public function actionTambahKaryawan()
@@ -149,7 +170,7 @@ class AdminController extends Koneksi
             $email = $_POST['email'];
             $fotoProfile = $_POST['foto_profile'];
 
-            $tabelKaryawan = $this->data->addTabelUserkaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoprofile);
+            $tabelKaryawan = $this->data->addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile);
             return $tabelKaryawan;
         }
         require 'views/manajemen-user/tambah/karyawan.php';

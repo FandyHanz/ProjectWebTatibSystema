@@ -27,7 +27,7 @@ function initializeTabs() {
             }
 
             // Memuat konten sesuai tab yang dipilih
-            loadTableContent(fileToLoad);
+            // loadTableContent(fileToLoad);
         });
     });
 
@@ -50,7 +50,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    // loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {

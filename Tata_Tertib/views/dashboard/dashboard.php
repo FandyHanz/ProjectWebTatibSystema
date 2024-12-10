@@ -23,20 +23,18 @@
         switch ($_SESSION['level']) {
             case '1':
                 # code...
-                include 'views/dashboard/admin/table-container.php';
+                header('Location: /dashboardAdmin');
                 break;
             case '2':
-                header('location: views/dashboard/dashboard_dpa/dashboard.php');
+                header('location: /dashboardDpa');
                 # code...
                 break;
             case '3':
-               
-                header('location: views/dashboard/tendik/dashboard-tendik.php');
+                header('location: /dashboardTendik');
                 # code...
                 break;
             case '4':
-                file_get_contents('/dashboardAdmin');
-                header('location: views/dashboard/mhs/dashboard-admin.php');
+                header('location: /dashboardMhs');
                 # code...
                 break;
             default:
