@@ -6,7 +6,7 @@ $obj = new Admin();
 $data = $obj->getTabelPelMhs();
 ?>
 
-<form action="" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
+<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
     <div class="filter-button" id="filter-button">
         <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
             <option value="" disabled selected>Kelas</option>
