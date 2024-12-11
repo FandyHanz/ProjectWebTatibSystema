@@ -10,7 +10,7 @@ Class AdminFunc extends Admin{
     }
 
     public function filter(){
-        if($_SERVER['REQUEST_METHODD'] == 'POST'){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $option = $_POST['kelas'];
             switch($option){
                 case 'TI-1A':
