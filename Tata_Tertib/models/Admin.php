@@ -24,13 +24,17 @@ class Admin extends Koneksi
         pelanggaran_mahasiswa.bukti_selesai,
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,
-        pelanggaran.kategori
+        pelanggaran.kategori,
+        kelas.id_kelas,
+        kelas.nama AS nama_kelas
     FROM 
         mahasiswa
     JOIN
         pelanggaran_mahasiswa ON mahasiswa.nim = pelanggaran_mahasiswa.nim
     JOIN 
         pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
+    JOIN
+        kelas ON mahasiswa.id_kelas = kelas.id_kelas
     ";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -42,19 +46,32 @@ class Admin extends Koneksi
         mahasiswa.nim,
         mahasiswa.nama AS nama_mahasiswa,
         mahasiswa.status AS status_mahasiswa,
+        mahasiswa.no_telp,
+        mahasiswa.email AS email_mahasiswa,
+        mahasiswa.alamat,
+        mahasiswa.nama_ayah,
+        mahasiswa.no_telp_ayah,
+        mahasiswa.nama_ibu,
+        mahasiswa.no_telp_ibu,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
         pelanggaran_mahasiswa.status_pelanggaran,
         pelanggaran_mahasiswa.bukti_selesai,
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,
-        pelanggaran.kategori
+        pelanggaran.kategori,
+        dosen.nip,
+        dosen.nama AS nama_dosen,
+        dosen.no_telp AS no_telp_dpa,
+        dosen.email AS email_dpa
     FROM 
         mahasiswa
     JOIN
         pelanggaran_mahasiswa ON mahasiswa.nim = pelanggaran_mahasiswa.nim
     JOIN 
         pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
+    JOIN
+        dosen ON dosen.id_kelas = mahasiswa.id_kelas
     ";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);

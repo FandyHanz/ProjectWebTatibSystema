@@ -53,9 +53,10 @@ $data = $obj->getTabelPelMhs();
                             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Option
                             </button>
-
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi">
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi"
+                                    data-nama="<?= $data[$i]['nama_mahasiswa'] ?>"
+                                    data-notelp="<?= $data[$i]['nama_mahasiswa'] ?>">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
@@ -87,7 +88,7 @@ $data = $obj->getTabelPelMhs();
             </div>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center" style="background-color: #1976D2;border-top-left-radius: 6.5px; border-bottom-left-radius: 6.5px; color: white">
-                    <img class="rounded-circle mx-auto mt-5" style="height: 125px; width: 125px;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png"/>
+                    <img class="rounded-circle mx-auto mt-5" style="height: 125px; width: 125px;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                     <p class="mt-3">2341720111</p>
                 </div>
                 <div class="rightside col-8 p-4">
@@ -95,7 +96,6 @@ $data = $obj->getTabelPelMhs();
                     <h9 class="mt-0 pt-0">Mahasiswa Aktif</h9>
                     <br>
                     <br>
-
                     <h9 class="mt-0 pt-0">Kelas: D4TI-2B</h9><br>
                     <h9 class="mt-0 pt-0">No Telp : 081252288523</h9><br>
                     <h9 class="mt-0 pt-0">Email: D4TI-2B</h9><br>
@@ -130,7 +130,7 @@ $data = $obj->getTabelPelMhs();
             </div>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center" style="background-color: #1976D2;border-top-left-radius: 6.5px; border-bottom-left-radius: 6.5px; color: white">
-                    <img class="rounded-circle mx-auto mt-5" style="height: 125px; width: 125px;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png"/>
+                    <img class="rounded-circle mx-auto mt-5" style="height: 125px; width: 125px;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                     <p class="mt-3">2341720111</p>
                 </div>
                 <div class="rightside col-8 p-4">
