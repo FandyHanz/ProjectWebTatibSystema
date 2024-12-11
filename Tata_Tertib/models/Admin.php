@@ -4,7 +4,7 @@
 // 1. dashboard/admin-table-mahasiswa.php
 // 2. ...
 
-include_once '../../core/koneksi.php';
+include_once '../../core/Koneksi.php';
 class Admin extends Koneksi
 {
     public function __construct()
