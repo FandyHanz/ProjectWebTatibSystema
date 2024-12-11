@@ -4,13 +4,17 @@ function getDashboardPage()
     // Errornya biarkan, karena aslinya variabel ini
     switch ($session->get('level')) {
         case '1':
-            return '../views/dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-admin.php';
+            return $page;
         case '2':
-            return '../views/dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-admin.php';
+            return $page;
         case '3':
-            return '../views/dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-admin.php';
+            return $page;
         case '4':
-            return '../views/dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-admin.php';
+            return $page;
         default:
             break;
     }
@@ -26,14 +30,14 @@ function getDashboardPage()
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="<?php  ?>"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                    <a href="../dashboard/dashboard-admin.php"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                 </div>
             </div>
         </li>
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="report"><img src="../../assets/icon/warning-icon.svg" alt=""><span>Report</span></a>
+                    <a href="../report/report.php"><img src="../../assets/icon/warning-icon.svg" alt=""><span>Report</span></a>
                 </div>
             </div>
         </li>
@@ -51,7 +55,6 @@ function getDashboardPage()
                 </div>
             </div>
         </li>
-        <li></li>
         <li></li>
         <li></li>
         <li></li>
