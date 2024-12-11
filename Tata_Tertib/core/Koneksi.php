@@ -7,7 +7,7 @@ Class Koneksi{
     public $db;
 
     public function __construct(){
-        $this -> db = new mysqli($this -> host, $this -> username,  $this -> password,  $this -> database);
+        $this -> db = mysqli_connect($this -> host, $this -> username,  $this -> password,  $this -> database);
         if ($this -> db -> connect_error){
             die("connection failed: ". $this -> db -> connect_error);
         }
