@@ -6,7 +6,7 @@ function initializeTabs() {
         button.addEventListener('click', function () {
             // Menghapus class 'active' dari semua tab
             document.querySelectorAll('.nav-table-button').forEach(btn => btn.classList.remove('active'));
-            const title = document.getElementById('title-table');
+            const title = document.getElementById('title-table'); 
 
             // Menambahkan class 'active' pada tab yang diklik
             this.classList.add('active');
@@ -20,14 +20,14 @@ function initializeTabs() {
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
-                fileToLoad = 'admin-table-mahasiswa.php';
-                title.textContent = "Mahasiswa";
+                fileToLoad = 'tab-mhs.php';
+                title.textContent = "Laporkan Mahasiswa";
             } else if (activeTabText === "Dosen") {
-                fileToLoad = 'admin-table-dosen.php';
-                title.textContent = "Dosen";
+                fileToLoad = 'tab-dosen.php';
+                title.textContent = "Laporkan Dosen";
             } else if (activeTabText === "Karyawan") {
-                fileToLoad = 'admin-table-karyawan.php';
-                title.textContent = "Karyawan";
+                fileToLoad = 'tab-karyawan.php';
+                title.textContent = "Laporkan Karyawan";
             }
 
             // Memuat konten sesuai tab yang dipilih
@@ -54,7 +54,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('admin-table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    loadTableContent('tab-mhs.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {
