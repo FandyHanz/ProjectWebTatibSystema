@@ -149,7 +149,7 @@ class Admin extends Koneksi
     }
 
     public function filterClassmhs($kelas){
-        $sql =  $sql = "SELECT 
+        $sql = "SELECT 
         mahasiswa.nim,
         mahasiswa.nama AS nama_mahasiswa,
         mahasiswa.status AS status_mahasiswa,
@@ -168,6 +168,22 @@ class Admin extends Koneksi
         pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
     WHERE
         mahasiswa.kelas = $kelas";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function dataDpaMhs(){
+        $sql = "SELECT
+        dosen.nama, 
+        dosen.nip, dosen.no_telp,
+        dosen.email, mahasiswa.kelas, 
+        mahsiswa.no_telp, mahasiswa.email 
+        FROM 
+        dosen
+        JOIN
+        mahasiswa
+        ON
+        dosen.id_kelas = mahasiswa.id_kelas";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
