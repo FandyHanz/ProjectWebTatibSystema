@@ -25,8 +25,10 @@ $session = new Session();
 
         <!-- Content -->
         <div class="table-container">
-            <h1 class="m-4 mb-1">List Pelanggaran <span id="title-table">Mahasiswa</span></h1>
-
+            <div class="d-flex flex-row justify-content-between align-items-center p-4 pb-0">
+                <h1 class="m-0 mb-0">Manajemen <span id="title-table">Mahasiswa</span></h1>
+                <a href="/tambahUserMhs" class="btn btn-primary" id="tambah-button">Tambah Mahasiswa</a>
+            </div>
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
                 <ul id="tab-nav">

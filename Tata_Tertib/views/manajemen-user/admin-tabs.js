@@ -7,6 +7,7 @@ function initializeTabs() {
             // Menghapus class 'active' dari semua tab
             document.querySelectorAll('.nav-table-button').forEach(btn => btn.classList.remove('active'));
             const title = document.getElementById('title-table');
+            const tambahButton = document.getElementById('tambah-button');
 
             // Menambahkan class 'active' pada tab yang diklik
             this.classList.add('active');
@@ -20,14 +21,20 @@ function initializeTabs() {
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
-                fileToLoad = 'admin-table-mahasiswa.php';
+                fileToLoad = 'table-mahasiswa.php';
                 title.textContent = "Mahasiswa";
+                tambahButton.textContent = 'Tambah Mahasiswa';
+                tambahButton.setAttribute('href', 'tambah-mahasiswa.php'); // Mengatur atribut href = 'Tambah Mahasiswa';
             } else if (activeTabText === "Dosen") {
-                fileToLoad = 'admin-table-dosen.php';
+                fileToLoad = 'table-dosen.php';
                 title.textContent = "Dosen";
+                tambahButton.textContent = 'Tambah Dosen';
+                tambahButton.setAttribute('href', 'tambah-dosen.php'); // Mengatur atribut href = 'Tambah Dosen';
             } else if (activeTabText === "Karyawan") {
-                fileToLoad = 'admin-table-karyawan.php';
+                fileToLoad = 'table-karyawan.php';
                 title.textContent = "Karyawan";
+                tambahButton.textContent = 'Tambah Karyawan';
+                tambahButton.setAttribute('href', 'tambah-dosen.php'); // Mengatur atribut href = 'Tambah Karyawan';
             }
 
             // Memuat konten sesuai tab yang dipilih
@@ -54,7 +61,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('admin-table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {
