@@ -7,12 +7,18 @@ $data = $obj->getTabelPelMhs();
 ?>
 
 <form action="" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
-    <div class="filter-button" id="filter-button">
-        <a href="#" class="btn btn-light d-inline-flex" style="gap:10px;">
-            <img src="../../assets/icon/book-open-icon.svg" alt=""> Program Studi
-            <img src="../../assets/icon/caret-down-icon-filter.svg" alt="">
-        </a>
+<div class="filter-button" id="filter-button">
+        <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
+            <option value="" disabled selected>Kelas</option>
+            <option value="TI-1A">TI - 1A</option>
+            <option value="TI-1B">TI - 1B</option>
+            <option value="TI-1C">TI - 1C</option>
+            <option value="SIB-1A">SIB - 1A</option>
+            <option value="SIB-1B">SIB - 1B</option>
+            <option value="SIB-1C">SIB - 1C</option>
+        </select>
     </div>
+
     <div class="search">
         <div class="form-group">
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
@@ -26,7 +32,7 @@ $data = $obj->getTabelPelMhs();
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>NIMKK</th>
+                <th>NIMM</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
                 <th>Kategori</th>
