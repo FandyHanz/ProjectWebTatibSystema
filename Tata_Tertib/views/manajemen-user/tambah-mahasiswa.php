@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website with Sidebar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../views/dashboard/style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         .form-group {
             gap: 35px
@@ -16,13 +16,13 @@
 
 <body>
     <!-- Sidebar -->
-    <?php include 'assets/sidebar.php'; ?>
+    <?php include '../../assets/sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
         <?php
-        include 'assets/header.php';
+        include '../../assets/header.php';
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
@@ -116,7 +116,7 @@
             </form>
         </div>
         <?php
-        include 'assets/footer.php';
+        include '../../assets/footer.php';
         ?>
     </div>
     <script src="../views/dashboard/script.js"></script>
