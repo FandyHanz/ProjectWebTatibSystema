@@ -1,3 +1,8 @@
+<?php
+include '../../core/Session.php';
+$session = new Session();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,14 +25,15 @@
 
         <!-- Content -->
         <div class="table-container">
-            <h1>List Pelanggaran Mahasiswa</h1>
+            <h1 class="m-4 mb-1">List Pelanggaran Mahasiswa</h1>
 
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
                 <ul id="tab-nav">
-                    <li class="nav-table-button active"><a href="#Mahasiswa"><img src="../../assets/icon/student-icon.svg" class="icon" style="opacity: 1;" alt="">Mahasiswa</a></li>
-                    <li class="nav-table-button"><a href="#Dosen"><img src="../../assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt="">Dosen</a></li>
-                    <li class="nav-table-button"><a href="#Contact"><img src="../../assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt="">Karyawan</a></li>
+                    <li class="nav-table-button active"><a href="#Mahasiswa"><img src="../../assets/icon/student-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Mahasiswa</span class="title-btn"></a></li>
+                    <li class="nav-table-button"><a href="#Dosen"><img src="../../assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Dosen</span class="title-btn"></a></li>
+                    <li class="nav-table-button"><a href="#Karyawan"><img src="../../assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Karyawan</span class="title-btn"></a></li>
+                    <!-- <li class="nav-table-button"><a href="#Karyawan"><img src="../../assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Karyawan</span class="title-btn"></a></li> -->
                 </ul>
             </div>
             <div class="line">
@@ -48,7 +54,7 @@
         // Mengimpor dan menjalankan fungsi dari tabs.js
         import {
             initializeTabs
-        } from './tabs.js';
+        } from './admin-tabs.js';
         document.addEventListener('DOMContentLoaded', () => {
             initializeTabs(); // Menjalankan fungsi untuk menginisialisasi tab
         });

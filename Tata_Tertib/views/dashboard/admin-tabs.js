@@ -16,20 +16,14 @@ function initializeTabs() {
             const activeTabText = this.textContent.trim();
             let fileToLoad = '';
 
-             // Memperbarui teks judul berdasarkan tab yang aktif
-             const titleElement = document.querySelector('h1'); // Memilih elemen judul (h1)
-             if (titleElement) {
-                 titleElement.textContent = `List Pelanggaran ${activeTabText}`;
-             }
-
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
-                fileToLoad = 'table-mahasiswa.php';
+                fileToLoad = 'admin-table-mahasiswa.php';
             } else if (activeTabText === "Dosen") {
-                fileToLoad = 'table-dosen.php';
+                fileToLoad = 'admin-table-dosen.php';
             } else if (activeTabText === "Karyawan") {
-                fileToLoad = 'table-karyawan.php';
+                fileToLoad = 'admin-table-karyawan.php';
             }
 
             // Memuat konten sesuai tab yang dipilih
@@ -56,7 +50,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    loadTableContent('admin-table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {
@@ -77,13 +71,13 @@ function updateTabNavUnderline(button) {
 
     if (button === "Mahasiswa") {
         line.style.marginLeft = '0px';
-        line.style.width = '152.03px';
+        line.style.width = '178.03px';
     } else if (button === "Dosen") {
-        line.style.marginLeft = '152.03px';
-        line.style.width = '118.25px';
+        line.style.marginLeft = '178.03px';
+        line.style.width = '144.25px';
     } else if (button === "Karyawan") {
-        line.style.marginLeft = '270.28px';
-        line.style.width = '143.16px';
+        line.style.marginLeft = '322.28px';
+        line.style.width = '169.16px';
     }
 }
 
