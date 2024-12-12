@@ -35,9 +35,47 @@ class Admin extends Koneksi
         pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
     JOIN
         kelas ON mahasiswa.id_kelas = kelas.id_kelas
+    WHERE
+        pelanggaran_mahasiswa.status_pelanggaran IN ('2', '3', '4');
     ";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getDetailMhs($nim)
+    {
+        $sql = "SELECT 
+            mahasiswa.nim,
+            mahasiswa.nama AS nama_mahasiswa,
+            mahasiswa.status AS status_mahasiswa,
+            mahasiswa.no_telp,
+            mahasiswa.email AS email_mahasiswa,
+            mahasiswa.alamat,
+            mahasiswa.nama_ayah,
+            mahasiswa.no_telp_ayah,
+            mahasiswa.nama_ibu,
+            mahasiswa.no_telp_ibu,
+            kelas.nama AS nama_kelas,
+            dosen.nip,
+            dosen.nama AS nama_dpa,
+            dosen.nip AS nip_dpa,
+            dosen.no_telp AS no_telp_dpa,
+            dosen.email AS email_dpa
+        FROM 
+        mahasiswa
+        JOIN
+            kelas ON mahasiswa.id_kelas = kelas.id_kelas
+        JOIN
+            dosen ON kelas.id_kelas = dosen.id_kelas
+        WHERE 
+            mahasiswa.nim = ?
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $nim);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     public function getTabelPelDosen()
@@ -46,13 +84,6 @@ class Admin extends Koneksi
         mahasiswa.nim,
         mahasiswa.nama AS nama_mahasiswa,
         mahasiswa.status AS status_mahasiswa,
-        mahasiswa.no_telp,
-        mahasiswa.email AS email_mahasiswa,
-        mahasiswa.alamat,
-        mahasiswa.nama_ayah,
-        mahasiswa.no_telp_ayah,
-        mahasiswa.nama_ibu,
-        mahasiswa.no_telp_ibu,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
         pelanggaran_mahasiswa.status_pelanggaran,
@@ -60,10 +91,8 @@ class Admin extends Koneksi
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,
         pelanggaran.kategori,
-        dosen.nip,
-        dosen.nama AS nama_dosen,
-        dosen.no_telp AS no_telp_dpa,
-        dosen.email AS email_dpa
+        kelas.id_kelas,
+        kelas.nama AS nama_kelas
     FROM 
         mahasiswa
     JOIN
@@ -71,11 +100,49 @@ class Admin extends Koneksi
     JOIN 
         pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
     JOIN
-        dosen ON dosen.id_kelas = mahasiswa.id_kelas
+        kelas ON mahasiswa.id_kelas = kelas.id_kelas
     ";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    // jaga jaga tapi sepertinya tidak dipakai
+    // public function getTabelPelDosen()
+    // {
+    //     $sql = "SELECT 
+    // mahasiswa.nim,
+    // mahasiswa.nama AS nama_mahasiswa,
+    // mahasiswa.status AS status_mahasiswa,
+    // mahasiswa.no_telp,
+    // mahasiswa.email AS email_mahasiswa,
+    // mahasiswa.alamat,
+    // mahasiswa.nama_ayah,
+    // mahasiswa.no_telp_ayah,
+    // mahasiswa.nama_ibu,
+    // mahasiswa.no_telp_ibu,
+    //     pelanggaran_mahasiswa.id_pelanggaran_mhs,
+    //     pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
+    //     pelanggaran_mahasiswa.status_pelanggaran,
+    //     pelanggaran_mahasiswa.bukti_selesai,
+    //     pelanggaran.id_pelanggaran,
+    //     pelanggaran.nama_pelanggaran,
+    //     pelanggaran.kategori,
+    // dosen.nip,
+    // dosen.nama AS nama_dosen,
+    // dosen.no_telp AS no_telp_dpa,
+    // dosen.email AS email_dpa
+    // FROM 
+    //     mahasiswa
+    // JOIN
+    //     pelanggaran_mahasiswa ON mahasiswa.nim = pelanggaran_mahasiswa.nim
+    // JOIN 
+    //     pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
+    // JOIN
+    //     dosen ON dosen.id_kelas = mahasiswa.id_kelas
+    // ";
+    // $result = $this->db->query($sql);
+    // return $result->fetch_all(MYSQLI_ASSOC);
+    // }
 
     public function getTabelPelKaryawan()
     {
@@ -165,7 +232,8 @@ class Admin extends Koneksi
         }
     }
 
-    public function filterClassmhs($kelas){
+    public function filterClassmhs($kelas)
+    {
         $sql = "SELECT 
         mahasiswa.nim,
         mahasiswa.nama AS nama_mahasiswa,
@@ -189,7 +257,8 @@ class Admin extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function dataDpaMhs(){
+    public function dataDpaMhs()
+    {
         $sql = "SELECT
         dosen.nama, 
         dosen.nip, dosen.no_telp,

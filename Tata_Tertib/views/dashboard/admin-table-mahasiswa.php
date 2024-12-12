@@ -45,29 +45,27 @@ $data = $obj->getTabelPelMhs();
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama_mahasiswa"] ?></td>
                     <td><?= $data[$i]["nim"] ?></td>
-                    <td><?= $data[$i]["status_pelanggaran"] ?></td>
+                    <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
                     <td><?= $data[$i]["nama_pelanggaran"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Option
+                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Option</span>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi"
-                                    data-nama="<?= $data[$i]['nama_mahasiswa'] ?>"
-                                    data-notelp="<?= $data[$i]['nama_mahasiswa'] ?>">
+                            <div class="dropdown-menu">
+                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                    Bukti Sanksi
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#detailDataMahasiswa">
+                                </a>
+                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
+                                    Bukti Tebus Sanksi
+                                </a>
+                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Data Pelanggar
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                                </a>
+                                <a class="dropdown-item">
                                     Selesai
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </td>
@@ -76,88 +74,48 @@ $data = $obj->getTabelPelMhs();
         </tbody>
     </table>
 </div>
-<!-- Modal -->
-<!-- MODAL DETAIL PELANGGARAN DAN KONFIRMASI -->
-<div class="modal fade" id="lihatDetailPelanggaranDanKonfirmasi" tabindex="-1" role="dialog" aria-labelledby="Detail dan Konfirmasi" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document"> <!-- Add modal-dialog-centered here -->
-        <div class="modal-content">
-            <div class="modal-header p-0 m-0 position-absolute col-12 flex-row justify-content-end" style="background-color: transparent; border: none; z-index: 100;">
-                <button type="button" class="close" style="border: none; background-color: transparent; cursor: pointer; margin-right: 10px;margin-top: 8px;" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body d-flex flex-row p-0 m-0">
-                <div class="lefside col-4 d-flex flex-column align-items-center" style="background-color: #1976D2;border-top-left-radius: 6.5px; border-bottom-left-radius: 6.5px; color: white">
-                    <img class="rounded-circle mx-auto mt-5" style="height: 125px; width: 125px;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
-                    <p class="mt-3">2341720111</p>
-                </div>
-                <div class="rightside col-8 p-4">
-                    <h3 class="mb-0">Soeharto bin Budris</h3>
-                    <h9 class="mt-0 pt-0">Mahasiswa Aktif</h9>
-                    <br>
-                    <br>
-                    <h9 class="mt-0 pt-0">Kelas: D4TI-2B</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp : 081252288523</h9><br>
-                    <h9 class="mt-0 pt-0">Email: D4TI-2B</h9><br>
-                    <h9 class="mt-0 pt-0">Domisili:</h9><br>
-                    <h9 class="mt-0 pt-0">Jalan mawar badasdaidj ia aisdj aisdjasi dja ijas dijas idja sid jasid jasdi jasd iasjdasid jasid jas idaj diasjd</h9><br>
-                    <br>
-                    <h5>Data Keluarga</h5>
-                    <h9 class="mt-0 pt-0">Nama Ayah: Sutarno</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ayah: 12391083</h9><br>
-                    <h9 class="mt-0 pt-0">Nama Ibu: Sutarnii no jutsu</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ibu: 12391083</h9><br>
-                    <br>
-                    <h5>Data DPA</h5>
-                    <h9 class="mt-0 pt-0">Nama: Dini Andrita Sari</h9><br>
-                    <h9 class="mt-0 pt-0">NIP: 12391083</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp: 12391083</h9><br>
-                    <h9 class="mt-0 pt-0">Email: 12391083</h9><br>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- MODAL DATA PELANGGAR -->
-<div class="modal fade" id="detailDataMahasiswa" tabindex="-1" role="dialog" aria-labelledby="Data Pelanggar" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document"> <!-- Add modal-dialog-centered here -->
-        <div class="modal-content">
-            <div class="modal-header p-0 m-0 position-absolute col-12 flex-row justify-content-end" style="background-color: transparent; border: none; z-index: 100;">
-                <button type="button" class="close" style="border: none; background-color: transparent; cursor: pointer; margin-right: 10px;margin-top: 8px;" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<?php
+function getStatusUi($id_status)
+{
+    switch ($id_status) {
+        case '1':
+            # code...
+            echo '
+            <div class="btn d-flex flex-row align-items-center" style="font-size: 12px;margin-right:5px; width:fit-content; gap: 14px; border-radius:30px; background-color:#EDEDED; color:#B4B4B4;">
+                <div class="circle rounded-circle" style="width:10px; height:10px; background-color:#B4B4B4;"></div>
+                Selesai
             </div>
-            <div class="modal-body d-flex flex-row p-0 m-0">
-                <div class="lefside col-4 d-flex flex-column align-items-center" style="background-color: #1976D2;border-top-left-radius: 6.5px; border-bottom-left-radius: 6.5px; color: white">
-                    <img class="rounded-circle mx-auto mt-5" style="height: 125px; width: 125px;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
-                    <p class="mt-3">2341720111</p>
-                </div>
-                <div class="rightside col-8 p-4">
-                    <h3 class="mb-0">Soeharto bin Budris</h3>
-                    <h9 class="mt-0 pt-0">Mahasiswa Aktif</h9>
-                    <br>
-                    <br>
-
-                    <h9 class="mt-0 pt-0">Kelas: D4TI-2B</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp : 081252288523</h9><br>
-                    <h9 class="mt-0 pt-0">Email: D4TI-2B</h9><br>
-                    <h9 class="mt-0 pt-0">Domisili:</h9><br>
-                    <h9 class="mt-0 pt-0">Jalan mawar badasdaidj ia aisdj aisdjasi dja ijas dijas idja sid jasid jasdi jasd iasjdasid jasid jas idaj diasjd</h9><br>
-                    <br>
-                    <h5>Data Keluarga</h5>
-                    <h9 class="mt-0 pt-0">Nama Ayah: Sutarno</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ayah: 12391083</h9><br>
-                    <h9 class="mt-0 pt-0">Nama Ibu: Sutarnii no jutsu</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ibu: 12391083</h9><br>
-                    <br>
-                    <h5>Data DPA</h5>
-                    <h9 class="mt-0 pt-0">Nama: Dini Andrita Sari</h9><br>
-                    <h9 class="mt-0 pt-0">NIP: 12391083</h9><br>
-                    <h9 class="mt-0 pt-0">No Telp: 12391083</h9><br>
-                    <h9 class="mt-0 pt-0">Email: 12391083</h9><br>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            ';
+            break;
+        case '2':
+            # code...
+            echo '
+                <div class="btn d-flex flex-row align-items-center" style="font-size: 12px;margin-right:5px; width:fit-content; gap: 14px; border-radius:30px; background-color:#D5F2FF; color:#00B6FF;">
+                    <div class="circle rounded-circle" style="width:10px; height:10px; background-color:#00B6FF;"></div>
+                    Sanksi Telah Dipenuhi
+                    </div>
+                    ';
+            break;
+        case '3':
+            # code...
+            echo '
+            <div class="btn d-flex flex-row align-items-center" style="font-size: 12px;margin-right:5px; width:fit-content; gap: 14px; border-radius:30px; background-color:#FFF1D6; color:#FFA500;">
+            <div class="circle rounded-circle" style="width:10px; height:10px; background-color:#FFA500;"></div>
+            Menunggu Sanksi
+            </div> ';
+            break;
+        case '4':
+            # code...
+            echo '
+                    <div class="btn d-flex flex-row align-items-center" style="font-size: 12px;margin-right:5px; width:fit-content; gap: 14px; border-radius:30px; background-color:#FFD6D6; color:#FF4F4F;">
+                    <div class="circle rounded-circle" style="width:10px; height:10px; background-color:#FF4F4F;"></div>
+                    Menunggu Konfirmasi
+                    </div>';
+            break;
+        default:
+            echo $id_status;
+            break;
+    }
+}
+?>
