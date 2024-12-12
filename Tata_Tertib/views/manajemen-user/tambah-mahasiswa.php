@@ -26,7 +26,7 @@
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
-            <form action="../../action/MhsCrud/MhsCrud.php" method="post">
+            <form action="../../action/MhsCrud/MhsCrud.php" method="post" enctype="multipart/formdata">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
