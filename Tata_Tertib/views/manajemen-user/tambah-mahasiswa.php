@@ -110,7 +110,6 @@
                     <div class="col-2"></div>
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>
-                    
                 </div>
                 <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

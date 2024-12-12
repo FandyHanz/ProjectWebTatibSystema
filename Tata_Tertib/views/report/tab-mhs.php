@@ -18,7 +18,7 @@ if (isset($_GET['query'])) {
     <h1 id="title" class="mb-4" style="font-size: 35px;">Masukkan Data Mahasiswa</h1>
 
     <!-- Input dan Dropdown -->
-    <form action="../../action/report/reportAction.php" class="d-flex flex-column justify-content-center align-items-center">
+    <form action="form-mhs.php" class="d-flex flex-column justify-content-center align-items-center">
         <div style="position: relative; width: 500px;">
             <input type="text" class="form-control mb-2" style="width: 100%;" name="search" id="search" placeholder="Search">
         </div>
