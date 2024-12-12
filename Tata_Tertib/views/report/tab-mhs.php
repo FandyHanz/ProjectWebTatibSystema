@@ -1,8 +1,15 @@
 <?php
-// Membuat array yang menyimpan data tabel
-include '../../models/Admin.php';
-$obj = new Admin();
-$data = $obj->getTabelPelMhs();
+// Membuat endpoint untuk menangani pencarian
+if (isset($_GET['query'])) {
+    include '../../models/Admin.php';
+    $obj = new Admin();
+    $searchQuery = $_GET['query'];
+
+    // Mengambil data berdasarkan query (NIM atau Nama)
+    $result = $obj->searchRekomendasiMahasiswa($searchQuery);
+    echo json_encode($result);
+    exit;
+}
 ?>
 
 <div class="d-flex justify-content-center align-items-center flex-column" style="width: 100%; height: 100%;">
@@ -10,24 +17,33 @@ $data = $obj->getTabelPelMhs();
     <!-- Elemen H1 -->
     <h1 id="title" class="mb-4" style="font-size: 35px;">Masukkan Data Mahasiswa</h1>
 
-    <!-- Input dan Radio Button -->
-    <input type="text" class="form-control mb-2" style="width: 500px;" name="search" id="search" placeholder="Search">
-    <h8>Cari Berdasarkan: </h8>
-    <div class="radio d-flex flex-row justify-content-center align-items-center mb-4" style="gap: 30px;">
-        <label>
-            <input type="radio" name="tabel" value="NIM" checked>
-            NIM
-        </label>
-        <label>
-            <input type="radio" name="tabel" value="Nama">
-            Nama
-        </label>
-    </div>
+    <!-- Input dan Dropdown -->
+    <form action="../../action/report/reportAction.php" class="d-flex flex-column justify-content-center align-items-center">
+        <div style="position: relative; width: 500px;">
+            <input type="text" class="form-control mb-2" style="width: 100%;" name="search" id="search" placeholder="Search">
+            <div class="result-box" style="background-color: white; border: 1px solid #ccc; border-radius: 5px;">
+                <ul>
+                    <li>Jana</li>
+                    <li>Jana</li>
+                </ul>
+            </div>
+        </div>
 
-    <!-- Tombol -->
-    <button class="btn btn-primary" type="submit" style="width: 150px;">Search</button>
+        <!-- Radio Button -->
+        <h8>Cari Berdasarkan: </h8>
+        <div class="radio d-flex flex-row justify-content-center align-items-center mb-4" style="gap: 30px;">
+            <label>
+                <input type="radio" name="tabel" value="NIM" checked>
+                NIM
+            </label>
+            <label>
+                <input type="radio" name="tabel" value="Nama">
+                Nama
+            </label>
+        </div>
+
+        <!-- Tombol -->
+        <button class="btn btn-primary" type="submit" style="width: 150px;">Search</button>
+    </form>
 
 </div>
-
-<script>
-</script>
