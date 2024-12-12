@@ -222,15 +222,15 @@ class Admin extends Koneksi
 
     public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile)
     {
-        $role = 3;
-        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role, foto_profile)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $role = 4;
+        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $this->db->prepare($sql);
 
 if ($stmt) {
     $stmt->bind_param(
-        "ississssssssis", 
+        "ississssssssi", 
         $nim, 
         $password, 
         $kelas, 
@@ -243,8 +243,7 @@ if ($stmt) {
         $noTelpAyah, 
         $namaIbu, 
         $noTelpIbu,
-        $role, 
-        $fotoProfile
+        $role
     );
     
     if ($stmt->execute()) {
