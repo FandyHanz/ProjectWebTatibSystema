@@ -32,7 +32,7 @@ $data = $obj->getTabelPelMhs();
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>NIMM</th>
+                <th>NIM</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
                 <th>Kategori</th>
@@ -40,6 +40,9 @@ $data = $obj->getTabelPelMhs();
             </tr>
         </thead>
         <tbody>
+            <?php
+            var_dump($data);
+            ?>>
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
