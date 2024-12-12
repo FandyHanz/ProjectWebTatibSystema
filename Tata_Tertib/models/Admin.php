@@ -183,7 +183,9 @@ class Admin extends Koneksi
 
     public function getTabelUserMahasiswa()
     {
-        $sql = "SELECT * FROM mahasiswa";
+        $sql = "SELECT mahasiswa.nama AS nama, mahasiswa.nim, mahasiswa.no_telp, kelas.nama 
+        AS nama_kelas, mahasiswa.email AS email FROM mahasiswa JOIN kelas
+        ON mahasiswa.id_kelas = kelas.id_kelas";
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0) {
@@ -330,5 +332,9 @@ if ($stmt) {
         $sql = "SELECT * FROM kelas";
         $result = $this->db->query($sql);
         return $result;
+    }
+
+    public function joinMhs(){
+        
     }
 }

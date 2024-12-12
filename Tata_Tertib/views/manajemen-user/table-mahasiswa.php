@@ -3,7 +3,7 @@
 
 include '../../models/Admin.php';
 $obj = new Admin();
-$data = $obj->getTabelPelMhs();
+$data = $obj->getTabelUserMahasiswa();
 ?>
 
 <form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
@@ -33,9 +33,9 @@ $data = $obj->getTabelPelMhs();
                 <th></th>
                 <th>Nama</th>
                 <th>NIM</th>
-                <th>Status</th>
-                <th>Tanggal/Waktu</th>
-                <th>Kategori</th>
+                <th>No telp</th>
+                <th>Kelas</th>
+                <th>email</th>
                 <th></th>
             </tr>
         </thead>
@@ -45,11 +45,11 @@ $data = $obj->getTabelPelMhs();
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
-                    <td><?= $data[$i]["nama_mahasiswa"] ?></td>
+                    <td><?= $data[$i]["nama"] ?></td>
                     <td><?= $data[$i]["nim"] ?></td>
-                    <td><?= $data[$i]["status_pelanggaran"] ?></td>
-                    <td><?= $data[$i]["nama_pelanggaran"] ?></td> <!-- Diganti Tanggal Waktu -->
-                    <td><?= $data[$i]["kategori"] ?></td>
+                    <td><?= $data[$i]["no_telp"] ?></td>
+                    <td><?= $data[$i]["nama_kelas"] ?></td> <!-- Diganti Tanggal Waktu -->
+                    <td><?= $data[$i]["email"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
                             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
