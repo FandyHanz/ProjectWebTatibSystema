@@ -1,8 +1,8 @@
 <?php
 // Membuat endpoint untuk menangani pencarian
 if (isset($_GET['query'])) {
-    include '../../models/Admin.php';
-    $obj = new Admin();
+    include '../../models/Report.php';
+    $obj = new Report();
     $searchQuery = $_GET['query'];
 
     // Mengambil data berdasarkan query (NIM atau Nama)
@@ -18,15 +18,9 @@ if (isset($_GET['query'])) {
     <h1 id="title" class="mb-4" style="font-size: 35px;">Masukkan Data Mahasiswa</h1>
 
     <!-- Input dan Dropdown -->
-    <form action="../../action/report/reportAction.php" class="d-flex flex-column justify-content-center align-items-center">
+    <form action="form-mhs.php" class="d-flex flex-column justify-content-center align-items-center">
         <div style="position: relative; width: 500px;">
             <input type="text" class="form-control mb-2" style="width: 100%;" name="search" id="search" placeholder="Search">
-            <div class="result-box" style="background-color: white; border: 1px solid #ccc; border-radius: 5px;">
-                <ul>
-                    <li>Jana</li>
-                    <li>Jana</li>
-                </ul>
-            </div>
         </div>
 
         <!-- Radio Button -->
