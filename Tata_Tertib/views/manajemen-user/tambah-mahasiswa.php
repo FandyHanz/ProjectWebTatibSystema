@@ -26,7 +26,7 @@
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
-            <form action="" method="post">
+            <form action="../../action/MhsCrud/MhsCrud.php" method="post">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
@@ -44,8 +44,11 @@
                     </div>
                     <select class="form-select" id="kelas" name="kelas" required>
                         <?php
+                        include_once '../../models/Admin.php';
+                        $admin = new Admin();
+                        $kelas = $admin -> getKelasMhs();
                         foreach ($kelas as $row) {
-                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama_kelas'] . '</option>';
+                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
                         }
                         ?>
                     </select>
@@ -81,7 +84,7 @@
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama_ayah">Nama Ayah:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama_ayah" name="namaa_ayah" required>
+                    <input class="col-3" type="text" id="nama_ayah" name="nama_ayah" required>
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="no_telp_ayah">No Telepon Ayah:</label>
@@ -103,7 +106,7 @@
                     <div class="form-group col-2 d-flex flex-row mb ">
                         <label for="formFile" class="form-label">Upload</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" required>
+                    <input class="form-control" type="file" name="foto_profile"  id="formFile">
                     <div class="col-2"></div>
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>

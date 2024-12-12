@@ -5,6 +5,7 @@
 // 2. ...
 
 include_once '../../core/Koneksi.php';
+
 class Admin extends Koneksi
 {
     public function __construct()
@@ -198,7 +199,7 @@ class Admin extends Koneksi
     public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile)
     {
         $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, foto_profile)
-        VALUES ($nim, $password, $kelas, $status, $nama, $notelp, $email, $alamat, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile)";
+        VALUES ($nim, $password, $kelas, $status, $nama, $notelp, $email, $alamat, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, 4 , $fotoProfile)";
         $result = $this->db->query($sql);
         if ($result) {
             echo "data berhasil ditambah";
@@ -272,5 +273,10 @@ class Admin extends Koneksi
         dosen.id_kelas = mahasiswa.id_kelas";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    public function getKelasMhs(){
+        $sql = "SELECT * FROM kelas";
+        $result = $this->db -> query($sql);
+        return $result;
     }
 }
