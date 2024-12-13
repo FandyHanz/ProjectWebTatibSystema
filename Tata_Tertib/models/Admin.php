@@ -207,49 +207,72 @@ class Admin extends Koneksi
         $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-$stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
-if ($stmt) {
-    $stmt->bind_param(
-        "ississssssssi", 
-        $nim, 
-        $password, 
-        $kelas, 
-        $status, 
-        $nama, 
-        $notelp, 
-        $email, 
-        $alamat, 
-        $namaAyah, 
-        $noTelpAyah, 
-        $namaIbu, 
-        $noTelpIbu,
-        $role
-    );
-    
-    if ($stmt->execute()) {
-        header("Location: ../../views/manajemen-user/manajemen-user.php");
-    } else {
-        echo "Gagal: " . $stmt->error;
-    }
-    
-    $stmt->close();
-} else {
-    echo "Gagal: " . $this->db->error;
-}
+        if ($stmt) {
+            $stmt->bind_param(
+                "ississssssssi",
+                $nim,
+                $password,
+                $kelas,
+                $status,
+                $nama,
+                $notelp,
+                $email,
+                $alamat,
+                $namaAyah,
+                $noTelpAyah,
+                $namaIbu,
+                $noTelpIbu,
+                $role
+            );
 
-    }
+            if ($stmt->execute()) {
+                header("Location: ../../views/manajemen-user/manajemen-user.php");
+            } else {
+                echo "Gagal: " . $stmt->error;
+            }
 
-
-    public function addTabelUserDosen($nama, $password, $status, $nip, $notelp, $email, $fotoprofile, $id_kelas)
-    {
-        $sql = "INSERT INTO tendik (nim, password, id_kelas, status, nama, no_telp, email,  id_kelas, foto_profile, role)
-        VALUES ($nama, $password, $status, $nip, $notelp, $email,  $id_kelas, $fotoprofile, 3)";
-        $result = $this->db->query($sql);
-        if ($result) {
-            header("Location: ../../views/manajemen-user/manajemen-user.php");
+            $stmt->close();
         } else {
-            echo "gagal";
+            echo "Gagal: " . $this->db->error;
+        }
+    }
+
+    public function addTabelUserDosen($nama , $nip, $no_telp, $password, $email, $status, $kelas, $fotoProfile) {
+        $role = ($kelas === null) ? 3 : 2;
+        $id_kelas = ($kelas === null) ? null : $kelas;
+
+        $sql = 'INSERT INTO dosen (nip, password, nama, status, no_telp, email, role, id_kelas, foto_profile) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $stmt = $this->db->prepare($sql);
+        echo($role == 2);
+        if ($stmt) {
+            // Bind parameters
+            $stmt->bind_param(
+                "ssssssiss",
+                $nip,
+                $password,
+                $nama,
+                $status,
+                $no_telp,
+                $email,
+                $role,
+                $id_kelas,
+                $fotoProfile
+            );
+            if ($stmt->execute()) {
+                echo "Data inserted successfully.";
+                header("Location: ../../views/manajemen-user/manajemen-user.php");
+                exit();
+            } else {
+                echo "Error: " . $this->db->error;
+            }
+
+            // Close the statement
+            $stmt->close();
+        } else {
+            echo "Error preparing statement: " . $this->db->error;
         }
     }
 
@@ -313,7 +336,59 @@ if ($stmt) {
         return $result;
     }
 
-    public function joinMhs(){
-        
+    public function editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile, $id)
+    {
+        $sql = "UPDATE mahasiswa SET 
+        password = '$password', 
+        id_kelas = '$kelas', 
+        status = '$status', 
+        nama = '$nama',
+        no_telp = '$notelp',
+        email = '$email',
+        alamat = '$alamat',
+        nama_ayah = '$namaAyah',
+        no_telp_ayah = '$noTelpAyah',
+        nama_ibu = '$namaIbu',
+        foto_profile = '$fotoProfile',
+        no_telp_ibu = '$noTelpIbu' WHERE nim = '$id'";
+        $result = $this->db->query($sql);
+        return $result;
     }
+
+public function deleteMhs($nim) {
+    // Step 1: Delete related records in pelanggaran_mahasiswa
+    $sqlDeletePelanggaran = "DELETE FROM pelanggaran_mahasiswa WHERE nim = ?";
+    $stmt = $this->db->prepare($sqlDeletePelanggaran);
+    $stmt->bind_param("s", $nim);
+    
+    if ($stmt->execute()) {
+        echo "Related records in pelanggaran_mahasiswa deleted successfully. ";
+    } else {
+        echo "Error deleting related records: " . $stmt->error;
+    }
+    $stmt->close();
+
+    // Step 2: Now, delete from mahasiswa
+    $sqlDeleteMahasiswa = "DELETE FROM mahasiswa WHERE nim = ?";
+    $stmt = $this->db->prepare($sqlDeleteMahasiswa);
+    $stmt->bind_param("s", $nim);
+
+    if ($stmt->execute()) {
+        echo "Mahasiswa with NIM $nim deleted successfully.";
+    } else {
+        echo "Error deleting mahasiswa: " . $stmt->error;
+    }
+    $stmt->close();
+    header("Location: ../../views/manajemen-user/manajemen-user.php");
+}
+
+
+    public function reaByIdMhs($id)
+    {
+        $sql = "SELECT * FROM mahasiswa WHERE nim = '$id'";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+
+
 }

@@ -4,9 +4,16 @@
 include '../../models/Admin.php';
 $obj = new Admin();
 $data = $obj->getTabelPelMhs();
+
+if (isset($_GET['action']) && $_GET['action'] === 'delete') {
+    $id = $_GET['id'];
+    $result = $admin -> deleteMhs($id);
+    return $result;
+}
+require '../manajemen-user/manajemen-user.php'
 ?>
 
-<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
+<form action="" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
     <div class="filter-button" id="filter-button">
         <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
             <option value="" disabled selected>Kelas</option>
@@ -60,7 +67,7 @@ $data = $obj->getTabelPelMhs();
                                 <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Bukti Tebus Sanksi
                                 </a>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
+                                <a href="" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
                                 <a class="dropdown-item">

@@ -6,7 +6,7 @@ $obj = new Admin();
 $data = $obj->getTabelUserMahasiswa();
 ?>
 
-<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
+<form action="" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
     <div class="filter-button" id="filter-button">
         <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
             <option value="" disabled selected>Kelas</option>
@@ -56,13 +56,13 @@ $data = $obj->getTabelUserMahasiswa();
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi">
-                                    Lihat Detail Pelanggaran dan Konfirmasi
+                                    Lihat Detail data
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                    Bukti Sanksi
+                                   <a href="edit-mhs.php?nim=<?=$data[$i]['nim']?>"> Edit data</a>
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#detailDataMahasiswa">
-                                    Data Pelanggar
+                                <a href="deleteMhs.php?nim=<?=$data[$i]['nim']?>">Hapus data</a>
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
                                     Selesai

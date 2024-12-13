@@ -1,14 +1,15 @@
 <?php
-include '../../models/Admin.php';
+require_once '../../models/Admin.php';
+$order = new Admin;
+$id = $_GET['nim'];
+$edit = $order -> reaByIdMhs($id);
 
-$data = new Admin();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nama = $_POST['nama'];
-    $nim = $_POST['nim'];
     $password = $_POST['password'];
     $kelas = $_POST['kelas'];
     $status = $_POST['status'];
-    $noTelp = $_POST['no_telp'];
+    $notelp = $_POST['no_telp'];
     $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $namaAyah = $_POST['nama_ayah'];
@@ -16,11 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $namaIbu = $_POST['nama_ibu'];
     $noTelpIbu = $_POST['no_telp_ibu'];
     $fotoProfile = $_POST['foto_profile'];
-
-    $tabelMahasiswa = $data->addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile);
-    return $tabelMahasiswa;
+    $editmhs = $order -> editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile, $id);
+    
+    header("Location:manajemen-user.php");
+    exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,11 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label class="" for="nama">Nama:</label>
                     </div>
                     <input class="col-3" type="text" id="nama" name="nama" required>
-                    <div class="col-2"></div>
-                    <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nim">NIM:</label>
-                    </div>
-                    <input class="col-3" type="text" id="nim" name="nim" required>
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row">
@@ -72,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $admin = new Admin();
                         $kelas = $admin -> getKelasMhs();
                         foreach ($kelas as $row) {
-                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama_kelas'] . '</option>';
+                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
                         }
                         ?>
                     </select>
