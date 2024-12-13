@@ -8,7 +8,7 @@ class Report extends Koneksi
         parent::__construct();
     }
 
-public function searchRekomendasiMahasiswa($searchQuery)
+    public function searchRekomendasiMahasiswa($searchQuery)
     {
         $sql = "SELECT
                     mahasiswa.nama,
@@ -27,6 +27,13 @@ public function searchRekomendasiMahasiswa($searchQuery)
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-}
 
-?>
+    public function getPelanggaran()
+    {
+        $sql = "SELECT * FROM pelanggaran";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+}
