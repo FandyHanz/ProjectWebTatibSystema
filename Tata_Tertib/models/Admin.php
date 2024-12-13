@@ -324,16 +324,40 @@ class Admin extends Koneksi
         }
     }
 
+    public function addTabelUserDosen($nama , $nip, $no_telp, $password, $email, $status, $kelas, $fotoProfile) {
+        $role = ($kelas === null) ? 3 : 2;
+        $id_kelas = ($kelas === null) ? null : $kelas;
 
-    public function addTabelUserDosen($nama, $password, $status, $nip, $notelp, $email, $fotoprofile, $id_kelas)
-    {
-        $sql = "INSERT INTO tendik (nim, password, id_kelas, status, nama, no_telp, email,  id_kelas, foto_profile, role)
-        VALUES ($nama, $password, $status, $nip, $notelp, $email,  $id_kelas, $fotoprofile, 3)";
-        $result = $this->db->query($sql);
-        if ($result) {
-            header("Location: ../../views/manajemen-user/manajemen-user.php");
+        $sql = 'INSERT INTO dosen (nip, password, nama, status, no_telp, email, role, id_kelas, foto_profile) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $stmt = $this->db->prepare($sql);
+        echo($role == 2);
+        if ($stmt) {
+            // Bind parameters
+            $stmt->bind_param(
+                "ssssssiss",
+                $nip,
+                $password,
+                $nama,
+                $status,
+                $no_telp,
+                $email,
+                $role,
+                $id_kelas,
+                $fotoProfile
+            );
+            if ($stmt->execute()) {
+                echo "Data inserted successfully.";
+                header("Location: ../../views/manajemen-user/manajemen-user.php");
+                exit();
+            } else {
+                echo "Error: " . $this->db->error;
+            }
+
+            // Close the statement
+            $stmt->close();
         } else {
-            echo "gagal";
+            echo "Error preparing statement: " . $this->db->error;
         }
     }
 
@@ -397,5 +421,7 @@ class Admin extends Koneksi
         return $result;
     }
 
-    public function joinMhs() {}
+    public function joinMhs(){
+        
+    }
 }
