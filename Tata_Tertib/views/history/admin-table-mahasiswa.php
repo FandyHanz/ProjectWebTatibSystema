@@ -3,10 +3,22 @@
 
 include '../../models/Admin.php';
 $obj = new Admin();
-$data = $obj->getTabelPelDosen();
+$data = $obj->getHistoryPelMhs();
 ?>
 
-<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
+<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
+    <div class="filter-button" id="filter-button">
+        <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
+            <option value="" disabled selected>Kelas</option>
+            <option value="TI-1A">TI - 1A</option>
+            <option value="TI-1B">TI - 1B</option>
+            <option value="TI-1C">TI - 1C</option>
+            <option value="SIB-1A">SIB - 1A</option>
+            <option value="SIB-1B">SIB - 1B</option>
+            <option value="SIB-1C">SIB - 1C</option>
+        </select>
+    </div>
+
     <div class="search">
         <div class="form-group">
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
@@ -20,9 +32,10 @@ $data = $obj->getTabelPelDosen();
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>NIP</th>
+                <th>NIM</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
+                <th>Kategori</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,23 +43,24 @@ $data = $obj->getTabelPelDosen();
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
-                    <td><?= $data[$i]["nama"] ?></td>
-                    <td><?= $data[$i]["nip"] ?></td>
+                    <td><?= $data[$i]["nama_mahasiswa"] ?></td>
+                    <td><?= $data[$i]["nim"] ?></td>
                     <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
-                    <td><?= $data[$i]["waktu_report"] ?></td>
+                    <td><?= $data[$i]["waktu_report"] ?></td> <!-- Diganti Tanggal Waktu -->
+                    <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
                             <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-dosen.php?nip=<?= $data[$i]["nip"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
-                                <a href="admin-detail-data-dosen.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Bukti Tebus Sanksi
                                 </a>
-                                <a href="admin-detail-data-dosen.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
                                 <a class="dropdown-item">

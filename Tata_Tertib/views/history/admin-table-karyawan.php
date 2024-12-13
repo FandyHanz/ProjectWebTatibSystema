@@ -3,7 +3,7 @@
 
 include '../../models/Admin.php';
 $obj = new Admin();
-$data = $obj->getTabelPelDosen();
+$data = $obj->getHistoryPelKaryawan();
 ?>
 
 <form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
@@ -32,7 +32,7 @@ $data = $obj->getTabelPelDosen();
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama"] ?></td>
                     <td><?= $data[$i]["nip"] ?></td>
-                    <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
+                    <td><?= getStatusUi($data[$i]["status_pelanggaran"]) ?></td>
                     <td><?= $data[$i]["waktu_report"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
@@ -40,13 +40,13 @@ $data = $obj->getTabelPelDosen();
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-dosen.php?nip=<?= $data[$i]["nip"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-karyawan.php?nip=<?= $data[$i]["nip"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
-                                <a href="admin-detail-data-dosen.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
                                     Bukti Tebus Sanksi
                                 </a>
-                                <a href="admin-detail-data-dosen.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
                                 <a class="dropdown-item">

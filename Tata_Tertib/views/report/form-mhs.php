@@ -52,22 +52,23 @@ $listPelanggaran = $obj->getPelanggaran();
                         <p class="align-self-center">23417230123</p>
                     </div>
                     <div class="middle">
-                        <label for="pelanggaran">Pelanggaran : </label>
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Pilih Pelanggaran
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#" data-value="1">Pelanggaran Ringan</a></li>
-                            <li><a class="dropdown-item" href="#" data-value="2">Pelanggaran Sedang</a></li>
-                            <li><a class="dropdown-item" href="#" data-value="3">Pelanggaran Berat</a></li>
-                        </ul>
+                        <label for="pelanggaran">Pelanggaran: </label>
+                        <select name="tindakan" id="pelanggaran" class="form-control">
+                            <option value="" disabled selected>List</option>
+                            <?php
+                            foreach ($listPelanggaran as $pelanggaran) {
+                                echo '<option value="' . $pelanggaran['id_pelanggaran'] . '">' . $pelanggaran['nama_pelanggaran'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <br>
                         <div class="form-group col-2 d-flex flex-row mb ">
-                            <label for="formFile" class="form-label">Lampiran : </label>
+                            <label for="formFile" class="form-label">Lampiran:</label>
                         </div>
                         <input class="form-control" type="file" name="foto_profile" id="formFile">
                     </div>
                     <div class="right">
-                        <label for="deskripsi">Deskripsi : </label><br>
+                        <label for="deskripsi">Deskripsi :</label><br>
                         <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" style="border-color: #E9ECEF;"></textarea>
                     </div>
                 </div>
@@ -83,26 +84,7 @@ $listPelanggaran = $obj->getPelanggaran();
         <?php include '../../assets/footer.php'; ?>
     </div>
 
-    <script type="module">
-        // Mengimpor dan menjalankan fungsi dari tabs.js
-        import {
-            initializeTabs
-        } from './views/report/tabs.js';
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeTabs(); // Menjalankan fungsi untuk menginisialisasi tab ketika selesai memuat strukutr html, tanpa menunggu lain2 seperti gambar dsb.
-        });
-    </script>
     <script src="views/report/script.js"></script>
-
-    <script>
-        document.querySelectorAll('.dropdown-menu a').forEach(item => {
-            item.addEventListener('click', function(event) {
-                event.preventDefault(); // Mencegah reload halaman
-                const value = this.getAttribute('data-value');
-                document.getElementById('selectedValue').value = value;
-            });
-        });
-    </script>
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">

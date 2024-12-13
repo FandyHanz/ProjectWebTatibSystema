@@ -3,11 +3,13 @@ include '../../core/Session.php';
 include '../../models/Admin.php';
 $session = new Session();
 $obj = new Admin();
-$nim = $_GET['nim'];
+$nip = $_GET['nip'];
 
-$data = $obj->getDetailMhs($nim);
+$data = $obj->getKaryawanWithNip($nip);
 $level = $session->get('level');
-function getHeader($level) {
+
+function getHeader($level)
+{
     switch ($level) {
         case '1':
             return 'dashboard-admin.php';
@@ -26,6 +28,14 @@ function getHeader($level) {
     <title>Website with Sidebar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .textarea {
+            border: none;
+            background-color: #FAFAFC;
+            border-radius: 10px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,32 +49,39 @@ function getHeader($level) {
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-        <a href="<?=getHeader($level)?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute;top: 20px; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px">  </a>
+            <a href="<?= getHeader($level) ?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
                     <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                 </div>
                 <div class="rightside col-8 p-4">
-                    <h3 class="mb-0"><?= $data['nama_mahasiswa']; ?></h3>
-                    <h9 class="mt-0 pt-0"><?= $data['status_mahasiswa']; ?></h9>
-                    <br><br>
-                    <h9 class="mt-0 pt-0">NIM: <?= $data['nim']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Kelas: <?= $data['nama_kelas']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp : <?= $data['no_telp']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Email: <?= $data['email_mahasiswa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Domisili: <?= $data['alamat']; ?></h9><br>
+                    <h3 class="mb-0"><?= $data['nama']; ?></h3>
+                    <h9 class="mt-0 pt-0">NIP: <?= $data['nip']; ?></h9><br>
                     <br>
-                    <h5>Data Keluarga</h5>
-                    <h9 class="mt-0 pt-0">Nama Ayah: <?= $data['nama_ayah']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ayah: <?= $data['no_telp_ayah']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Nama Ibu: <?= $data['nama_ibu']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ibu: <?= $data['no_telp_ibu']; ?></h9><br>
+                    <h9 class="mt-0 pt-0">Pelanggaran : jijdaij ais jdaidjaijsaij ij aijd aisjd iasjdjaj aisjd aisjd iasj iai jdaisj dsi jdia j </h9><br>
+                    <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
+                    <textarea class="textarea p-2" name="" id="" cols="90" rows="3" readonly disabled>adasd ad ad asd</textarea><br><br>
+                    <div class="container d-flex flex-row p-0">
+                        <div class="" style="margin-right: 100px;">
+                            <h9 class="mt-0 pt-0">Lampiran :</h9><br>
+                            <div class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</div><br>
+                        </div>
+                        <div class="">
+                            <h9 class="mt-0 pt-0">Pilih Tindakan :</h9>
+                            <form action="">
+                                <textarea class="textarea p-2" name="" id="" cols="55" rows="3">adasd ad ad asd</textarea><br>
+                        </div>
+                    </div>
                     <br>
-                    <h5>Data DPA</h5>
-                    <h9 class="mt-0 pt-0">Nama: <?= $data['nama_dpa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">NIP: <?= $data['nip_dpa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp: <?= $data['no_telp_dpa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Email: <?= $data['email_dpa']; ?></h9><br>
+                    <div class="buttons">
+                        <button class="tindakan-btn btn btn-danger" style="margin-right: 15px;" type="submit">
+                            Konfirmasi
+                        </button>
+                        <button class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" type="button">
+                            Hapus Laporan
+                        </button>
+                    </div>
+                    </form>
                 </div>
 
             </div>
