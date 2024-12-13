@@ -1,14 +1,8 @@
 <?php
 // Membuat array yang menyimpan data tabel
-$data = [
-    ["No" => 1, "Nama" => "Rizky Aditya", "NIM" => "21012345", "Status" => "Hadir", "Tanggal_Waktu" => "2024-12-01 10:00", "Kategori" => "Seminar", "Option" => "Option"],
-    ["No" => 2, "Nama" => "Nina Putri", "NIM" => "21067890", "Status" => "Absen", "Tanggal_Waktu" => "2024-12-01 09:45", "Kategori" => "Workshop", "Option" => "OPTION"],
-    ["No" => 3, "Nama" => "Doni Pratama", "NIM" => "21054321", "Status" => "Hadir", "Tanggal_Waktu" => "2024-12-01 11:15", "Kategori" => "Kelas", "Option" => "OPTION"],
-    ["No" => 4, "Nama" => "Lisa Ramadhani", "NIM" => "21098765", "Status" => "Terlambat", "Tanggal_Waktu" => "2024-12-01 11:30", "Kategori" => "Pelatihan", "Option" => "OPTION"],
-    ["No" => 5, "Nama" => "Andi Kurniawan", "NIM" => "21045678", "Status" => "Absen", "Tanggal_Waktu" => "2024-12-01 08:30", "Kategori" => "Seminar", "Option" => "OPTION"],
-    ["No" => 6, "Nama" => "Siti Aisyah", "NIM" => "21078901", "Status" => "Hadir", "Tanggal_Waktu" => "2024-12-01 10:45", "Kategori" => "Diskusi", "Option" => "OPTION"]
-];
-
+include '../../models/Admin.php';
+$obj = new Admin();
+$data = $obj->getTabelUserDosen();
 ?>
 <div class="filter d-flex flex-row justify-content-end mx-auto mb-4">
     <div class="search">
@@ -26,10 +20,11 @@ $data = [
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>NIMKK</th>
-                <th>Status</th>
-                <th>Tanggal/Waktu</th>
-                <th>Kategori</th>
+                <th>nip</th>
+                <th>email</th>
+                <th>kelas</th>
+                <th>no_telp</th>
+                <th>status</th>
                 <th></th>
             </tr>
         </thead>
@@ -37,11 +32,12 @@ $data = [
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
-                    <td><?= $data[$i]["Nama"] ?></td>
-                    <td><?= $data[$i]["NIM"] ?></td>
-                    <td><?= $data[$i]["Status"] ?></td>
-                    <td><?= $data[$i]["Tanggal_Waktu"] ?></td>
-                    <td><?= $data[$i]["Kategori"] ?></td>
+                    <td><?= $data[$i]["nama"] ?></td>
+                    <td><?= $data[$i]["nip"] ?></td>
+                    <td><?= $data[$i]["email"] ?></td>
+                    <td><?= $data[$i]["nama_kelas"] ?></td>
+                    <td><?= $data[$i]["no_telp"] ?></td>
+                    <td><?= $data[$i]["status"] ?></td>
                     <td>
                         <button class="btn btn-light">
                             Option

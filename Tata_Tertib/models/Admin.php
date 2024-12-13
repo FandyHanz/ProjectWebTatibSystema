@@ -175,7 +175,9 @@ class Admin extends Koneksi
 
     public function getTabelUserDosen()
     {
-        $sql = "SELECT * FROM dosen";
+        $sql = "SELECT dosen.nama AS nama, dosen.nip, dosen.no_telp, kelas.nama 
+        AS nama_kelas, dosen.email AS email, dosen.status FROM dosen JOIN kelas
+        ON dosen.id_kelas = kelas.id_kelas";
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0) {
@@ -188,7 +190,7 @@ class Admin extends Koneksi
 
     public function getTabelUserKaryawan()
     {
-        $sql = "SELECT * FROM karyawan";
+        $sql = "SELECT karyawan.nama AS nama, karyawan.nip, karyawan.no_telp, karyawan.email AS email, karyawan.status FROM karyawan";
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0) {

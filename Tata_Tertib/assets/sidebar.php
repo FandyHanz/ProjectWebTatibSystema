@@ -48,7 +48,7 @@ function getDashboardPage()
                 </div>
             </div>
         </li>
-        <li class="sidebar-nav" style="display: <?= ($_SESSION['level'] == 1) ? 'block' : 'none'; ?>;">
+        <li class="sidebar-nav" style="display: block">
             <div class="circle-outside">
                 <div class="circle-inside">
                     <a href="../manajemen-user/manajemen-user.php"><img src="../../assets/icon/user-list-icon.svg" alt=""><span>Manajemen User</span></a>
