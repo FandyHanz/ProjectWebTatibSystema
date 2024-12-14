@@ -53,7 +53,7 @@ class Admin extends Koneksi
         pelanggaran_mahasiswa.tanggal_lapor,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
-        pelanggaran_mahasiswa.status,
+        pelanggaran_mahasiswa.status_pelanggaran,
         pelanggaran_mahasiswa.bukti_selesai,
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,
