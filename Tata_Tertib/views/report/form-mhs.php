@@ -5,6 +5,11 @@ $session = new Session();
 $obj = new Report();
 
 $listPelanggaran = $obj->getPelanggaran();
+
+$nim = isset($_GET['nim']) ? $_GET['nim'] : '';
+$data = $obj->getSimpleDataMhs($nim);
+
+$base64_image = base64_encode($data['foto_profile']);
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +54,10 @@ $listPelanggaran = $obj->getPelanggaran();
             <div class="d-flex flex-column pt-4">
                 <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                     <div class="left d-flex flex-column justify-content-center">
-                        <div class="photo bg-primary" style="height: 200px; width: 150px;"></div>
-                        <p class="align-self-center mt-2 mb-0">Ekya Muhammad H</p>
-                        <p class="align-self-center">23417230123</p>
+                        <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px;" alt="">
+                        <div class="photo bg-primary" ></div>
+                        <p class="align-self-center mt-2 mb-0"><?= $data['nama']; ?></p>
+                        <p class="align-self-center"><?= $data['nim']; ?></p>
                     </div>
                     <div class="middle">
                         <label for="pelanggaran">Pelanggaran: </label>

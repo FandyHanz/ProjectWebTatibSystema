@@ -1,6 +1,12 @@
 <?php
 include '../../core/Session.php';
 $session = new Session();
+
+$status = $session->getFlash('status');
+if ($status === false) {
+    $message = $session->getFlash('message');
+    echo "<script>alert('$message');</script>";
+}
 ?>
 
 <!DOCTYPE html>

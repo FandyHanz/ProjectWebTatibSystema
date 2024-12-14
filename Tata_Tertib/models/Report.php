@@ -37,11 +37,22 @@ class Report extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchByIdMhs($id){
-        $sql = "SELECT * FROM mahasiswa WHERE nim = $id";
-        $result = $this -> db -> query($sql);
-        return $result;
+    public function searchByIdMhs($id) {
+        $sql = "SELECT 1 FROM mahasiswa WHERE nim = ? LIMIT 1"; // SELECT 1 untuk mengecek keberadaan data
+        $stmt = $this->db->prepare($sql); // Gunakan prepared statement
+        $stmt->bind_param("s", $id); // Bind parameter (nim kemungkinan string)
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        return $result->num_rows > 0; // Kembalikan true jika data ditemukan
     }
 
-
+    public function getSimpleDataMhs($nim){
+        $sql = "SELECT nama, nim, foto_profile FROM mahasiswa WHERE nim = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $nim);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }
