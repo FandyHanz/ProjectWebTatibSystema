@@ -1,16 +1,17 @@
 <?php
 include_once '../../models/Admin.php';
 $admin = new Admin();
+$id = $_GET['nip'];
+$edit = $admin -> readByIdKaryawan($id);
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $nama = $_POST['nama'];
     $password = $_POST['password'];
+    $nama = $_POST['nama'];
     $status = $_POST['status'];
-    $nip = $_POST['nip'];
     $noTelp = $_POST['no_telp'];
     $email = $_POST['email'];
     $fotoProfile = $_POST['foto_profile'];
 
-    $result = $admin -> addTabelUserKaryawan($nama, $password, $status, $nip, $notelp, $email, $fotoProfile);
+    $result = $admin -> editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id);
     header("Location:manajemen-user.php");
     exit();
 }
@@ -50,11 +51,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label class="" for="nama">Nama:</label>
                     </div>
                     <input class="col-3" type="text" id="nama" name="nama" required>
-                    <div class="col-2"></div>
-                    <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nim">NIP:</label>
-                    </div>
-                    <input class="col-3" type="text" id="nip" name="nip" required>
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">

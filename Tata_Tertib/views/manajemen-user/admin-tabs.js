@@ -34,7 +34,7 @@ function initializeTabs() {
                 fileToLoad = 'table-karyawan.php';
                 title.textContent = "Karyawan";
                 tambahButton.textContent = 'Tambah Karyawan';
-                tambahButton.setAttribute('href', 'tambah-dosen.php'); // Mengatur atribut href = 'Tambah Karyawan';
+                tambahButton.setAttribute('href', 'tambah-karyawan.php'); // Mengatur atribut href = 'Tambah Karyawan';
             }
 
             // Memuat konten sesuai tab yang dipilih

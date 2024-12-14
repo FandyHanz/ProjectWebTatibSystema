@@ -90,6 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <?php
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
+                            echo '<option value="' ."". '">' . "" . '</option>';
                         }
                         ?>
                     </select>

@@ -260,15 +260,16 @@ class Admin extends Koneksi
 
     public function getTabelUserDosen()
     {
+
         $sql = "SELECT dosen.nama AS nama, dosen.nip, dosen.no_telp, kelas.nama 
-        AS nama_kelas, dosen.email AS email, dosen.status FROM dosen JOIN kelas
+        AS nama_kelas, dosen.email AS email, dosen.status FROM dosen LEFT JOIN kelas
         ON dosen.id_kelas = kelas.id_kelas";
         $result = $this->db->query($sql);
 
-        if ($result->num_rows > 0) {
+        if ($result-> num_rows > 0) {
             // Menggunakan fetch_all untuk mendapatkan semua data
             return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
+        } else  {
             return []; // Jika tidak ada data, kembalikan array kosong
         }
     }
@@ -289,14 +290,14 @@ class Admin extends Koneksi
     public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile)
     {
         $role = 4;
-        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role, foto_profile)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->db->prepare($sql);
 
         if ($stmt) {
             $stmt->bind_param(
-                "ississssssssi",
+                "ississssssssis",
                 $nim,
                 $password,
                 $kelas,
@@ -309,7 +310,8 @@ class Admin extends Koneksi
                 $noTelpAyah,
                 $namaIbu,
                 $noTelpIbu,
-                $role
+                $role,
+                $fotoProfile
             );
 
             if ($stmt->execute()) {
@@ -325,8 +327,8 @@ class Admin extends Koneksi
     }
 
     public function addTabelUserDosen($nama , $nip, $no_telp, $password, $email, $status, $kelas, $fotoProfile) {
-        $role = ($kelas === null) ? 3 : 2;
-        $id_kelas = ($kelas === null) ? null : $kelas;
+        $role = ($kelas === "") ? 3 : 2;
+        $id_kelas = ($kelas === "") ? null : $kelas;
 
         $sql = 'INSERT INTO dosen (nip, password, nama, status, no_telp, email, role, id_kelas, foto_profile) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -361,13 +363,15 @@ class Admin extends Koneksi
         }
     }
 
-    public function addTabelUserKaryawan($nama, $password, $status, $nip, $notelp, $email, $fotoprofile)
+    public function addTabelUserKaryawan($nama, $password, $status, $nip, $notelp, $email, $fotoProfile)
     {
-        $sql = "INSERT INTO tendik (nim, password, id_kelas, status, nama, no_telp, email, foto_profile, role)
-        VALUES ($nama, $password, $status, $nip, $notelp, $email, $fotoprofile, 3)";
+        $role = 3;
+        $sql = "INSERT INTO tendik (nip, password, nama, status, no_telp, email, role, foto_profile)
+        VALUES ('$nip', '$password', '$nama', '$status', '$notelp', '$email', $role, '$fotoProfile')";
         $result = $this->db->query($sql);
         if ($result) {
             echo "data berhasil ditambah";
+            return $result;
         } else {
             echo "gagal";
         }
@@ -421,7 +425,7 @@ class Admin extends Koneksi
         return $result;
     }
 
-    public function editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile, $id)
+    public function editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $id, $fotoProfile)
     {
         $sql = "UPDATE mahasiswa SET 
         password = '$password', 
@@ -475,7 +479,57 @@ public function deleteMhs($nim) {
         return $result;
     }
 
-    public function blank(){
-    
+    public function editDosen($password, $nama, $status, $no_telp, $email, $kelas, $fotoProfil, $id){
+        $role = ($kelas === "") ? 3 : 2;
+        $id_kelas = ($kelas === "") ? null : $kelas;
+        $sql = "UPDATE dosen SET 
+        password = '$password',
+        nama = '$nama',
+        status = '$status',
+        no_telp = '$no_telp',
+        email = '$email',
+        role = $role,
+        id_kelas = $id_kelas,
+        foto_profile = '$fotoProfil' WHERE nip = '$id'";
+        $result = $this -> db -> query($sql);
+        return $result;
     }
+
+    public function reaByIdDosen($id)
+    {
+        $sql = "SELECT * FROM dosen WHERE nip = '$id'";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+
+    public function deleteDosen($id){
+        $sql = "DELETE FROM dosen WHERE nip = '$id'";
+        $result = $this -> db -> query($sql);
+        return $result;
+    }
+
+    public function readByIdKaryawan($id){
+        $sql = "SELECT * FROM karyawan WHERE nip = '$id'";
+        $result = $this -> db -> query($sql);
+        return $result;
+    }
+
+    public function editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id){
+        $sql = "UPDATE karyawan SET
+        password = '$password',
+        nama = '$nama',
+        status = '$status',
+        no_telp = '$no_telp',
+        email = '$email',
+        foto_profile = '$fotoProfile' WHERE nip = '$id'";
+        $result = $this -> db -> query($sql);
+        return $result;
+    }
+
+    public function deleteKaryawan($id){
+        $sql = "DELETE FROM karyawan WHERE nip = '$id'";
+        $result = $this ->  db -> query($sql);
+        return $result;
+    }
+
 }
