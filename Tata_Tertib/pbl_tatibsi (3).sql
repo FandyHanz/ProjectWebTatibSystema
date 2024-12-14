@@ -194,7 +194,7 @@ CREATE TABLE `pelanggaran_mahasiswa` (
   `id_pelanggaran_mhs` int(11) NOT NULL,
   `id_pelanggaran` int(11) NOT NULL,
   `deskripsi` varchar(50) NOT NULL,
-  `status_pelanggaran` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `bukti_selesai` varchar(50) NOT NULL,
   `nim` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -203,7 +203,7 @@ CREATE TABLE `pelanggaran_mahasiswa` (
 -- Dumping data for table `pelanggaran_mahasiswa`
 --
 
-INSERT INTO `pelanggaran_mahasiswa` (`id_pelanggaran_mhs`, `id_pelanggaran`, `deskripsi`, `status_pelanggaran`, `bukti_selesai`, `nim`) VALUES
+INSERT INTO `pelanggaran_mahasiswa` (`id_pelanggaran_mhs`, `id_pelanggaran`, `deskripsi`, `status`, `bukti_selesai`, `nim`) VALUES
 (1, 3, 'Merokok di pakasdasd', '1', 'afn', '12345601'),
 (2, 3, 'amdasdm', '1', 'adas', '12345608'),
 (3, 4, 'Deskripsi pelanggaran 1', '3', 'Bukti 1', '12345601'),

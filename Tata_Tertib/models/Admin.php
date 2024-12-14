@@ -19,7 +19,7 @@ class Admin extends Koneksi
         mahasiswa.nim,
         mahasiswa.nama AS nama_mahasiswa,
         mahasiswa.status AS status_mahasiswa,
-        pelanggaran_mahasiswa.waktu_report,
+        pelanggaran_mahasiswa.tanggal_lapor,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
         pelanggaran_mahasiswa.status_pelanggaran,
@@ -50,10 +50,10 @@ class Admin extends Koneksi
         mahasiswa.nim,
         mahasiswa.nama AS nama_mahasiswa,
         mahasiswa.status AS status_mahasiswa,
-        pelanggaran_mahasiswa.waktu_report,
+        pelanggaran_mahasiswa.tanggal_lapor,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
-        pelanggaran_mahasiswa.status_pelanggaran,
+        pelanggaran_mahasiswa.status,
         pelanggaran_mahasiswa.bukti_selesai,
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,
@@ -115,14 +115,14 @@ class Admin extends Koneksi
         dosen.nip,
         dosen.nama,
         pelanggaran_dosen.id_pelanggaran_dosen,
-        pelanggaran_dosen.status_pelanggaran,
-        pelanggaran_dosen.waktu_report
+        pelanggaran_dosen.status,
+        pelanggaran_dosen.tanggal_lapor
     FROM 
         dosen
     JOIN
         pelanggaran_dosen ON dosen.nip = pelanggaran_dosen.nip
     WHERE
-        pelanggaran_dosen.status_pelanggaran IN ('2', '3', '4')
+        pelanggaran_dosen.status IN ('2', '3', '4')
     ";
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -134,8 +134,8 @@ class Admin extends Koneksi
         dosen.nip,
         dosen.nama,
         pelanggaran_dosen.id_pelanggaran_dosen,
-        pelanggaran_dosen.status_pelanggaran,
-        pelanggaran_dosen.waktu_report
+        pelanggaran_dosen.status,
+        pelanggaran_dosen.tanggal_lapor
     FROM 
         dosen
     JOIN
@@ -183,14 +183,14 @@ class Admin extends Koneksi
         karyawan.nip,
         karyawan.nama,
         pelanggaran_tendik.id_pelanggaran_tendik,
-        pelanggaran_tendik.status_pelanggaran,
-        pelanggaran_tendik.waktu_report
+        pelanggaran_tendik.status,
+        pelanggaran_tendik.tanggal_lapor
     FROM 
         karyawan
     JOIN
         pelanggaran_tendik ON karyawan.nip = pelanggaran_tendik.nip
     WHERE
-        pelanggaran_tendik.status_pelanggaran IN ('2', '3', '4')
+        pelanggaran_tendik.status IN ('2', '3', '4')
     ";
         $result = $this->db->query($sql);
         return $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -202,8 +202,8 @@ class Admin extends Koneksi
         karyawan.nip,
         karyawan.nama,
         pelanggaran_tendik.id_pelanggaran_tendik,
-        pelanggaran_tendik.status_pelanggaran,
-        pelanggaran_tendik.waktu_report
+        pelanggaran_tendik.status,
+        pelanggaran_tendik.tanggal_lapor
     FROM 
         karyawan
     JOIN
@@ -385,7 +385,7 @@ class Admin extends Koneksi
         mahasiswa.status AS status_mahasiswa,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
-        pelanggaran_mahasiswa.status_pelanggaran,
+        pelanggaran_mahasiswa.status,
         pelanggaran_mahasiswa.bukti_selesai,
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,

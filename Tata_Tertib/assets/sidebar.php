@@ -15,10 +15,10 @@ function getDashboardPage($level): string
             $page = '../dashboard/dashboard-tendik.php';
             return $page;
         case '4':
-            $page = '../dashboard/dashboard-tendik.php';
+            $page = '../dashboard/dashboard-mhs.php';
             return $page;
         case '5':
-            $page = '../dashboard/dashboard-tendik.php';
+            $page = '../dashboard/dashboard-dosen.php';
             return $page;
         default:
             break;
@@ -55,7 +55,7 @@ function getDashboardPage($level): string
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="<?php getDashboardPage($level)?>"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                    <a href="<?php echo getDashboardPage($level)?>"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                 </div>
             </div>
         </li>

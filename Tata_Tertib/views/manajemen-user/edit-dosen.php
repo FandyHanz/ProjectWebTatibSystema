@@ -1,5 +1,7 @@
 <?php
 require_once '../../models/Admin.php';
+include '../../core/Session.php';
+$session = new Session();
 $admin = new Admin();
 $kelas = $admin->getKelasMhs();
 $id = $_GET['nip'];

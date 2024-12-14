@@ -45,8 +45,8 @@ $data = $obj->getHistoryPelMhs();
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama_mahasiswa"] ?></td>
                     <td><?= $data[$i]["nim"] ?></td>
-                    <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
-                    <td><?= $data[$i]["waktu_report"] ?></td> <!-- Diganti Tanggal Waktu -->
+                    <td><?= getStatusUi($data[$i]["status"])?></td>
+                    <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
