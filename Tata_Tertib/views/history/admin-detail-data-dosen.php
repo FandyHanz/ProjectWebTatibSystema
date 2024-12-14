@@ -1,6 +1,6 @@
 <?php
-include '../../core/Session.php';
 include '../../models/Admin.php';
+include '../../core/Session.php';
 $session = new Session();
 $obj = new Admin();
 $nip = $_GET['nip'];

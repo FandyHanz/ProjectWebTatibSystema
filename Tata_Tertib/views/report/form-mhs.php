@@ -1,5 +1,7 @@
 <?php
 include '../../models/Report.php';
+include '../../core/Session.php';
+$session = new Session();
 $obj = new Report();
 
 $listPelanggaran = $obj->getPelanggaran();
