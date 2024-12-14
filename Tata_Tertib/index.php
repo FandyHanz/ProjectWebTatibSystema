@@ -98,7 +98,7 @@ if ($session->get('is_login') === true) {
         if ($status === false) {
             $message = $session->getFlash('message');
             echo '<div class="alert alert-warning">' . $message .
-                '<button type="button" class="close" data-dismiss="alert" arialabel="Close"><span aria-hidden="true">&times;</span></div>';
+                '<span aria-hidden="true"></span></div>';
         }
         ?>
         <form action="action/auth.php" method="post" id="form-login">

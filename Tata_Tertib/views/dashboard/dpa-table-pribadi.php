@@ -33,8 +33,8 @@ $data = $obj->getPelPribadi($nip);
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama_pelanggaran"] ?></td>
-                    <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
-                    <td><?= $data[$i]["waktu_report"] ?></td> <!-- Diganti Tanggal Waktu -->
+                    <td><?= getStatusUi($data[$i]["status"])?></td>
+                    <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td>
                         <div class="btn-group dropleft">
                             <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
