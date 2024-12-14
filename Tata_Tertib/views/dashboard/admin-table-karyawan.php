@@ -1,24 +1,18 @@
 <?php
 // Membuat array yang menyimpan data tabel
-$data = [
-    ["No" => 1, "Nama" => "Ekya ", "NIM" => "21012345", "Status" => "1", "Tanggal_Waktu" => "2024-12-01 10:00", "Kategori" => "Seminar", "Option" => "Option"],
-    ["No" => 2, "Nama" => "Nina Putri", "NIM" => "21067890", "Status" => "3", "Tanggal_Waktu" => "2024-12-01 09:45", "Kategori" => "Workshop", "Option" => "OPTION"],
-    ["No" => 3, "Nama" => "Doni Pratama", "NIM" => "21054321", "Status" => "2", "Tanggal_Waktu" => "2024-12-01 11:15", "Kategori" => "Kelas", "Option" => "OPTION"],
-    ["No" => 4, "Nama" => "Lisa Ramadhani", "NIM" => "21098765", "Status" => "1", "Tanggal_Waktu" => "2024-12-01 11:30", "Kategori" => "Pelatihan", "Option" => "OPTION"],
-    ["No" => 5, "Nama" => "Andi Kurniawan", "NIM" => "21045678", "Status" => "4", "Tanggal_Waktu" => "2024-12-01 08:30", "Kategori" => "Seminar", "Option" => "OPTION"],
-    ["No" => 6, "Nama" => "Siti Aisyah", "NIM" => "21078901", "Status" => "4", "Tanggal_Waktu" => "2024-12-01 10:45", "Kategori" => "Diskusi", "Option" => "OPTION"]
-];
 
+include '../../models/Admin.php';
+$obj = new Admin();
+$data = $obj->getTabelPelKaryawan();
 ?>
-<div class="filter d-flex flex-row justify-content-end mx-auto mb-4">
+
+<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
     <div class="search">
-        <form action="">
-            <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
-            </div>
-        </form>
+        <div class="form-group">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
+        </div>
     </div>
-</div>
+</form>
 
 <div class="scrollable-table" style="height: 80%; overflow-y: auto">
     <table class="custom-table">
@@ -26,10 +20,9 @@ $data = [
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>NIMKK</th>
+                <th>NIP</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
-                <th>Kategori</th>
                 <th></th>
             </tr>
         </thead>
@@ -37,16 +30,30 @@ $data = [
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
-                    <td><?= $data[$i]["Nama"] ?></td>
-                    <td><?= $data[$i]["NIM"] ?></td>
-                    <td><?= getStatusUi($data[$i]['Status']) ?></td>
-                    <td><?= $data[$i]["Tanggal_Waktu"] ?></td>
-                    <td><?= $data[$i]["Kategori"] ?></td>
+                    <td><?= $data[$i]["nama"] ?></td>
+                    <td><?= $data[$i]["nip"] ?></td>
+                    <td><?= getStatusUi($data[$i]["status_pelanggaran"]) ?></td>
+                    <td><?= $data[$i]["waktu_report"] ?></td>
                     <td>
-                        <button class="btn btn-light">
-                            Option
-                            <img src="../../assets/icon/caret-down-icon.svg" style="width: 13px; height: 13px; margin-left: 5px" alt="">
-                        </button>
+                        <div class="btn-group dropleft">
+                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Option</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="admin-detpel-karyawan.php?nip=<?= $data[$i]["nip"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item">
+                                    Lihat Detail Pelanggaran dan Konfirmasi
+                                </a>
+                                <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                    Bukti Tebus Sanksi
+                                </a>
+                                <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                    Data Pelanggar
+                                </a>
+                                <a class="dropdown-item">
+                                    Selesai
+                                </a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             <?php endfor; ?>

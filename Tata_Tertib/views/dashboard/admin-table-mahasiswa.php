@@ -39,7 +39,7 @@ require '../manajemen-user/manajemen-user.php'
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>NIMM</th>
+                <th>NIM</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
                 <th>Kategori</th>
@@ -53,7 +53,7 @@ require '../manajemen-user/manajemen-user.php'
                     <td><?= $data[$i]["nama_mahasiswa"] ?></td>
                     <td><?= $data[$i]["nim"] ?></td>
                     <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
-                    <td><?= $data[$i]["nama_pelanggaran"] ?></td> <!-- Diganti Tanggal Waktu -->
+                    <td><?= $data[$i]["waktu_report"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
@@ -61,7 +61,7 @@ require '../manajemen-user/manajemen-user.php'
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
                                 <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">

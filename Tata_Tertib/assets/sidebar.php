@@ -19,6 +19,26 @@ function getDashboardPage()
             break;
     }
 }
+function getHisotryPage()
+{
+    // Errornya biarkan, karena aslinya variabel ini
+    switch ($session->get('level')) {
+        case '1':
+            $page = '../history/history-admin.php';
+            return $page;
+        case '2':
+            $page = '../history/history-admin.php';
+            return $page;
+        case '3':
+            $page = '../history/history-admin.php';
+            return $page;
+        case '4':
+            $page = '../history/history-admin.php';
+            return $page;
+        default:
+            break;
+    }
+}
 ?>
 
 <div id="sidebar" class="sidebar">
@@ -44,7 +64,7 @@ function getDashboardPage()
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="history"><img src="../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
+                    <a href="../history/history-admin.php"><img src="../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
                 </div>
             </div>
         </li>

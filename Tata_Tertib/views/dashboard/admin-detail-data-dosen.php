@@ -3,9 +3,20 @@ include '../../core/Session.php';
 include '../../models/Admin.php';
 $session = new Session();
 $obj = new Admin();
-$nim = $_GET['nim'];
+$nip = $_GET['nip'];
 
-$data = $obj->getDetailMhs($nim);
+$data = $obj->getDetailDosen($nip);
+$kelas = isset($data['nama_kelas']) ? $data['nama_kelas'] : '-';
+
+function getHeader($level)
+{
+    switch ($level) {
+        case '1':
+            return 'dashboard-admin.php';
+        case '2':
+            return 'href:dashboard-dpa.php';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,32 +40,19 @@ $data = $obj->getDetailMhs($nim);
         <?php include '../../assets/header.php'; ?>
 
         <!-- Content -->
-        <div class="table-container" style="overflow-y:auto;">
+        <div class="table-container d-flex justify-content-center align-items-center" style="overflow-y:auto;">
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
                     <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                 </div>
                 <div class="rightside col-8 p-4">
-                    <h3 class="mb-0"><?= $data['nama_mahasiswa']; ?></h3>
-                    <h9 class="mt-0 pt-0"><?= $data['status_mahasiswa']; ?></h9>
+                    <h3 class="mb-0"><?= $data['nama']; ?></h3>
+                    <h9 class="mt-0 pt-0"><?= $data['status']; ?></h9>
                     <br><br>
-                    <h9 class="mt-0 pt-0">NIM: <?= $data['nim']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Kelas: <?= $data['nama_kelas']; ?></h9><br>
+                    <h9 class="mt-0 pt-0">NIP: <?= $data['nip']; ?></h9><br>
                     <h9 class="mt-0 pt-0">No Telp : <?= $data['no_telp']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Email: <?= $data['email_mahasiswa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Domisili: <?= $data['alamat']; ?></h9><br>
-                    <br>
-                    <h5>Data Keluarga</h5>
-                    <h9 class="mt-0 pt-0">Nama Ayah: <?= $data['nama_ayah']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ayah: <?= $data['no_telp_ayah']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Nama Ibu: <?= $data['nama_ibu']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp Ibu: <?= $data['no_telp_ibu']; ?></h9><br>
-                    <br>
-                    <h5>Data DPA</h5>
-                    <h9 class="mt-0 pt-0">Nama: <?= $data['nama_dpa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">NIP: <?= $data['nip_dpa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp: <?= $data['no_telp_dpa']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Email: <?= $data['email_dpa']; ?></h9><br>
+                    <h9 class="mt-0 pt-0">Email : <?= $data['email']; ?></h9><br>
+                    <h9 class="mt-0 pt-0">Kelas : <?= $kelas; ?></h9><br>
                 </div>
 
             </div>

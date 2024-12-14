@@ -6,6 +6,15 @@ $obj = new Admin();
 $nim = $_GET['nim'];
 
 $data = $obj->getDetailMhs($nim);
+$level = $session->get('level');
+function getHeader($level) {
+    switch ($level) {
+        case '1':
+            return 'dashboard-admin.php';
+        case '2':
+            return 'dashboard-dpa.php';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +39,10 @@ $data = $obj->getDetailMhs($nim);
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
+        <a href="<?=getHeader($level)?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute;top: 20px; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px">  </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                    <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama_mahasiswa']; ?></h3>

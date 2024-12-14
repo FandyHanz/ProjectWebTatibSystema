@@ -3,7 +3,7 @@
 
 include '../../models/Admin.php';
 $obj = new Admin();
-$data = $obj->getTabelPelDosen();
+$data = $obj->getHistoryPelDosen();
 ?>
 
 <form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
