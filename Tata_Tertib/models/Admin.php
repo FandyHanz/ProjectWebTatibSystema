@@ -390,5 +390,7 @@ public function deleteMhs($nim) {
         return $result;
     }
 
-
+    public function blank(){
+    
+    }
 }
