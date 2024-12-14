@@ -1,5 +1,7 @@
 <?php
 include_once '../../models/Admin.php';
+include '../../core/Session.php';
+$session = new Session();
 $admin = new Admin();
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nama = $_POST['nama'];

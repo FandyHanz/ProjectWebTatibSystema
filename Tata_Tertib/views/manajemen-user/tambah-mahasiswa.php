@@ -1,5 +1,7 @@
 <?php
 include '../../models/Admin.php';
+include '../../core/Session.php';
+$session = new Session();
 
 $data = new Admin();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
