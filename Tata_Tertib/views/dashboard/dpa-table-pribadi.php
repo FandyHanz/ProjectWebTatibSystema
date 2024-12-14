@@ -32,7 +32,7 @@ $data = $obj->getPelPribadi($nip);
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
-                    <td><?= $data[$i]["nama_pelanggaran"] ?></td>
+                    <td><?= $data[$i]["nama"] ?></td>
                     <td><?= getStatusUi($data[$i]["status"])?></td>
                     <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td>

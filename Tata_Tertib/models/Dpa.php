@@ -17,7 +17,7 @@ class Dpa extends Koneksi
         pelanggaran_mahasiswa.tanggal_lapor,
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.deskripsi AS deskripsi_pelanggaran,
-        pelanggaran_mahasiswa.status_pelanggaraanan,
+        pelanggaran_mahasiswa.status_pelanggaran,
         pelanggaran_mahasiswa.bukti_selesai,
         pelanggaran.id_pelanggaran,
         pelanggaran.nama_pelanggaran,
@@ -45,7 +45,7 @@ class Dpa extends Koneksi
     public function getPelPribadi($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ?";
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_mahasiswa.status_pelanggaran IN ('2', '3', '4')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
