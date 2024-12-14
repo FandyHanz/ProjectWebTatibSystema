@@ -74,9 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label class="" for="email">Email:</label>
                     </div>
                     <input class="col-3" type="text" id="email" name="email" required>
-
                     <div class="col-2"></div>
-
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="status">Status:</label>
                     </div>
@@ -93,29 +91,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                         ?>
                     </select>
-
                     <div class="col-2"></div>
-
                     <div class="form-group col-5 d-flex flex-row ">
-
                     </div>
-
                 </div>
                 <div class="baris-lima d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
                     <input class="form-control" type="file" id="formFile" accept="image/png," name="foto_profile" required>
-
                     <div class="col-2"></div>
-
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>
-
                 </div>
-
-
-
                 <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

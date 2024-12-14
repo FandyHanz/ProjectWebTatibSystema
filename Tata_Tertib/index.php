@@ -12,16 +12,18 @@ if ($session->get('is_login') === true) {
             header('Location: views/dashboard/dashboard-admin.php');
             break;
         case '2':
-            # code...
+            header('Location: views/dashboard/dashboard-dpa.php');
             break;
         case '3':
-            # code...
+            header('Location: views/dashboard/dashboard-tendik.php');
             break;
         case '4':
-            # code...
+            header('Location: views/dashboard/dashboard-mhs.php');
+            break;
+        case '5':
+            header('Location: views/dashboard/dashboard-dosen.php');
             break;
         default:
-            # code...
             break;
     }
 }

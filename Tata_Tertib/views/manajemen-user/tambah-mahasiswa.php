@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tabelMahasiswa = $data->addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile);
     return $tabelMahasiswa;
 }
-
+$kelas = $data -> getKelasMhs();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,12 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label class="" for="nama">Kelas:</label>
                     </div>
                     <select class="form-select" id="kelas" name="kelas" required>
+                        <option value="" disabled selected>Kelas</option>
                         <?php
-                        include_once '../../models/Admin.php';
-                        $admin = new Admin();
-                        $kelas = $admin -> getKelasMhs();
                         foreach ($kelas as $row) {
-                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama_kelas'] . '</option>';
+                            echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
                         }
                         ?>
                     </select>

@@ -1,13 +1,12 @@
 // tabs.js
 
-function initializeTabs() {
+function initializeTabs(nama_kelas) {
     // Menangani klik pada setiap tab untuk mengubah tab yang aktif
     document.querySelectorAll('.nav-table-button').forEach(button => {
         button.addEventListener('click', function () {
             // Menghapus class 'active' dari semua tab
             document.querySelectorAll('.nav-table-button').forEach(btn => btn.classList.remove('active'));
             const title = document.getElementById('title-table');
-            const tambahButton = document.getElementById('tambah-button');
 
             // Menambahkan class 'active' pada tab yang diklik
             this.classList.add('active');
@@ -21,21 +20,13 @@ function initializeTabs() {
             updateTabNavUnderline(activeTabText);
 
             if (activeTabText === "Mahasiswa") {
-                fileToLoad = 'table-mahasiswa.php';
-                title.textContent = "Mahasiswa";
-                tambahButton.textContent = 'Tambah Mahasiswa';
-                tambahButton.setAttribute('href', 'tambah-mahasiswa.php'); // Mengatur atribut href = 'Tambah Mahasiswa';
-            } else if (activeTabText === "Dosen") {
-                fileToLoad = 'table-dosen.php';
-                title.textContent = "Dosen";
-                tambahButton.textContent = 'Tambah Dosen';
-                tambahButton.setAttribute('href', 'tambah-dosen.php'); // Mengatur atribut href = 'Tambah Dosen';
-            } else if (activeTabText === "Karyawan") {
-                fileToLoad = 'table-karyawan.php';
-                title.textContent = "Karyawan";
-                tambahButton.textContent = 'Tambah Karyawan';
-                tambahButton.setAttribute('href', 'tambah-karyawan.php'); // Mengatur atribut href = 'Tambah Karyawan';
+                fileToLoad = 'dpa-table-mahasiswa.php';
+                title.textContent = `Kelas`;
+            } else if (activeTabText === "Pribadi") {
+                fileToLoad = 'dpa-table-pribadi.php';
+                title.textContent = "Pribadi";
             }
+
             // Memuat konten sesuai tab yang dipilih
             loadTableContent(fileToLoad);
         });
@@ -60,7 +51,7 @@ function initializeTabs() {
     }
 
     // Memuat konten untuk tab aktif pertama kali
-    loadTableContent('table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
+    loadTableContent('dpa-table-mahasiswa.php'); // Memuat konten untuk tab "Mahasiswa" pertama kali
 }
 
 function updateSVGColors() {
@@ -82,13 +73,10 @@ function updateTabNavUnderline(button) {
     if (button === "Mahasiswa") {
         line.style.marginLeft = '0px';
         line.style.width = '178.03px';
-    } else if (button === "Dosen") {
+    } else if (button === "Pribadi") {
         line.style.marginLeft = '178.03px';
-        line.style.width = '144.25px';
-    } else if (button === "Karyawan") {
-        line.style.marginLeft = '322.28px';
-        line.style.width = '169.16px';
-    }
+        line.style.width = '147.81px';
+    } 
 }
 
 // Mengekspor fungsi supaya bisa digunakan di file lain

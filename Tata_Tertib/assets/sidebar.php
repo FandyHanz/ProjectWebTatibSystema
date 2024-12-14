@@ -1,44 +1,49 @@
 <?php
-function getDashboardPage()
+$level = $session->get('level');
+
+function getDashboardPage($level): string
 {
     // Errornya biarkan, karena aslinya variabel ini
-    switch ($session->get('level')) {
+    switch ($level) {
         case '1':
             $page = '../dashboard/dashboard-admin.php';
             return $page;
         case '2':
-            $page = '../dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-dpa.php';
             return $page;
         case '3':
-            $page = '../dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-tendik.php';
             return $page;
         case '4':
-            $page = '../dashboard/dashboard-admin.php';
+            $page = '../dashboard/dashboard-tendik.php';
+            return $page;
+        case '5':
+            $page = '../dashboard/dashboard-tendik.php';
             return $page;
         default:
             break;
     }
 }
-function getHisotryPage()
-{
-    // Errornya biarkan, karena aslinya variabel ini
-    switch ($session->get('level')) {
-        case '1':
-            $page = '../history/history-admin.php';
-            return $page;
-        case '2':
-            $page = '../history/history-admin.php';
-            return $page;
-        case '3':
-            $page = '../history/history-admin.php';
-            return $page;
-        case '4':
-            $page = '../history/history-admin.php';
-            return $page;
-        default:
-            break;
-    }
-}
+// function getHisotryPage()
+// {
+//     // Errornya biarkan, karena aslinya variabel ini
+//     switch ($session->get('level')) {
+//         case '1':
+//             $page = '../history/history-admin.php';
+//             return $page;
+//         case '2':
+//             $page = '../history/history-admin.php';
+//             return $page;
+//         case '3':
+//             $page = '../history/history-admin.php';
+//             return $page;
+//         case '4':
+//             $page = '../history/history-admin.php';
+//             return $page;
+//         default:
+//             break;
+//     }
+// }
 ?>
 
 <div id="sidebar" class="sidebar">
@@ -50,7 +55,7 @@ function getHisotryPage()
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="../dashboard/dashboard-admin.php"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                    <a href="<?php getDashboardPage($level)?>"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                 </div>
             </div>
         </li>
