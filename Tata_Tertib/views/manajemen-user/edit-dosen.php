@@ -1,21 +1,23 @@
 <?php
-include_once '../../models/Admin.php';
+require_once '../../models/Admin.php';
 $admin = new Admin();
 $kelas = $admin->getKelasMhs();
+$id = $_GET['nip'];
+$edit = $admin -> reaByIdDosen($id);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nama = $_POST['nama'];
-    $nip = $_POST['nip'];
     $noTelp = $_POST['no_telp'];
     $password = $_POST['password'];
     $email = $_POST['email'];
     $status = $_POST['status'];
     $kelas = $_POST['kelas'];
-    $fotoProfile = $_POST['foto_profile'];
-    $addDosen = $admin -> addTabelUserDosen($nama, $nip, $noTelp, $password, $email, $status, $kelas, $fotoProfile);
-    return $addDosen;
-}
+    $fotoProfil = $_POST['foto_profile'];
+    $addDosen = $admin -> editDosen($password, $nama, $status, $noTelp, $email, $kelas, $fotoProfil, $id);
 
+    header("Location:manajemen-user.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,10 +55,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <input class="col-3" type="text" id="nama" name="nama" required>
                     <div class="col-2"></div>
-                    <div class="form-group col-2 d-flex flex-row ">
-                        <label class="" for="nim">NIP:</label>
-                    </div>
-                    <input class="col-3" type="text" id="nip" name="nip" required>
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
@@ -74,7 +72,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label class="" for="email">Email:</label>
                     </div>
                     <input class="col-3" type="text" id="email" name="email" required>
+
                     <div class="col-2"></div>
+
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="status">Status:</label>
                     </div>
@@ -92,19 +92,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                         ?>
                     </select>
+
                     <div class="col-2"></div>
+
                     <div class="form-group col-5 d-flex flex-row ">
+
                     </div>
+
                 </div>
                 <div class="baris-lima d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
                     <input class="form-control" type="file" id="formFile" accept="image/png," name="foto_profile" required>
+
                     <div class="col-2"></div>
+
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>
+
                 </div>
+
+
+
                 <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

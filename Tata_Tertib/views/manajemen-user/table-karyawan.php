@@ -40,10 +40,25 @@ $data = $obj->getTabelUserKaryawan();
                     <td><?= $data[$i]["no_telp"] ?></td>
                     <td><?= $data[$i]["status"] ?></td>
                     <td>
-                        <button class="btn btn-light">
-                            Option
-                            <img src="../../assets/icon/caret-down-icon.svg" style="width: 13px; height: 13px; margin-left: 5px" alt="">
-                        </button>
+                    <div class="btn-group dropleft">
+                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Option
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi">
+                                    Lihat Detail data
+                                </button>
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                                   <a href="edit-karyawan.php?nip=<?=$data[$i]['nip']?>"> Edit data</a>
+                                </button>
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#detailDataMahasiswa">
+                                <a href="deleteKaryawan.php?nip=<?=$data[$i]['nip']?>">Hapus data</a>
+                                </button>
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                                    Selesai
+                                </button>
+                            </div>
                     </td>
                 </tr>
             <?php endfor; ?>

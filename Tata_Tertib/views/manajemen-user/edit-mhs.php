@@ -1,6 +1,7 @@
 <?php
 require_once '../../models/Admin.php';
-$order = new Admin;
+$order = new Admin();
+$kelas = $order -> getKelasMhs();
 $id = $_GET['nim'];
 $edit = $order -> reaByIdMhs($id);
 
@@ -17,8 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $namaIbu = $_POST['nama_ibu'];
     $noTelpIbu = $_POST['no_telp_ibu'];
     $fotoProfile = $_POST['foto_profile'];
-    $editmhs = $order -> editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile, $id);
-    
+    $editmhs = $order -> editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $id, $fotoProfile);
     header("Location:manajemen-user.php");
     exit();
 }
@@ -64,9 +64,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <select class="form-select" id="kelas" name="kelas" required>
                         <?php
-                        include_once '../../models/Admin.php';
-                        $admin = new Admin();
-                        $kelas = $admin -> getKelasMhs();
+                        
+                        
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
                         }

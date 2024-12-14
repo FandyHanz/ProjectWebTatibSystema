@@ -1,3 +1,21 @@
+<?php
+include_once '../../models/Admin.php';
+$admin = new Admin();
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $nama = $_POST['nama'];
+    $password = $_POST['password'];
+    $status = $_POST['status'];
+    $nip = $_POST['nip'];
+    $noTelp = $_POST['no_telp'];
+    $email = $_POST['email'];
+    $fotoProfile = $_POST['foto_profile'];
+
+    $result = $admin -> addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile);
+    header("Location:manajemen-user.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +84,7 @@
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" required>
+                    <input class="form-control" type="file" id="formFile" name="foto_profile" required>
 
                     <div class="col-2"></div>
 
