@@ -363,11 +363,11 @@ class Admin extends Koneksi
         }
     }
 
-    public function addTabelUserKaryawan($nama, $password, $status, $nip, $notelp, $email, $fotoProfile)
+    public function addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile)
     {
         $role = 3;
-        $sql = "INSERT INTO tendik (nip, password, nama, status, no_telp, email, role, foto_profile)
-        VALUES ('$nip', '$password', '$nama', '$status', '$notelp', '$email', $role, '$fotoProfile')";
+        $sql = "INSERT INTO karyawan (nip, password, nama, status, no_telp, email, role, foto_profile)
+        VALUES ('$nip', '$password', '$nama', '$status', '$noTelp', '$email', $role, '$fotoProfile')";
         $result = $this->db->query($sql);
         if ($result) {
             echo "data berhasil ditambah";

@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST['email'];
     $fotoProfile = $_POST['foto_profile'];
 
-    $result = $admin -> addTabelUserKaryawan($nama, $password, $status, $nip, $notelp, $email, $fotoProfile);
+    $result = $admin -> addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile);
     header("Location:manajemen-user.php");
     exit();
 }
