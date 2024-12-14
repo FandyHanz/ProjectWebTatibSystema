@@ -54,7 +54,7 @@ $base64_image = base64_encode($data['foto_profile']);
             <div class="d-flex flex-column pt-4">
                 <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                     <div class="left d-flex flex-column justify-content-center">
-                        <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px;" alt="">
+                        <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">
                         <div class="photo bg-primary" ></div>
                         <p class="align-self-center mt-2 mb-0"><?= $data['nama']; ?></p>
                         <p class="align-self-center"><?= $data['nim']; ?></p>
