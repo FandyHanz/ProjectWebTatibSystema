@@ -43,7 +43,6 @@ class Report extends Koneksi
         $stmt->bind_param("s", $id); // Bind parameter (nim kemungkinan string)
         $stmt->execute();
         $result = $stmt->get_result();
-        
         return $result->num_rows > 0; // Kembalikan true jika data ditemukan
     }
 
@@ -58,9 +57,9 @@ class Report extends Koneksi
 
     public function addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim){
         $statusPelanggaran = 4;
-        $now = date('Y-m-d');
+        // $now = date('Y-m-d');
         $sql = "INSERT INTO pelanggaran_mahasiswa (id_pelanggaran, deskripsi, lampiran, status_pelanggaran, 
-        bukti_selesai, tanggal_lapor, nim) VALUES ($pelanggaran, '$deskripsi', '$lampiran', $statusPelanggaran, null, $now, '$nim')";
+        bukti_selesai, tanggal_lapor, nim) VALUES ($pelanggaran, '$deskripsi', '$lampiran', $statusPelanggaran, null, current_timestamp(), '$nim')";
         echo($sql);
         $result = $this -> db -> execute_query($sql);
         if ($result) {
