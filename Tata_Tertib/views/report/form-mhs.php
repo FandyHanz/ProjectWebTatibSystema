@@ -65,7 +65,7 @@ $base64_image = base64_encode($data['foto_profile']);
                             <option value="" disabled selected>List</option>
                             <?php
                             foreach ($listPelanggaran as $pelanggaran) {
-                                echo '<option value="' . $pelanggaran['    '] . '">' . $pelanggaran['nama_pelanggaran'] . '</option>';
+                                echo '<option value="' . $pelanggaran['id_pelanggaran'] . '">' . $pelanggaran['nama_pelanggaran'] . '</option>';
                             }
                             ?>
                         </select>
