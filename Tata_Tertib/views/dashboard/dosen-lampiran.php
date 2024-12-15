@@ -54,7 +54,6 @@ function getHeader($level)
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
                     <h9 class="mt-0 pt-0">Tanggal: <?= $data['tanggal_lapor']; ?></h9><br>
                     <br>
-                    <h9 class="mt-0 pt-0">Pelanggaran : jijdaij ais jdaidjaijsaij ij aijd aisjd iasjdjaj aisjd aisjd iasj iai jdaisj dsi jdia j </h9><br>
                     <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
                     <textarea class="textarea p-2" name="" id="" cols="147" rows="3" readonly disabled>adasd ad ad asd</textarea><br><br>
                     <div class="container d-flex flex-row p-0" style="margin-left: 0px;">

@@ -67,4 +67,19 @@ class Dpa extends Koneksi
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function setBuktiSelesaiById($id_pel, $bukti_selesai) {
+    $sql = "UPDATE pelanggaran_dosen SET bukti_selesai = ?, status = '2' WHERE id_pelanggaran_dosen = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        // Bind parameter: "si" (s = string, i = integer)
+        $stmt->bind_param("si", $bukti_selesai, $id_pel);
+        
+        // Eksekusi query
+        $stmt->execute();
+        
+        // Tutup statement
+        $stmt->close();
+    }
+    
 }

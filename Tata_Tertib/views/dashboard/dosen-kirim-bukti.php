@@ -7,13 +7,9 @@ $id_pelanggaran = $_GET['id_pelanggaran'];
 $data = $obj->getLampiranById($id_pelanggaran);
 $level = $session->get('level');
 
-function getHeader($level)
-{
-    switch ($level) {
-        case '1':
-            return 'dashboard-admin.php';
-        case '2':
-            return 'dashboard-dpa.php';
+function getSubmit($level) {
+    if ($level == 4) {
+        return 'disabled';
     }
 }
 ?>
@@ -48,7 +44,7 @@ function getHeader($level)
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="<?= getHeader($level) ?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
+            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="rightside col-6 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
@@ -59,20 +55,20 @@ function getHeader($level)
                     <div class="form-group col-2 d-flex flex-row mb ">
                         <label for="formFile" class="form-label d-flex flex-row">Bukti(PDF):</label>
                     </div>
-                    <form action="">
-                        <input class="form-control" style="width: 300px;" type="file" name="foto_profile" id="formFile" accept="application/pdf" onchange="validateFileSize()">
+                    <form action="../../action/dosen/upload-bukti-selesai.php?id=<?= $data['id_pelanggaran_dosen'] ?>" method="post" enctype="multipart/form-data">
+                        <input class="form-control" style="width: 300px;" type="file" name="bukti_selesai" id="formFile" accept="application/pdf" onchange="validateFileSize()">
                         <?php
                         if ($data['bukti_selesai'] == null) {
                             echo "Tidak ada file yang diupload<br>";
                         }
                         ?>
-                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-4 <?= getSubmit($level) ?>">Submit</button>
                     </form>
                 </div>
                 <?php
                 if ($data['bukti_selesai'] != null) {
                 ?>
-                    <iframe src="../../action/dpa/show-bukti-selesai.php?id=<?= $data['id_pelanggaran_dosen'] ?>" width="400px" height="400px" style="margin-top:40px"></iframe>
+                    <iframe src="../../action/dosen/show-bukti-selesai.php?id=<?= $data['id_pelanggaran_dosen'] ?>" width="400px" height="400px" style="margin-top:40px"></iframe>
                 <?php
                 } else {
                 }
