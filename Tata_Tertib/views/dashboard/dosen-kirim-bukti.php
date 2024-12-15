@@ -50,34 +50,49 @@ function getHeader($level)
         <div class="table-container" style="overflow-y:auto;">
             <a href="<?= getHeader($level) ?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
-                <div class="rightside col-12 p-4">
+                <div class="rightside col-6 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
                     <h9 class="mt-0 pt-0">Tanggal: <?= $data['tanggal_lapor']; ?></h9><br>
                     <br>
-                    <h9 class="mt-0 pt-0">Pelanggaran : jijdaij ais jdaidjaijsaij ij aijd aisjd iasjdjaj aisjd aisjd iasj iai jdaisj dsi jdia j </h9><br>
-                    <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
-                    <textarea class="textarea p-2" name="" id="" cols="147" rows="3" readonly disabled>adasd ad ad asd</textarea><br><br>
-                    <div class="container d-flex flex-row p-0" style="margin-left: 0px;">
-                        <div class="" style="margin-right: 100px;">
-                            <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <div class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</div><br>
-                        </div>
-                        <div class="">
-                            <h9 class="mt-0 pt-0">Sanksi :</h9>
-                            <form action="">
-                                <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled>adasd ad ad asd</textarea><br>
-                        </div>
+                    <h9 class="mt-0 pt-0">Sanksi :</h9><br>
+                    <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled><?= $data['sanksi'] ?></textarea><br>
+                    <div class="form-group col-2 d-flex flex-row mb ">
+                        <label for="formFile" class="form-label d-flex flex-row">Bukti(PDF):</label>
                     </div>
-                    <br>
-                    <div class="buttons">   
-                        </form>
-                    </div>
-
+                    <form action="">
+                        <input class="form-control" style="width: 300px;" type="file" name="foto_profile" id="formFile" accept="application/pdf" onchange="validateFileSize()">
+                        <?php
+                        if ($data['bukti_selesai'] == null) {
+                            echo "Tidak ada file yang diupload<br>";
+                        }
+                        ?>
+                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                    </form>
                 </div>
+                <?php
+                if ($data['bukti_selesai'] != null) {
+                ?>
+                    <iframe src="../../action/dpa/show-bukti-selesai.php?id=<?= $data['id_pelanggaran_dosen'] ?>" width="400px" height="400px" style="margin-top:40px"></iframe>
+                <?php
+                } else {
+                }
+                ?>
             </div>
         </div>
         <!-- Footer -->
         <?php include '../../assets/footer.php'; ?>
+        <script>
+            function validateFileSize() {
+                const fileInput = document.getElementById('formFile');
+                const file = fileInput.files[0];
+                const maxSize = 2 * 1024 * 1024; // 2MB dalam byte
+
+                if (file && file.size > maxSize) {
+                    alert("File terlalu besar! Maksimal ukuran file adalah 2MB.");
+                    fileInput.value = ""; // Mengosongkan input file
+                }
+            }
+        </script>
         <script src="script.js"></script>
         <!-- Jquery -->
         <!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->

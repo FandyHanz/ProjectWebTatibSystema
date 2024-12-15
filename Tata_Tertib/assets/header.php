@@ -1,3 +1,8 @@
+<?php
+$name = $session->get('nama');
+$status = $session->get('status');
+?>
+
 <header class="header d-flex align-items-center justify-content-between p-3">
     <div class="header-kiri">
         <img src="../../assets/icon/menu-icon.svg" id="menu-toggle" alt="Menu">
@@ -7,8 +12,8 @@
         <img src="../../assets/foto-mahasiswa/contoh-profile.png" alt="">
         <p>
             <!-- Diganti sql -->
-            <span class="nama-header">Mahmoed Joendi M.</span><br> <!-- Nama -->
-            <span class="status-header">Mahasiswa Aktif</span> <!-- Status -->
+            <span class="nama-header"><?= $name?></span><br> <!-- Nama -->
+            <span class="status-header"><?= $status?></span> <!-- Status -->
         </p>
     </div>
 </header>

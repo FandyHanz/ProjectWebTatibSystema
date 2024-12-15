@@ -91,7 +91,7 @@ function getHeader($level)
                             </div>
                         </div>
                         <div class="">
-                            <h9 class="mt-0 pt-0">Keterangan :</h9><br>
+                            <h9 class="mt-0 pt-0">Tambahan :</h9><br>
                             <textarea class="textarea p-2" name="" id="" cols="30" rows="3">adasd ad ad asd</textarea><br><br>
                         </div>
                     </div>

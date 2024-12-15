@@ -40,7 +40,7 @@ $data = $obj->getTabelUserKaryawan();
                     <td><?= $data[$i]["no_telp"] ?></td>
                     <td><?= $data[$i]["status"] ?></td>
                     <td>
-                    <div class="btn-group dropleft">
+                        <div class="btn-group dropleft">
                             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Option
                             </button>
@@ -50,10 +50,10 @@ $data = $obj->getTabelUserKaryawan();
                                     Lihat Detail data
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                   <a href="edit-karyawan.php?nip=<?=$data[$i]['nip']?>"> Edit data</a>
+                                    <a href="edit-karyawan.php?nip=<?= $data[$i]['nip'] ?>"> Edit data</a>
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#detailDataMahasiswa">
-                                <a href="deleteKaryawan.php?nip=<?=$data[$i]['nip']?>">Hapus data</a>
+                                    <a href="deleteKaryawan.php?nip=<?= $data[$i]['nip'] ?>">Hapus data</a>
                                 </button>
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
                                     Selesai

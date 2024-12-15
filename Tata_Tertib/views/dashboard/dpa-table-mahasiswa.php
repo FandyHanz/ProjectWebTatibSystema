@@ -8,6 +8,37 @@ $obj = new Dpa();
 $nip = $session->get('username');
 $data = $obj->getTabelPelMhs($nip);
 
+function getTombolDetailPel() {
+    
+}
+function getTombolBuktiTebus($data, $i)
+{
+    $nim = $data[$i]["nim"];
+    if ($data[$i]["status_pelanggaran"] <= 2) {
+        echo '<a href="admin-detail-data-mhs.php?nim=' . $nim . '" class="dropdown-item">
+                Bukti Tebus Sanksi
+            </a>';
+    } else {
+        echo '<a class="dropdown-item disabled-link disabled">
+                Bukti Tebus Sanksi
+            </a>';
+    }
+}
+
+function getTombolSelesai($data, $i)
+{
+    $nim = $data[$i]["nim"];
+    if ($data[$i]["status_pelanggaran"] == 2) {
+        echo '<a href="admin-detail-data-mhs.php?nim=' . $nim . '" class="dropdown-item">
+                Selesai
+            </a>';
+    } else {
+        echo '<a class="dropdown-item disabled-link disabled">
+                Selesai
+            </a>';
+    }
+}
+
 ?>
 
 <form action="" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
@@ -37,27 +68,27 @@ $data = $obj->getTabelPelMhs($nip);
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama_mahasiswa"] ?></td>
                     <td><?= $data[$i]["nim"] ?></td>
-                    <td><?= getStatusUi($data[$i]["status_pelanggaran"])?></td>
+                    <td><?= getStatusUi($data[$i]["status_pelanggaran"]) ?></td>
                     <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-light rounded dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
                                 <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
-                                    Bukti Tebus Sanksi
-                                </a>
+                                <?php
+                                getTombolBuktiTebus($data, $i);
+                                ?>
                                 <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
-                                <a class="dropdown-item">
-                                    Selesai
-                                </a>
+                                <?php
+                                getTombolSelesai($data, $i);
+                                ?>
                             </div>
                         </div>
                     </td>

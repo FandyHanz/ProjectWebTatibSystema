@@ -1,6 +1,5 @@
 <?php
 // Membuat array yang menyimpan data tabel
-
 include '../../models/Dpa.php';
 include '../../core/Session.php';
 $session = new Session();
@@ -37,14 +36,14 @@ $data = $obj->getPelPribadi($nip);
                     <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td>
                         <div class="btn-group dropleft">
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-light rounded dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
                                 <a href="dosen-lampiran.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
                                     Lihat Lampiran
                                 </a>
-                                <a href="admin-detail-data-dosen.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                <a href="dosen-kirim-bukti.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
                                     Kirim Bukti Sanksi
                                 </a>
                             </div>
