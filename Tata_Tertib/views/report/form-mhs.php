@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1 class="p-3">Formulir Laporan Pelanggaran Mahasiswa</h1>
 
             <div class="d-flex flex-column pt-4">
-                <form action="../../action/report/report-mhs-redirect.php" method="post">
+                <form action="../../action/report/add-lapor-mhs.php" method="get">
                     <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                         <div class="left d-flex flex-column justify-content-center">
                             <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">
@@ -89,14 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <div class="buttons d-flex flex-row align-items-center justify-content-center" style="gap:30px">
-                        <a href="" class="btn btn-danger" style="width:100px">submit</a>
+                        <button href="" class="btn btn-danger" style="width:100px" type="submit">report</button>
                         <a href="" class="btn btn-light border-secondary" style="width:100px">cancel</a>
                     </div>
+                </form>
             </div>
 
         </div>
 
-        </form>
         <!-- Footer -->
         <?php include '../../assets/footer.php'; ?>
     </div>
