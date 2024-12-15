@@ -19,4 +19,13 @@
             header('location:../../views/report/report.php');
         }
     }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $pelanggaran = $_POST['tindakan'];
+        $deskripsi = $_POST['deskripsi'];
+        $lampiran = $_POST['lampiran'];
+        $set = $obj->addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim);
+        header("Location: report.php");
+        exit();
+    }
 ?>

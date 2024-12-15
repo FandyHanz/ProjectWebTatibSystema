@@ -55,4 +55,19 @@ class Report extends Koneksi
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim){
+        $statusPelanggaran = 4;
+        $sql = "INSERT INTO pelanggaran_mahasiswa (id_pelanggaran, deskripsi, lampiran, status_pelanggaran, 
+        bukti_selesai, tanggal_lapor, nim) VALUES ($pelanggaran, '$deskripsi', '$lampiran', $statusPelanggaran, '$nim')";
+        $result = $this -> db -> query($sql);
+        if ($result) {
+            echo "data berhasil ditambah";
+            return $result;
+        } else {
+            echo "gagal";
+        }
+    }
+
+
 }
