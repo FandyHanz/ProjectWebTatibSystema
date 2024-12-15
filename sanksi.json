@@ -1,40 +1,49 @@
 {
     "sanksi": [
       {
-        "id": 1,
-        "jenis_pelanggaran": "Keterlambatan",
-        "deskripsi": "Datang terlambat ke kantor lebih dari 3 kali dalam seminggu",
-        "hukuman": "Peringatan tertulis",
-        "tanggal_diberikan": "2024-12-01"
+        "tingkat": "V",
+        "deskripsi_pelanggaran": "Pelanggaran ringan",
+        "sanksi": [
+          "Teguran lisan disertai dengan surat pernyataan tidak mengulangi perbuatan tersebut",
+          "Surat pernyataan dibubuhi materai dan ditandatangani mahasiswa dan DPA"
+        ]
       },
       {
-        "id": 2,
-        "jenis_pelanggaran": "Absen tanpa alasan",
-        "deskripsi": "Tidak hadir tanpa pemberitahuan selama 2 hari berturut-turut",
-        "hukuman": "Pemotongan gaji 1 hari",
-        "tanggal_diberikan": "2024-12-05"
+        "tingkat": "IV",
+        "deskripsi_pelanggaran": "Pelanggaran menengah",
+        "sanksi": [
+          "Teguran tertulis disertai dengan pemanggilan orang tua/wali",
+          "Membuat surat pernyataan tidak mengulangi perbuatan tersebut, dibubuhi materai",
+          "Surat pernyataan ditandatangani mahasiswa, orang tua/wali, dan DPA"
+        ]
       },
       {
-        "id": 3,
-        "jenis_pelanggaran": "Pelanggaran Etika",
-        "deskripsi": "Berperilaku tidak sopan terhadap rekan kerja",
-        "hukuman": "Skorsing 3 hari",
-        "tanggal_diberikan": "2024-12-10"
+        "tingkat": "III",
+        "deskripsi_pelanggaran": "Pelanggaran moderat",
+        "sanksi": [
+          "Membuat surat pernyataan tidak mengulangi perbuatan tersebut, dibubuhi materai",
+          "Surat pernyataan ditandatangani mahasiswa, orang tua/wali, dan DPA",
+          "Melakukan tugas khusus, seperti memperbaiki atau membersihkan kembali"
+        ]
       },
       {
-        "id": 4,
-        "jenis_pelanggaran": "Penyalahgunaan fasilitas",
-        "deskripsi": "Menggunakan fasilitas kantor untuk keperluan pribadi tanpa izin",
-        "hukuman": "Penggantian biaya fasilitas",
-        "tanggal_diberikan": "2024-12-12"
+        "tingkat": "II",
+        "deskripsi_pelanggaran": "Pelanggaran serius",
+        "sanksi": [
+          "Dikenakan penggantian kerugian atau penggantian benda/barang semacamnya",
+          "Melakukan tugas layanan sosial dalam jangka waktu tertentu",
+          "Diberikan nilai D pada mata kuliah terkait saat melakukan pelanggaran"
+        ]
       },
       {
-        "id": 5,
-        "jenis_pelanggaran": "Ketidaksesuaian kerja",
-        "deskripsi": "Tidak menyelesaikan tugas sesuai tenggat waktu tanpa alasan jelas",
-        "hukuman": "Evaluasi kinerja",
-        "tanggal_diberikan": "2024-12-14"
+        "tingkat": "I",
+        "deskripsi_pelanggaran": "Pelanggaran sangat serius",
+        "sanksi": [
+          "Dinonaktifkan (Cuti Akademik/Terminal) selama dua semester",
+          "Diberhentikan sebagai mahasiswa"
+        ]
       }
-    ]
+    ],
+    "catatan": "Pemberian sanksi dan mekanisme ditetapkan dalam peraturan tersendiri."
   }
   
