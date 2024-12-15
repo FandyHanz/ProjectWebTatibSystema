@@ -1,6 +1,7 @@
 <?php
 include '../../models/Report.php';
 include '../../core/Session.php';
+
 $session = new Session();
 $obj = new Report();
 $listPelanggaran = $obj->getPelanggaran();
@@ -9,14 +10,6 @@ $nim = isset($_GET['nim']) ? $_GET['nim'] : '';
 $data = $obj->getSimpleDataMhs($nim);
 
 $base64_image = base64_encode($data['foto_profile']);
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pelanggaran = $_POST['tindakan'];
-    $deskripsi = $_POST['deskripsi'];
-    $lampiran = $_POST['lampiran'];
-    $set = $obj->addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim);
-    header("Location: report.php");
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -59,17 +52,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1 class="p-3">Formulir Laporan Pelanggaran Mahasiswa</h1>
 
             <div class="d-flex flex-column pt-4">
-                <form action="../../action/report/add-lapor-mhs.php" method="get">
+                <form action="../../action/report/add-lapor-mhs.php" method="post">
                     <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                         <div class="left d-flex flex-column justify-content-center">
                             <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">
                             <div class="photo bg-primary"></div>
                             <p class="align-self-center mt-2 mb-0"><?= $data['nama']; ?></p>
                             <p class="align-self-center"><?= $data['nim']; ?></p>
+                            <input type="text" value="<?= $data['nim']; ?>" name="nim" id="nim" hidden>
                         </div>
                         <div class="middle">
                             <label for="pelanggaran">Pelanggaran: </label>
-                            <select name="tindakan" id="pelanggaran" class="form-control">
+                            <select name="tindakan" id="pelanggaran" class="form-control" required>
                                 <option value="" disabled selected>List</option>
                                 <?php
                                 foreach ($listPelanggaran as $pelanggaran) {
