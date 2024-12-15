@@ -45,7 +45,7 @@ class Dpa extends Koneksi
     public function getPelPribadi($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_mahasiswa.status_pelanggaran IN ('2', '3', '4')";
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('2', '3', '4')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
@@ -57,5 +57,14 @@ class Dpa extends Koneksi
 
         // Memastikan hasil dikembalikan dalam bentuk array asosiatif
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLampiranById($id_pel) {
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE id_pelanggaran_dosen = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $id_pel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 }

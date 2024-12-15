@@ -41,17 +41,11 @@ $data = $obj->getPelPribadi($nip);
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
-                                    Lihat Detail Pelanggaran dan Konfirmasi
+                                <a href="dosen-lampiran.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                    Lihat Lampiran
                                 </a>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
-                                    Bukti Tebus Sanksi
-                                </a>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
-                                    Data Pelanggar
-                                </a>
-                                <a class="dropdown-item">
-                                    Selesai
+                                <a href="admin-detail-data-dosen.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                    Kirim Bukti Sanksi
                                 </a>
                             </div>
                         </div>
