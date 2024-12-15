@@ -58,16 +58,15 @@ class Report extends Koneksi
 
     public function addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim){
         $statusPelanggaran = 4;
+        $now = date('Y-m-d');
         $sql = "INSERT INTO pelanggaran_mahasiswa (id_pelanggaran, deskripsi, lampiran, status_pelanggaran, 
-        bukti_selesai, tanggal_lapor, nim) VALUES ($pelanggaran, '$deskripsi', '$lampiran', $statusPelanggaran, '$nim')";
-        $result = $this -> db -> query($sql);
+        bukti_selesai, tanggal_lapor, nim) VALUES ($pelanggaran, '$deskripsi', '$lampiran', $statusPelanggaran, null, $now, '$nim')";
+        echo($sql);
+        $result = $this -> db -> execute_query($sql);
         if ($result) {
             echo "data berhasil ditambah";
-            return $result;
         } else {
             echo "gagal";
         }
     }
-
-
 }
