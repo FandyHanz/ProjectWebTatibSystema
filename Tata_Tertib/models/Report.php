@@ -66,7 +66,7 @@ class Report extends Koneksi
         $stmt = $this->db->prepare($sql);
     
         // Bind parameter: "isssi" (i = integer, s = string)
-        $stmt->bind_param("isssi", $pelanggaran, $deskripsi, $lampiran, $statusPelanggaran, $nim);
+        $stmt->bind_param("issss", $pelanggaran, $deskripsi, $lampiran, $statusPelanggaran, $nim);
 
         // Eksekusi query
         $result = $stmt->execute();
@@ -81,5 +81,77 @@ class Report extends Koneksi
         // Tutup statement
         $stmt->close();
     }
+
+    public function searchDosensById($id){
+        $sql = "SELECT 1 FROM dosen WHERE nip = ? LIMIT 1";
+        $stmt = $this -> db -> prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function getSimpleDataDosen($nim){
+        $sql = "SELECT nama, nip, foto_profile FROM dosen WHERE nip = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $nip);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
     
+    public function addPelanggaranDosen($nama, $deskripsi, $sanksi, $lampiran, $nip){
+        $status = 4;
+        $sql = "INSERT INTO pelanggaran_dosen 
+        (nama, deskripsi, status, bukti_selesai, sanksi, lampiran, tanggal_lapor, nip)
+        VALUES (?, ?, ?, null, ?, ?, current_timestamp(), ?)";
+
+        $stmt = $this -> db -> prepare($sql);
+        $stmt -> bind_param("ssisss", $nama, $deskripsi, $status, $sanksi, $lampiran, $nip);
+        $result = $stmt -> execute();
+
+        if($result){
+            echo "Data berhasil ditambah";
+        } else {
+            echo "gagal menambah data";
+        }
+
+        $stmt -> close();
+    }
+
+    public function searchByIdKaryawan($id){
+        $sql = "SELECT 1 FROM karyawan WHERE nip = ? LIMIT 1";
+        $stmt = $this -> db -> prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function getSimpleDataKaryawan($nip){
+        $sql = "SELECT nama, nip, foto_profile FROM karyawan WHERE nip = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $nip);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function addPelanggaranKaryawan($nama, $deskripsi, $sanksi, $lampiran, $nip){
+        $status = 4;
+        $sql = "INSERT INTO pelanggaran_tendik
+        (nama, deskripsi, status, bukti_selesai, sanksi, lampiran, tanggal_lapor, nip)
+        VALUES (?, ?, ?, null, ?, ?, current_timestamp(), ?)";
+         $stmt = $this -> db -> prepare($sql);
+         $stmt -> bind_param("ssisss", $nama, $deskripsi, $status, $sanksi, $lampiran, $nip);
+         $result = $stmt -> execute();
+
+         if($result){
+             echo "Data berhasil ditambah";
+         } else {
+             echo "gagal menambah data";
+         }
+ 
+         $stmt -> close();
+    }
 }
