@@ -50,7 +50,7 @@ $base64_image = base64_encode($data['foto_profile']);
 
         <!-- Content -->
         <div class="table-container">
-            <h1 class="p-3">Formulir Laporan Pelanggaran Mahasiswa</h1>
+            <h1 class="p-3">Formulir Laporan Pelanggaran Dosen</h1>
 
             <div class="d-flex flex-column pt-4">
                 <form action="../../action/report/add-lapor-dosen.php" method="post" enctype="multipart/form-data">

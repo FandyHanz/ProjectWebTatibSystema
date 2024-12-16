@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $set = $obj->addPelanggaranDosen($nama, $deskripsi, $sanksi, $lampiran, $nip);
+        $set = $obj->addPelanggaranKaryawan($nama, $deskripsi, $sanksi, $lampiran, $nip);
         header("Location: ../../views/report/report.php");
         exit;
     } catch (\Throwable $th) {
