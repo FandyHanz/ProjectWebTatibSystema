@@ -55,16 +55,16 @@ function getHeader($level)
                     <h9 class="mt-0 pt-0">Tanggal: <?= $data['tanggal_lapor']; ?></h9><br>
                     <br>
                     <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
-                    <textarea class="textarea p-2" name="" id="" cols="147" rows="3" readonly disabled>adasd ad ad asd</textarea><br><br>
+                    <textarea class="textarea p-2" name="" id="" cols="147" rows="3" readonly disabled><?= $data['deskripsi'] ?></textarea><br><br>
                     <div class="container d-flex flex-row p-0" style="margin-left: 0px;">
                         <div class="" style="margin-right: 100px;">
                             <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <div class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</div><br>
+                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/dosen/show-lampiran.php?id=<?= $data['id_pelanggaran_dosen']?>" target="_blank"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
                         </div>
                         <div class="">
                             <h9 class="mt-0 pt-0">Sanksi :</h9>
                             <form action="">
-                                <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled>adasd ad ad asd</textarea><br>
+                                <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled><?= $data['sanksi']?></textarea><br>
                         </div>
                     </div>
                     <br>

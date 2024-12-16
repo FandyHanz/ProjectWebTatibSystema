@@ -55,17 +55,31 @@ class Report extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim){
+    public function addPelanggaranMhs($pelanggaran, $deskripsi, $lampiran, $nim)
+    {
         $statusPelanggaran = 4;
-        // $now = date('Y-m-d');
-        $sql = "INSERT INTO pelanggaran_mahasiswa (id_pelanggaran, deskripsi, lampiran, status_pelanggaran, 
-        bukti_selesai, tanggal_lapor, nim) VALUES ($pelanggaran, '$deskripsi', '$lampiran', $statusPelanggaran, null, current_timestamp(), '$nim')";
-        echo($sql);
-        $result = $this -> db -> execute_query($sql);
+        $sql = "INSERT INTO pelanggaran_mahasiswa 
+                (id_pelanggaran, deskripsi, lampiran, status_pelanggaran, bukti_selesai, tanggal_lapor, nim) 
+                VALUES (?, ?, ?, ?, null, current_timestamp(), ?)";
+    
+        // Persiapkan query
+        $stmt = $this->db->prepare($sql);
+    
+        // Bind parameter: "isssi" (i = integer, s = string)
+        $stmt->bind_param("isssi", $pelanggaran, $deskripsi, $lampiran, $statusPelanggaran, $nim);
+
+        // Eksekusi query
+        $result = $stmt->execute();
+    
+        // Periksa hasil
         if ($result) {
-            echo "data berhasil ditambah";
+            echo "Data berhasil ditambah";
         } else {
-            echo "gagal";
+            echo "Gagal menambah data";
         }
+    
+        // Tutup statement
+        $stmt->close();
     }
+    
 }

@@ -3,8 +3,8 @@
 include '../../models/Dpa.php';
 $obj = new Dpa();
 $id = $_GET['id']; // Ambil ID file dari URL
-$data = $obj->getLampiranById($id);
-$fileContent = $data['bukti_selesai'];
+$data = $obj->getBuktiSelesaiMhs($id);
+$fileContent = $data['lampiran'];
 
 if ($fileContent) {
     // Atur header HTTP untuk PDF

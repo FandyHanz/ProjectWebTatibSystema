@@ -59,7 +59,8 @@ class Dpa extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getLampiranById($id_pel) {
+    public function getLampiranById($id_pel)
+    {
         $sql = "SELECT * FROM pelanggaran_dosen WHERE id_pelanggaran_dosen = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $id_pel);
@@ -68,18 +69,61 @@ class Dpa extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function setBuktiSelesaiById($id_pel, $bukti_selesai) {
-    $sql = "UPDATE pelanggaran_dosen SET bukti_selesai = ?, status = '2' WHERE id_pelanggaran_dosen = ?";
+    public function getBuktiSelesaiMhs($id_pel)
+    {
+        $sql = "SELECT * FROM pelanggaran_mahasiswa WHERE id_pelanggaran_mhs = ?";
         $stmt = $this->db->prepare($sql);
-        
+        $stmt->bind_param("s", $id_pel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function setBuktiSelesaiById($id_pel, $bukti_selesai)
+    {
+        $sql = "UPDATE pelanggaran_dosen SET bukti_selesai = ?, status = '2' WHERE id_pelanggaran_dosen = ?";
+        $stmt = $this->db->prepare($sql);
+
         // Bind parameter: "si" (s = string, i = integer)
         $stmt->bind_param("si", $bukti_selesai, $id_pel);
-        
+
         // Eksekusi query
         $stmt->execute();
-        
+
         // Tutup statement
         $stmt->close();
     }
-    
+
+    public function setSanksiById($id_pel, $dataSanksi, $tambahan)
+    {
+        foreach ($dataSanksi as $sanksi) {
+            # code...
+            $sql = "INSERT INTO sanksi SET id_pelanggaran_mhs = ?, sanksi = ?";
+            $stmt = $this->db->prepare($sql);
+
+            // Bind parameter: "si" (s = string, i = integer)
+            $stmt->bind_param("is", $id_pel, $sanksi);
+
+            // Eksekusi query
+            $stmt->execute();
+
+            // Tutup statement
+            $stmt->close();
+        }
+        $sql = "INSERT INTO sanksi SET id_pelanggaran_mhs = ?, sanksi = ?";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bind_param("is", $id_pel, $tambahan);
+
+        $stmt->execute();
+        $stmt->close();
+        
+        // Update Status
+        $sql = "UPDATE pelanggaran_mahasiswa SET status_pelanggaran = '3' WHERE id_pelanggaran_mhs = ?";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bind_param("i", $id_pel);
+        $stmt->execute();
+        $stmt->close();
+    }
 }
