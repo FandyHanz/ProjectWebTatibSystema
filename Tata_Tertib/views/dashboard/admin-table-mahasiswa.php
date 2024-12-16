@@ -54,16 +54,16 @@ $data = $obj->getTabelPelMhs();
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_mhs"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
+                                <a href="bukti-selesai-mhs.php?id=<?= $data[$i]["id_pelanggaran_mhs"] ?>" class="dropdown-item <?= ($data[$i]["status_pelanggaran"] == 1) || ($data[$i]["status_pelanggaran"] == 2) ? "" : "disabled" ?>">
                                     Bukti Tebus Sanksi
                                 </a>
                                 <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item <?= $data[$i]['status_pelanggaran'] == 2 ? "" : "disabled" ?>" href="../../action/mhs/selesai-action.php?id=<?= $data[$i]['id_pelanggaran_mhs'] ?>">
                                     Selesai
                                 </a>
                             </div>

@@ -18,7 +18,7 @@ class Mhs extends Koneksi
         pelanggaran_mahasiswa.tanggal_lapor,
         pelanggaran_mahasiswa.id_pelanggaran_mhs AS id
         FROM pelanggaran_mahasiswa
-        JOIN pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran_mhs = pelanggaran.id_pelanggaran
+        JOIN pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
         WHERE nim = ? AND pelanggaran_mahasiswa.status_pelanggaran IN ('2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
@@ -39,7 +39,7 @@ class Mhs extends Koneksi
         pelanggaran_mahasiswa.*,
         pelanggaran.nama_pelanggaran
         FROM pelanggaran_mahasiswa
-        JOIN pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran_mhs = pelanggaran.id_pelanggaran
+        JOIN pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
         WHERE id_pelanggaran_mhs = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $id_pel);

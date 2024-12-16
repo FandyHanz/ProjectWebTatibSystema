@@ -170,11 +170,46 @@ class Admin extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
-    public function getDosenWithNip($nip)
+    public function getDosenWithNip($id_pelanggaran_dosen)
     {
-        $sql = "SELECT * FROM dosen WHERE nip = ?";
+        $sql = " SELECT 
+            dosen.nama,
+            dosen.nip,
+            pelanggaran_dosen.id_pelanggaran_dosen,
+            pelanggaran_dosen.nama AS nama_pelanggaran,
+            pelanggaran_dosen.deskripsi
+
+            FROM
+            pelanggaran_dosen
+            JOIN dosen ON pelanggaran_dosen.nip = dosen.nip
+            WHERE 
+            pelanggaran_dosen.id_pelanggaran_dosen = ?
+        ";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $nip);
+        $stmt->bind_param("s", $id_pelanggaran_dosen);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function getKaryawanWithNip($id_pelanggaran_tendik)
+    {
+        $sql = " SELECT 
+            karyawan.nama,
+            karyawan.nip,
+            pelanggaran_tendik.id_pelanggaran_tendik,
+            pelanggaran_tendik.nama AS nama_pelanggaran,
+            pelanggaran_tendik.deskripsi,
+            pelanggaran_tendik.lampiran
+
+            FROM
+            pelanggaran_tendik
+            JOIN karyawan ON pelanggaran_tendik.nip = karyawan.nip
+            WHERE 
+            pelanggaran_tendik.id_pelanggaran_tendik = ?
+        ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $id_pelanggaran_tendik);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_assoc();
@@ -238,16 +273,6 @@ class Admin extends Koneksi
         return $result->fetch_all(mode: MYSQLI_ASSOC);
     }
 
-    public function getKaryawanWithNip($nip)
-    {
-        $sql = "SELECT * FROM karyawan WHERE nip = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $nip);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
-    }
-
     public function getDetailKaryawan($nip)
     {
         $sql = "SELECT 
@@ -273,6 +298,49 @@ class Admin extends Koneksi
         $stmt->bind_param("i", $id_pel);
         return $stmt->execute();
     }
+
+    public function setSelesaiDosenById($id_pel) {
+        $sql = "UPDATE pelanggaran_dosen SET status = '1' WHERE id_pelanggaran_dosen = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id_pel);
+        return $stmt->execute();
+    }
+
+    public function setSanksiDosenById($id_pel, $sanksi) {
+        $sql = "UPDATE pelanggaran_dosen SET status = '3', sanksi = ? WHERE id_pelanggaran_dosen = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("si", $sanksi, $id_pel);
+        return $stmt->execute();
+    }
+
+    public function setSanksiKaryawanById($id_pel, $sanksi) {
+        $sql = "UPDATE pelanggaran_tendik SET status = '3', sanksi = ? WHERE id_pelanggaran_tendik = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("si", $sanksi, $id_pel);
+        return $stmt->execute();
+    }
+
+    public function dropPelTendik($id_pel) {
+        $sql = "DELETE FROM pelanggaran_tendik WHERE id_pelanggaran_tendik = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id_pel);
+        return $stmt->execute();
+    }
+
+    public function dropPelDosen($id_pel) {
+        $sql = "DELETE FROM pelanggaran_dosen WHERE id_pelanggaran_dosen = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id_pel);
+        return $stmt->execute();
+    }
+
+    public function dropPelMhs($id_pel) {
+        $sql = "DELETE FROM pelanggaran_mahasiswa WHERE id_pelanggaran_mhs = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id_pel);
+        return $stmt->execute();
+    }
+
     // <-------------------------------MANAJEMEN USER------------------------------------>
 
     public function getTabelUserMahasiswa()

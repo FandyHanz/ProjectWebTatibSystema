@@ -12,7 +12,7 @@ function getTombolBuktiTebus($data, $i)
 {
     $id = $data[$i]["id_pelanggaran_mhs"];
     if ($data[$i]["status_pelanggaran"] <= 2) {
-        echo '<a href="admin-detail-data-mhs.php?id=' . $id . '" class="dropdown-item">
+        echo '<a href="bukti-selesai-mhs.php?id=' . $id . '" class="dropdown-item">
                 Bukti Tebus Sanksi
             </a>';
     } else {

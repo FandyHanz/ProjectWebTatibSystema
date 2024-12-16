@@ -10,15 +10,7 @@ $level = $session->get('level');
 
 $sanksiJson = file_get_contents('../../assets/sanksi.json');
 $sanksiData = json_decode($sanksiJson, true);
-function getHeader($level)
-{
-    switch ($level) {
-        case '1':
-            return 'dashboard-admin.php';
-        case '2':
-            return 'href:dashboard-dpa.php';
-    }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -100,9 +92,9 @@ function getHeader($level)
                             Konfirmasi
                         </button>
                         </form>
-                        <button class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" type="button">
+                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/mhs/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_mhs']?>">
                             Hapus Laporan
-                        </button>
+                        </a>
                     </div>
                 </div>
 
