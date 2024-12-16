@@ -6,7 +6,7 @@ include '../../core/Session.php';
 $session = new Session();
 $obj = new Dpa();
 $nip = $session->get('username');
-$data = $obj->getTabelPelMhs($nip);
+$data = $obj->getTabelPelMhsHistory($nip);
 
 function getTombolBuktiTebus($data, $i)
 {

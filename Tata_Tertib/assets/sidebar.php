@@ -50,26 +50,6 @@ function getHistoryPage($level): string
             return $page;
     }
 }
-// function getHisotryPage()
-// {
-//     // Errornya biarkan, karena aslinya variabel ini
-//     switch ($session->get('level')) {
-//         case '1':
-//             $page = '../history/history-admin.php';
-//             return $page;
-//         case '2':
-//             $page = '../history/history-admin.php';
-//             return $page;
-//         case '3':
-//             $page = '../history/history-admin.php';
-//             return $page;
-//         case '4':
-//             $page = '../history/history-admin.php';
-//             return $page;
-//         default:
-//             break;
-//     }
-// }
 ?>
 
 <div id="sidebar" class="sidebar">
@@ -99,13 +79,14 @@ function getHistoryPage($level): string
                 </div>
             </div>
         </li>
-        <li class="sidebar-nav" style="display: block">
+        <li class="sidebar-nav" style="display: <?= ($level == 1) ? 'block' : 'none'?>">
             <div class="circle-outside">
                 <div class="circle-inside">
                     <a href="../manajemen-user/manajemen-user.php"><img src="../../assets/icon/user-list-icon.svg" alt=""><span>Manajemen User</span></a>
                 </div>
             </div>
         </li>
+        <li></li>
         <li></li>
         <li></li>
         <li></li>

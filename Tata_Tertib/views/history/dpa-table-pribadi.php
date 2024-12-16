@@ -1,40 +1,11 @@
 <?php
 // Membuat array yang menyimpan data tabel
-
 include '../../models/Dpa.php';
 include '../../core/Session.php';
 $session = new Session();
 $obj = new Dpa();
 $nip = $session->get('username');
-$data = $obj->getTabelPelMhs($nip);
-
-function getTombolBuktiTebus($data, $i)
-{
-    $id = $data[$i]["id_pelanggaran_mhs"];
-    if ($data[$i]["status_pelanggaran"] <= 2) {
-        echo '<a href="admin-detail-data-mhs.php?id=' . $id . '" class="dropdown-item">
-                Bukti Tebus Sanksi
-            </a>';
-    } else {
-        echo '<a class="dropdown-item disabled-link disabled">
-                Bukti Tebus Sanksi
-            </a>';
-    }
-}
-
-function getTombolSelesai($data, $i)
-{
-    if ($data[$i]["status_pelanggaran"] == 2) {
-        echo '<a href="../../action/mhs/selesai-action.php?id=' . $data[$i]['id_pelanggaran_mhs'] . '" class="dropdown-item">
-                Selesai
-            </a>';
-    } else {
-        echo '<a class="dropdown-item disabled-link disabled">
-                Selesai
-            </a>';
-    }
-}
-
+$data = $obj->getPelPribadiHistory($nip);
 ?>
 
 <form action="" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
@@ -50,11 +21,9 @@ function getTombolSelesai($data, $i)
         <thead>
             <tr>
                 <th></th>
-                <th>Nama</th>
-                <th>NIM</th>
+                <th>Pelanggaran</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
-                <th>Kategori</th>
                 <th></th>
             </tr>
         </thead>
@@ -62,29 +31,21 @@ function getTombolSelesai($data, $i)
             <?php for ($i = 0; $i < count($data); $i++): ?>
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
-                    <td><?= $data[$i]["nama_mahasiswa"] ?></td>
-                    <td><?= $data[$i]["nim"] ?></td>
-                    <td><?= getStatusUi($data[$i]["status_pelanggaran"]) ?></td>
+                    <td><?= $data[$i]["nama"] ?></td>
+                    <td><?= getStatusUi($data[$i]["status"])?></td>
                     <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
-                    <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
                             <button type="button" class="btn btn-light rounded dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="dpa-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_mhs"] ?>" class="dropdown-item">
-                                    Lihat Detail Pelanggaran dan Konfirmasi
+                                <a href="dosen-lampiran.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                    Lihat Lampiran
                                 </a>
-                                <?php
-                                getTombolBuktiTebus($data, $i);
-                                ?>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
-                                    Data Pelanggar
+                                <a href="dosen-kirim-bukti.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
+                                    Kirim Bukti Sanksi
                                 </a>
-                                <?php
-                                getTombolSelesai($data, $i);
-                                ?>
                             </div>
                         </div>
                     </td>

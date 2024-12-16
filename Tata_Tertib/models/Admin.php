@@ -266,6 +266,13 @@ class Admin extends Koneksi
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function setSelesaiMhsById($id_pel) {
+        $sql = "UPDATE pelanggaran_mahasiswa SET status_pelanggaran = '1' WHERE id_pelanggaran_mhs = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id_pel);
+        return $stmt->execute();
+    }
     // <-------------------------------MANAJEMEN USER------------------------------------>
 
     public function getTabelUserMahasiswa()

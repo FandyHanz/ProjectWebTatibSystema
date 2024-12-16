@@ -1,18 +1,13 @@
 <?php
 include '../../core/Session.php';
-include '../../models/Dpa.php';
+include '../../models/Mhs.php';
 $session = new Session();
-$obj = new Dpa();
+$obj = new Mhs();
 $id_pelanggaran = $_GET['id_pelanggaran'];
 $data = $obj->getLampiranById($id_pelanggaran);
 $level = $session->get('level');
 
-function getSubmit($level) {
-    if ($level == 1) {
-        return 'disabled';
-    }
-}
-
+$sanksiData = $obj->getSanksiById($id_pelanggaran);
 ?>
 
 <!DOCTYPE html>
@@ -45,31 +40,38 @@ function getSubmit($level) {
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px; width:500px;"> </a>
+            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="rightside col-6 p-4">
-                    <h3 class="mb-0"><?= $data['nama']; ?></h3>
+                    <h3 class="mb-0"><?= $data['nama_pelanggaran']; ?></h3>
                     <h9 class="mt-0 pt-0">Tanggal: <?= $data['tanggal_lapor']; ?></h9><br>
                     <br>
                     <h9 class="mt-0 pt-0">Sanksi :</h9><br>
-                    <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled><?= $data['sanksi'] ?></textarea><br>
+                    <div class="textarea p-2" style="border: none; background-color: #FAFAFC; border-radius: 10px; overflow-y: auto; width:500px">
+                        <?php
+                        foreach ($sanksiData as $sanksi) {
+                            echo "<p>- " . htmlspecialchars($sanksi['sanksi']) . "</p>";
+                        }
+                        ?>
+                    </div>
+                    <br>
                     <div class="form-group col-2 d-flex flex-row mb ">
                         <label for="formFile" class="form-label d-flex flex-row">Bukti(PDF):</label>
                     </div>
-                    <form action="../../action/dosen/upload-bukti-selesai.php?id=<?= $data['id_pelanggaran_dosen'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="../../action/mhs/upload-bukti-selesai.php?id=<?= $data['id_pelanggaran_mhs'] ?>" method="post" enctype="multipart/form-data">
                         <input class="form-control" style="width: 300px;" type="file" name="bukti_selesai" id="formFile" accept="application/pdf" onchange="validateFileSize()">
                         <?php
                         if ($data['bukti_selesai'] == null) {
                             echo "Tidak ada file yang diupload<br>";
                         }
                         ?>
-                        <button type="submit" class="btn btn-primary mt-4 <?= getSubmit($level) ?>">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
                     </form>
                 </div>
                 <?php
                 if ($data['bukti_selesai'] != null) {
                 ?>
-                    <iframe src="../../action/dosen/show-bukti-selesai.php?id=<?= $data['id_pelanggaran_dosen'] ?>" width="400px" height="400px" style="margin-top:40px"></iframe>
+                    <iframe src="../../action/mhs/show-bukti-selesai.php?id=<?= $data['id_pelanggaran_mhs'] ?>" width="400px" height="400px" style="margin-top:40px"></iframe>
                 <?php
                 } else {
                 }

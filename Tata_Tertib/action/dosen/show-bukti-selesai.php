@@ -1,10 +1,10 @@
 <?php
 // Ambil file PDF dari database
-include '../../models/Mhs.php';
-$obj = new Mhs();
+include '../../models/Dpa.php';
+$obj = new Dpa();
 $id = $_GET['id']; // Ambil ID file dari URL
 $data = $obj->getLampiranById($id);
-$fileContent = $data['lampiran'];
+$fileContent = $data['bukti_selesai'];
 
 if ($fileContent) {
     // Atur header HTTP untuk PDF
