@@ -1,5 +1,8 @@
 <?php
 // Membuat array yang menyimpan data tabel
+include '../../models/Admin.php';
+$obj = new Admin();
+$data = $obj->getTabelPelDosen();
 ?>
 
 <div class="d-flex justify-content-center align-items-center flex-column" style="width: 100%; height: 100%;">

@@ -6,10 +6,11 @@ $session = new Session();
 $obj = new Report();
 $listPelanggaran = $obj->getPelanggaran();
 
-$nim = isset($_GET['nim']) ? $_GET['nim'] : '';
-$data = $obj->getSimpleDataMhs($nim);
+$nip = isset($_GET['nip']) ? $_GET['nip'] : '';
+$data = $obj->getSimpleDataKaryawan($nip);
 
 $base64_image = base64_encode($data['foto_profile']);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,28 +50,23 @@ $base64_image = base64_encode($data['foto_profile']);
 
         <!-- Content -->
         <div class="table-container">
-            <h1 class="p-3">Formulir Laporan Pelanggaran Mahasiswa</h1>
+            <h1 class="p-3">Formulir Laporan Pelanggaran Karyawan</h1>
 
             <div class="d-flex flex-column pt-4">
-                <form action="../../action/report/add-lapor-mhs.php" method="post" enctype="multipart/form-data">
+                <form action="../../action/report/add-lapor-karyawan.php" method="post" enctype="multipart/form-data">
                     <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                         <div class="left d-flex flex-column justify-content-center">
                             <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">
                             <div class="photo bg-primary"></div>
                             <p class="align-self-center mt-2 mb-0"><?= $data['nama']; ?></p>
-                            <p class="align-self-center"><?= $data['nim']; ?></p>
-                            <input type="text" value="<?= $data['nim']; ?>" name="nim" id="nim" hidden>
+                            <p class="align-self-center"><?= $data['nip']; ?></p>
+                            <input type="text" value="<?= $data['nip']; ?>" name="nip" id="nip" hidden>
                         </div>
                         <div class="middle">
-                            <label for="pelanggaran">Pelanggaran: </label>
-                            <select name="tindakan" id="pelanggaran" class="form-control" required>
-                                <option value="" disabled selected>List</option>
-                                <?php
-                                foreach ($listPelanggaran as $pelanggaran) {
-                                    echo '<option value="' . $pelanggaran['id_pelanggaran'] . '">' . $pelanggaran['nama_pelanggaran'] . '</option>';
-                                }
-                                ?>
-                            </select>
+                            <label for="pelanggaran">Pelanggaran: </label><br>
+                            <input class="form-control border-light rounded" type="text" name="pelanggaran" id="pelanggaran">
+                            <label for="sanksi">Sanksi: </label><br>
+                            <textarea name="sanksi" id="sanksi" class="form-control rounded border-light" cols="30" rows="3"></textarea>
                             <br>
                             <div class="form-group col-2 d-flex flex-row mb ">
                                 <label for="formFile" class="form-label">Lampiran:</label>
@@ -81,7 +77,7 @@ $base64_image = base64_encode($data['foto_profile']);
                             <label for="deskripsi">Deskripsi :</label><br>
                             <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" style="border-color: #E9ECEF;"></textarea>
                         </div>
-                    </div>
+                    </div><br>
                     <div class="buttons d-flex flex-row align-items-center justify-content-center" style="gap:30px">
                         <button class="btn btn-danger" style="width:100px" type="submit">report</button>
                         <a href="" class="btn btn-light border-secondary" style="width:100px">cancel</a>
