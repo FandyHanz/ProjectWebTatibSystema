@@ -91,7 +91,7 @@ class Report extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function getSimpleDataDosen($nim){
+    public function getSimpleDataDosen($nip){
         $sql = "SELECT nama, nip, foto_profile FROM dosen WHERE nip = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $nip);
