@@ -21,7 +21,33 @@ function getDashboardPage($level): string
             $page = '../dashboard/dashboard-dosen.php';
             return $page;
         default:
-            break;
+            $page = '../dashboard/dashboard-mhs.php';
+            return $page;
+    }
+}
+
+function getHistoryPage($level): string
+{
+    // Errornya biarkan, karena aslinya variabel ini
+    switch ($level) {
+        case '1':
+            $page = '../history/history-admin.php';
+            return $page;
+        case '2':
+            $page = '../history/history-dpa.php';
+            return $page;
+        case '3':
+            $page = '../history/history-tendik.php';
+            return $page;
+        case '4':
+            $page = '../history/history-mhs.php';
+            return $page;
+        case '5':
+            $page = '../history/history-dosen.php';
+            return $page;
+        default:
+            $page = '../history/history-mhs.php';
+            return $page;
     }
 }
 // function getHisotryPage()
@@ -55,7 +81,7 @@ function getDashboardPage($level): string
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="<?php echo getDashboardPage($level)?>"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
+                    <a href="<?= getDashboardPage($level) ?>"><img src="../../assets/icon/house-icon.svg" alt=""> <span>Home</span></a>
                 </div>
             </div>
         </li>
@@ -69,7 +95,7 @@ function getDashboardPage($level): string
         <li class="sidebar-nav">
             <div class="circle-outside">
                 <div class="circle-inside">
-                    <a href="../history/history-admin.php"><img src="../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
+                    <a href="<?= getHistoryPage($level)?>"><img src="../../assets/icon/history-icon.svg" alt=""><span>History</span></a>
                 </div>
             </div>
         </li>

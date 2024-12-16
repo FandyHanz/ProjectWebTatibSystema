@@ -93,7 +93,7 @@ class Admin extends Koneksi
             dosen.no_telp AS no_telp_dpa,
             dosen.email AS email_dpa
         FROM 
-        mahasiswa
+            mahasiswa
         JOIN
             kelas ON mahasiswa.id_kelas = kelas.id_kelas
         JOIN
@@ -104,6 +104,31 @@ class Admin extends Koneksi
 
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $nim);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function getDetailPelMhs($id_pelanggaran_mhs){
+        $sql = "SELECT
+        pelanggaran_mahasiswa.id_pelanggaran_mhs,
+        pelanggaran_mahasiswa.lampiran,
+        pelanggaran.nama_pelanggaran,
+        pelanggaran.kategori,
+        pelanggaran_mahasiswa.deskripsi,
+        mahasiswa.nama,
+        mahasiswa.nim
+        FROM
+        pelanggaran_mahasiswa
+        JOIN
+        mahasiswa ON mahasiswa.nim = pelanggaran_mahasiswa.nim
+        JOIN
+        pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
+        WHERE
+        pelanggaran_mahasiswa.id_pelanggaran_mhs = ?
+        ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $id_pelanggaran_mhs);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_assoc();

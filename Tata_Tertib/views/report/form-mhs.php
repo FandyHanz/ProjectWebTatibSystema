@@ -52,7 +52,7 @@ $base64_image = base64_encode($data['foto_profile']);
             <h1 class="p-3">Formulir Laporan Pelanggaran Mahasiswa</h1>
 
             <div class="d-flex flex-column pt-4">
-                <form action="../../action/report/add-lapor-mhs.php" method="post">
+                <form action="../../action/report/add-lapor-mhs.php" method="post" enctype="multipart/form-data">
                     <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                         <div class="left d-flex flex-column justify-content-center">
                             <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">
@@ -83,7 +83,7 @@ $base64_image = base64_encode($data['foto_profile']);
                         </div>
                     </div>
                     <div class="buttons d-flex flex-row align-items-center justify-content-center" style="gap:30px">
-                        <button href="" class="btn btn-danger" style="width:100px" type="submit">report</button>
+                        <button class="btn btn-danger" style="width:100px" type="submit">report</button>
                         <a href="" class="btn btn-light border-secondary" style="width:100px">cancel</a>
                     </div>
                 </form>

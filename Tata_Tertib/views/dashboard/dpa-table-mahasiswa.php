@@ -13,9 +13,9 @@ function getTombolDetailPel() {
 }
 function getTombolBuktiTebus($data, $i)
 {
-    $nim = $data[$i]["nim"];
+    $id = $data[$i]["id_pelanggaran_mhs"];
     if ($data[$i]["status_pelanggaran"] <= 2) {
-        echo '<a href="admin-detail-data-mhs.php?nim=' . $nim . '" class="dropdown-item">
+        echo '<a href="admin-detail-data-mhs.php?id=' . $id . '" class="dropdown-item">
                 Bukti Tebus Sanksi
             </a>';
     } else {
@@ -77,7 +77,7 @@ function getTombolSelesai($data, $i)
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_mhs"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
                                 <?php
