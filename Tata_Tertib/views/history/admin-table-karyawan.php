@@ -36,20 +36,20 @@ $data = $obj->getHistoryPelKaryawan();
                     <td><?= $data[$i]["tanggal_lapor"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-light rounded dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-karyawan.php?nip=<?= $data[$i]["nip"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-karyawan.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
-                                <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
+                                <a href="bukti-selesai-karyawan.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item <?= $data[$i]['status'] == 2 ? "" : "disabled" ?>">
                                     Bukti Tebus Sanksi
                                 </a>
                                 <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item <?= $data[$i]['status'] == 2 ? "" : "disabled" ?>" href="../../action/karyawan/selesai-action.php?id=<?= $data[$i]['id_pelanggaran_tendik'] ?>">
                                     Selesai
                                 </a>
                             </div>

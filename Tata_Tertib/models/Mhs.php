@@ -33,6 +33,31 @@ class Mhs extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getPelPribadiHistory($nim)
+    {
+        // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
+        $sql = "SELECT 
+        pelanggaran.nama_pelanggaran,
+        pelanggaran.kategori,
+        pelanggaran_mahasiswa.status_pelanggaran,
+        pelanggaran_mahasiswa.tanggal_lapor,
+        pelanggaran_mahasiswa.id_pelanggaran_mhs AS id
+        FROM pelanggaran_mahasiswa
+        JOIN pelanggaran ON pelanggaran_mahasiswa.id_pelanggaran = pelanggaran.id_pelanggaran
+        WHERE nim = ? AND pelanggaran_mahasiswa.status_pelanggaran IN ('1', '2', '3')";
+
+        // Menggunakan prepared statement untuk keamanan
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $nim);
+        $stmt->execute();
+
+        // Mendapatkan hasil query
+        $result = $stmt->get_result();
+
+        // Memastikan hasil dikembalikan dalam bentuk array asosiatif
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getLampiranById($id_pel)
     {
         $sql = "SELECT

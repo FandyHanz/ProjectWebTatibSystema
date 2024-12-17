@@ -1,12 +1,12 @@
 <?php
 // Membuat array yang menyimpan data tabel
-
-include '../../models/Admin.php';
-$obj = new Admin();
-$data = $obj->getHistoryPelDosen();
+include '../../models/Karyawan.php';
+$obj = new Karyawan();
+$nip = $session->get('username');
+$data = $obj->getPelPribadiHistory($nip);
 ?>
 
-<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
+<form action="" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
     <div class="search">
         <div class="form-group">
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
@@ -19,8 +19,7 @@ $data = $obj->getHistoryPelDosen();
         <thead>
             <tr>
                 <th></th>
-                <th>Nama</th>
-                <th>NIP</th>
+                <th>Pelanggaran</th>
                 <th>Status</th>
                 <th>Tanggal/Waktu</th>
                 <th></th>
@@ -31,26 +30,19 @@ $data = $obj->getHistoryPelDosen();
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama"] ?></td>
-                    <td><?= $data[$i]["nip"] ?></td>
                     <td><?= getStatusUi($data[$i]["status"])?></td>
-                    <td><?= $data[$i]["tanggal_lapor"] ?></td>
+                    <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td>
                         <div class="btn-group dropleft">
                             <button type="button" class="btn btn-light rounded dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-dosen.php?id_pelanggaran_dosen=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item">
-                                    Lihat Detail Pelanggaran dan Konfirmasi
+                                <a href="karyawan-lampiran.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item">
+                                    Lihat Lampiran
                                 </a>
-                                <a href="bukti-selesai-dosen.php?id=<?= $data[$i]["id_pelanggaran_dosen"] ?>" class="dropdown-item <?= ($data[$i]["status"] == 1) || ($data[$i]["status"] == 2) ? "" : "disabled" ?>">
-                                    Bukti Tebus Sanksi
-                                </a>
-                                <a href="admin-detail-data-dosen.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
-                                    Data Pelanggar
-                                </a>
-                                <a class="dropdown-item <?= $data[$i]['status'] == 2 ? "" : "disabled" ?>" href="../../action/dosen/selesai-action.php?id=<?= $data[$i]['id_pelanggaran_dosen'] ?>">
-                                    Selesai
+                                <a href="karyawan-kirim-bukti.php?id_pelanggaran=<?= $data[$i]["id_pelanggaran_tendik"] ?>" class="dropdown-item">
+                                    Kirim Bukti Sanksi
                                 </a>
                             </div>
                         </div>

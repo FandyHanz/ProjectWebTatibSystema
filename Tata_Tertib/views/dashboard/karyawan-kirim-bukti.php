@@ -1,11 +1,18 @@
 <?php
 include '../../core/Session.php';
-include '../../models/Admin.php';
+include '../../models/Karyawan.php';
 $session = new Session();
-$obj = new Admin();
+$obj = new Karyawan();
 $id_pelanggaran = $_GET['id_pelanggaran'];
-$data = $obj->getLampiranTendikById($id_pelanggaran);
+$data = $obj->getLampiranById($id_pelanggaran);
 $level = $session->get('level');
+
+function getSubmit($level) {
+    if ($level == 1) {
+        return 'disabled';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +36,7 @@ $level = $session->get('level');
 
 <body>
     <!-- Sidebar -->
-    <?php include '../../assets/sidebar.php';?>
+    <?php include '../../assets/sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -38,27 +45,26 @@ $level = $session->get('level');
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
+            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px; width:500px;"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="rightside col-6 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
                     <h9 class="mt-0 pt-0">Tanggal: <?= $data['tanggal_lapor']; ?></h9><br>
                     <br>
                     <h9 class="mt-0 pt-0">Sanksi :</h9><br>
-                    <div class="textarea p-2" style="border: none; background-color: #FAFAFC; border-radius: 10px; overflow-y: auto; width:500px">
-                        <?= $data['sanksi'];?>
-                    </div>
-                    <br>
+                    <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled><?= $data['sanksi'] ?></textarea><br>
                     <div class="form-group col-2 d-flex flex-row mb ">
+                        <label for="formFile" class="form-label d-flex flex-row">Bukti(PDF):</label>
                     </div>
-                    <?php
-                    if ($data['bukti_selesai'] == null) {
-                        echo "Tidak ada file yang diupload<br>";
-                    }
-                    ?>
-                    <a class="btn btn-primary" href="../../action/karyawan/selesai-action.php?id=<?= $data['id_pelanggaran_tendik'] ?>">
-                        Selesai
-                    </a>
+                    <form action="../../action/karyawan/upload-bukti-selesai.php?id=<?= $data['id_pelanggaran_tendik'] ?>" method="post" enctype="multipart/form-data">
+                        <input class="form-control" style="width: 300px;" type="file" name="bukti_selesai" id="formFile" accept="application/pdf" onchange="validateFileSize()">
+                        <?php
+                        if ($data['bukti_selesai'] == null) {
+                            echo "Tidak ada file yang diupload<br>";
+                        }
+                        ?>
+                        <button type="submit" class="btn btn-primary mt-4 <?= getSubmit($level) ?>">Submit</button>
+                    </form>
                 </div>
                 <?php
                 if ($data['bukti_selesai'] != null) {

@@ -3,20 +3,14 @@ include '../../core/Session.php';
 include '../../models/Admin.php';
 $session = new Session();
 $obj = new Admin();
-$nim = $_GET['nim'];
+$id = $_GET['id_pelanggaran'];
 
-$data = $obj->getDetailMhs($nim);
+$data = $obj->getDetailPelMhs($id);
 $level = $session->get('level');
 
-function getHeader($level)
-{
-    switch ($level) {
-        case '1':
-            return 'dashboard-admin.php';
-        case '2':
-            return 'href:dashboard-dpa.php';
-    }
-}
+$sanksiJson = file_get_contents('../../assets/sanksi.json');
+$sanksiData = json_decode($sanksiJson, true);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,23 +43,23 @@ function getHeader($level)
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="<?= getHeader($level) ?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
+            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
                     <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                 </div>
                 <div class="rightside col-8 p-4">
-                    <h3 class="mb-0"><?= $data['nama_mahasiswa']; ?></h3>
+                    <h3 class="mb-0"><?= $data['nama']; ?></h3>
                     <h9 class="mt-0 pt-0">NIM: <?= $data['nim']; ?></h9><br>
                     <br>
-                    <h9 class="mt-0 pt-0">Pelanggaran : </h9><br>
-                    <h9 class="mt-0 pt-0">Kategori : 5</h9><br>
+                    <h9 class="mt-0 pt-0">Pelanggaran : <?= $data['nama_pelanggaran'] ?></h9><br>
+                    <h9 class="mt-0 pt-0">Kategori : <?= $data['kategori'] ?></h9><br>
                     <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
-                    <textarea class="textarea p-2" name="" id="" cols="90" rows="3" readonly disabled>adasd ad ad asd</textarea><br><br>
+                    <textarea class="textarea p-2" name="" id="" cols="90" rows="3" readonly disabled><?= $data['deskripsi'] ?></textarea><br><br>
                     <div class="container d-flex flex-row p-0">
                         <div class="" style="margin-right: 60px;">
                             <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <div class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</div><br>
+                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" href="../../action/mhs/show-lampiran.php?id=<?= $data['id_pelanggaran_mhs'] ?>" target="_blank" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
                         </div>
                         <div class="" style="margin-right: 60px;">
                             <h9 class="mt-0 pt-0">Pilih Tindakan :</h9>
@@ -73,26 +67,23 @@ function getHeader($level)
                                 <button class="tindakan-btn btn btn-light dropdown-toggle" style="border-color: #D9D9D9;color:#4A4A4A" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Pilih Tindakan
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="max-height: 100px; overflow-y: auto; position: absolute;">
-                                    <form action="">
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Membaca"> Membaca</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Menulis"> Menulis</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Olahraga"> Olahraga</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Membaca"> Membaca</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Menulis"> Menulis</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Olahraga"> Olahraga</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Membaca"> Membaca</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Menulis"> Menulis</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Olahraga"> Olahraga</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Membaca"> Membaca</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Menulis"> Menulis</label><br>
-                                        <label><input type="checkbox" style="margin-left:10px" name="hobi[]" value="Olahraga"> Olahraga</label><br>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="max-height: 100px; width: 300px; overflow-y: auto; position: absolute;">
+                                    <form action="../../action/mhs/detpel-action.php?id=<?= $data['id_pelanggaran_mhs'] ?>" method="post">
+                                        <?php
+                                        foreach ($sanksiData['sanksi'] as $sanksi) {
+                                            if ($sanksi['tingkat'] == $data['kategori']) {
+                                                foreach ($sanksi['sanksi'] as $item) {
+                                                    echo '<label><input type="checkbox" style="margin-left:10px" name="sanksi[]" value="' . htmlspecialchars($item) . '"> ' . htmlspecialchars($item) . '</label><br>';
+                                                }
+                                            }
+                                        }
+                                        ?>
                                 </div>
                             </div>
                         </div>
                         <div class="">
-                            <h9 class="mt-0 pt-0">Keterangan :</h9><br>
-                            <textarea class="textarea p-2" name="" id="" cols="30" rows="3">adasd ad ad asd</textarea><br><br>
+                            <h9 class="mt-0 pt-0">Tambahan :</h9><br>
+                            <textarea class="textarea p-2" name="tambahan" id="" cols="30" rows="3"></textarea><br><br>
                         </div>
                     </div>
                     <br>
@@ -100,11 +91,11 @@ function getHeader($level)
                         <button class="tindakan-btn btn btn-danger" style="margin-right: 15px;" type="submit">
                             Konfirmasi
                         </button>
-                        <button class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" type="button">
+                        </form>
+                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/mhs/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_mhs']?>">
                             Hapus Laporan
-                        </button>
+                        </a>
                     </div>
-                    </form>
                 </div>
 
             </div>

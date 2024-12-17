@@ -306,6 +306,13 @@ class Admin extends Koneksi
         return $stmt->execute();
     }
 
+    public function setSelesaiKaryawanById($id_pel) {
+        $sql = "UPDATE pelanggaran_tendik SET status = '1' WHERE id_pelanggaran_tendik = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id_pel);
+        return $stmt->execute();
+    }
+
     public function setSanksiDosenById($id_pel, $sanksi) {
         $sql = "UPDATE pelanggaran_dosen SET status = '3', sanksi = ? WHERE id_pelanggaran_dosen = ?";
         $stmt = $this->db->prepare($sql);
@@ -318,6 +325,16 @@ class Admin extends Koneksi
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("si", $sanksi, $id_pel);
         return $stmt->execute();
+    }
+
+    public function getLampiranTendikById($id_pel)
+    {
+        $sql = "SELECT * FROM pelanggaran_tendik WHERE id_pelanggaran_tendik = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $id_pel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     public function dropPelTendik($id_pel) {

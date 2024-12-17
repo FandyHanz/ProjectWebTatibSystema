@@ -79,7 +79,7 @@ class Dpa extends Koneksi
     public function getPelPribadi($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('2', '3', '4')";
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
@@ -96,7 +96,7 @@ class Dpa extends Koneksi
     public function getPelPribadiHistory($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ?";
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('1', '2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);

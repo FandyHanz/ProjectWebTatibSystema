@@ -1,8 +1,8 @@
 <?php
 include '../../core/Session.php';
-include '../../models/Dpa.php';
+include '../../models/Karyawan.php';
 $session = new Session();
-$obj = new Dpa();
+$obj = new Karyawan();
 $id_pelanggaran = $_GET['id_pelanggaran'];
 $data = $obj->getLampiranById($id_pelanggaran);
 $level = $session->get('level');
@@ -39,7 +39,7 @@ $level = $session->get('level');
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
+            <a href="../../index.php"> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="rightside col-12 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
@@ -50,7 +50,7 @@ $level = $session->get('level');
                     <div class="container d-flex flex-row p-0" style="margin-left: 0px;">
                         <div class="" style="margin-right: 100px;">
                             <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/dosen/show-lampiran.php?id=<?= $data['id_pelanggaran_dosen']?>" target="_blank"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
+                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/karyawan/show-lampiran.php?id=<?= $data['id_pelanggaran_tendik']?>" target="_blank"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
                         </div>
                         <div class="">
                             <h9 class="mt-0 pt-0">Sanksi :</h9>

@@ -65,8 +65,6 @@ $base64_image = base64_encode($data['foto_profile']);
                         <div class="middle">
                             <label for="pelanggaran">Pelanggaran: </label><br>
                             <input class="form-control border-light rounded" type="text" name="pelanggaran" id="pelanggaran">
-                            <label for="sanksi">Sanksi: </label><br>
-                            <textarea name="sanksi" id="sanksi" class="form-control rounded border-light" cols="30" rows="3"></textarea>
                             <br>
                             <div class="form-group col-2 d-flex flex-row mb ">
                                 <label for="formFile" class="form-label">Lampiran:</label>

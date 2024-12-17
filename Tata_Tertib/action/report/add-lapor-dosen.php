@@ -4,9 +4,9 @@ include '../../models/Report.php';
 $session = new Session();
 $obj = new Report();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = isset($_POST['tindakan']) ? trim($_POST['tindakan']) : '';
+    $nama = isset($_POST['pelanggaran']) ? trim($_POST['pelanggaran']) : '';
     $deskripsi = isset($_POST['deskripsi']) ? trim($_POST['deskripsi']) : '';
-    $lampiran = isset($_POST['lampiran']) ? trim($_POST['lampiran']) : '';
+    $lampiran = file_get_contents($_FILES['lampiran']['tmp_name']);
     $nim = isset($_POST['nip']) ? trim($_POST['nip']) : '';
     $sanksi = isset($_POST['sanksi']) ? trim($_POST['sanksi']) : '';
     $nip = isset($_POST['nip']) ? trim($_POST['nip']) : '';
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $set = $obj->addPelanggaranDosen($nama, $deskripsi, $sanksi, $lampiran, $nip);
+        $obj->addPelanggaranDosen($nama, $deskripsi, $sanksi, $lampiran, $nip);
         header("Location: ../../views/report/report.php");
         exit;
     } catch (\Throwable $th) {

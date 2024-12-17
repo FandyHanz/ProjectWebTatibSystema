@@ -15,7 +15,7 @@ if ($session->get('is_login') === true) {
             header('Location: views/dashboard/dashboard-dpa.php');
             break;
         case '3':
-            header('Location: views/dashboard/dashboard-tendik.php');
+            header('Location: views/dashboard/dashboard-karyawan.php');
             break;
         case '4':
             header('Location: views/dashboard/dashboard-mhs.php');

@@ -1,27 +1,17 @@
 <?php
 include_once '../../core/Koneksi.php';
 
-class Karyawan extends Koneksi
+class Dosen extends Koneksi
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function getLampiranById($id_pel)
-    {
-        $sql = "SELECT * FROM pelanggaran_tendik WHERE id_pelanggaran_tendik = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $id_pel);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
-    }
-
     public function getPelPribadi($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_tendik WHERE nip = ? AND pelanggaran_tendik.status IN ('2', '3')";
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
@@ -38,7 +28,7 @@ class Karyawan extends Koneksi
     public function getPelPribadiHistory($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_tendik WHERE nip = ? AND pelanggaran_tendik.status IN ('1', '2', '3')";
+        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('1', '2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
@@ -50,20 +40,5 @@ class Karyawan extends Koneksi
 
         // Memastikan hasil dikembalikan dalam bentuk array asosiatif
         return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function setBuktiSelesaiById($id_pel, $bukti_selesai)
-    {
-        $sql = "UPDATE pelanggaran_tendik SET bukti_selesai = ?, status = '2' WHERE id_pelanggaran_tendik = ?";
-        $stmt = $this->db->prepare($sql);
-
-        // Bind parameter: "si" (s = string, i = integer)
-        $stmt->bind_param("si", $bukti_selesai, $id_pel);
-
-        // Eksekusi query
-        $stmt->execute();
-
-        // Tutup statement
-        $stmt->close();
     }
 }

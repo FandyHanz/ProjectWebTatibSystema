@@ -12,7 +12,7 @@ function getDashboardPage($level): string
             $page = '../dashboard/dashboard-dpa.php';
             return $page;
         case '3':
-            $page = '../dashboard/dashboard-tendik.php';
+            $page = '../dashboard/dashboard-karyawan.php';
             return $page;
         case '4':
             $page = '../dashboard/dashboard-mhs.php';
@@ -37,7 +37,7 @@ function getHistoryPage($level): string
             $page = '../history/history-dpa.php';
             return $page;
         case '3':
-            $page = '../history/history-tendik.php';
+            $page = '../history/history-karyawan.php';
             return $page;
         case '4':
             $page = '../history/history-mhs.php';

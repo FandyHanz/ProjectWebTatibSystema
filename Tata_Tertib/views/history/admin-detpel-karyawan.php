@@ -1,23 +1,12 @@
 <?php
 include '../../core/Session.php';
 include '../../models/Admin.php';
-
 $session = new Session();
 $obj = new Admin();
-$nip = $_GET['nip'];
+$id_pelanggaran = $_GET['id_pelanggaran'];
 
-$data = $obj->getKaryawanWithNip($nip);
+$data = $obj->getKaryawanWithNip($id_pelanggaran);
 $level = $session->get('level');
-
-function getHeader($level)
-{
-    switch ($level) {
-        case '1':
-            return 'dashboard-admin.php';
-        case '2':
-            return 'dashboard-dpa.php';
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +39,7 @@ function getHeader($level)
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="<?= getHeader($level) ?>" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
+            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
                     <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
@@ -59,18 +48,18 @@ function getHeader($level)
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
                     <h9 class="mt-0 pt-0">NIP: <?= $data['nip']; ?></h9><br>
                     <br>
-                    <h9 class="mt-0 pt-0">Pelanggaran : jijdaij ais jdaidjaijsaij ij aijd aisjd iasjdjaj aisjd aisjd iasj iai jdaisj dsi jdia j </h9><br>
+                    <h9 class="mt-0 pt-0">Pelanggaran : <?= $data['nama_pelanggaran'] ?></h9><br>
                     <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
-                    <textarea class="textarea p-2" name="" id="" cols="90" rows="3" readonly disabled>adasd ad ad asd</textarea><br><br>
+                    <textarea class="textarea p-2" name="" id="" cols="90" rows="3" readonly disabled><?= $data['deskripsi'] ?></textarea><br><br>
                     <div class="container d-flex flex-row p-0">
                         <div class="" style="margin-right: 100px;">
                             <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <div class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</div><br>
+                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" href="../../action/karyawan/show-lampiran.php?id=<?= $data['id_pelanggaran_tendik']?>" target="_blank" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
                         </div>
                         <div class="">
-                            <h9 class="mt-0 pt-0">Pilih Tindakan :</h9>
-                            <form action="">
-                                <textarea class="textarea p-2" name="" id="" cols="55" rows="3">adasd ad ad asd</textarea><br>
+                            <h9 class="mt-0 pt-0">Berikan Sanksi :</h9>
+                            <form action="../../action/karyawan/beri-sanksi-action.php?id=<?= $data['id_pelanggaran_tendik']?>" method="post">
+                                <textarea class="textarea p-2" name="sanksi" id="sanksi" cols="55" rows="3"></textarea><br>
                         </div>
                     </div>
                     <br>
@@ -78,9 +67,9 @@ function getHeader($level)
                         <button class="tindakan-btn btn btn-danger" style="margin-right: 15px;" type="submit">
                             Konfirmasi
                         </button>
-                        <button class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" type="button">
+                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/karyawan/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_tendik']?>">
                             Hapus Laporan
-                        </button>
+                        </a>
                     </div>
                     </form>
                 </div>

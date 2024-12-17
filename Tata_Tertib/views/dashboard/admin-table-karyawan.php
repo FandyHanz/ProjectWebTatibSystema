@@ -49,7 +49,7 @@ $data = $obj->getTabelPelKaryawan();
                                 <a href="admin-detail-data-karyawan.php?nip=<?= $data[$i]["nip"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item <?= $data[$i]['status'] == 2 ? "" : "disabled" ?>" href="../../action/karyawan/selesai-action.php?id=<?= $data[$i]['id_pelanggaran_tendik'] ?>">
                                     Selesai
                                 </a>
                             </div>

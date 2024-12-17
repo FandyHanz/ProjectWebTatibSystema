@@ -6,7 +6,7 @@ $obj = new Admin();
 $data = $obj->getHistoryPelMhs();
 ?>
 
-<form action="../../action/AdminFunc.php" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
+<form action="" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
     <div class="filter-button" id="filter-button">
         <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
             <option value="" disabled selected>Kelas</option>
@@ -50,20 +50,20 @@ $data = $obj->getHistoryPelMhs();
                     <td><?= $data[$i]["kategori"] ?></td>
                     <td>
                         <div class="btn-group dropleft">
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-light rounded dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Option</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran"] ?>" class="dropdown-item">
+                                <a href="admin-detpel-mhs.php?nim=<?= $data[$i]["nim"] ?>&id_pelanggaran=<?= $data[$i]["id_pelanggaran_mhs"] ?>" class="dropdown-item">
                                     Lihat Detail Pelanggaran dan Konfirmasi
                                 </a>
-                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
+                                <a href="bukti-selesai-mhs.php?id=<?= $data[$i]["id_pelanggaran_mhs"] ?>" class="dropdown-item <?= ($data[$i]["status_pelanggaran"] == 1) || ($data[$i]["status_pelanggaran"] == 2) ? "" : "disabled" ?>">
                                     Bukti Tebus Sanksi
                                 </a>
                                 <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]["nim"] ?>" class="dropdown-item">
                                     Data Pelanggar
                                 </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item <?= $data[$i]['status_pelanggaran'] == 2 ? "" : "disabled" ?>" href="../../action/mhs/selesai-action.php?id=<?= $data[$i]['id_pelanggaran_mhs'] ?>">
                                     Selesai
                                 </a>
                             </div>

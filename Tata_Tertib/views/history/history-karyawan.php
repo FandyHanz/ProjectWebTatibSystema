@@ -1,22 +1,6 @@
 <?php
 include '../../core/Session.php';
-include '../../models/Admin.php';
 $session = new Session();
-$obj = new Admin();
-$nip = $_GET['nip'];
-
-$data = $obj->getDetailDosen($nip);
-$kelas = isset($data['nama_kelas']) ? $data['nama_kelas'] : '-';
-
-function getHeader($level)
-{
-    switch ($level) {
-        case '1':
-            return 'dashboard-admin.php';
-        case '2':
-            return 'href:dashboard-dpa.php';
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -40,27 +24,30 @@ function getHeader($level)
         <?php include '../../assets/header.php'; ?>
 
         <!-- Content -->
-        <div class="table-container d-flex justify-content-center align-items-center" style="overflow-y:auto;">
-            <div class="modal-body d-flex flex-row p-0 m-0">
-                <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
-                </div>
-                <div class="rightside col-8 p-4">
-                    <h3 class="mb-0"><?= $data['nama']; ?></h3>
-                    <h9 class="mt-0 pt-0"><?= $data['status']; ?></h9>
-                    <br><br>
-                    <h9 class="mt-0 pt-0">NIP: <?= $data['nip']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">No Telp : <?= $data['no_telp']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Email : <?= $data['email']; ?></h9><br>
-                    <h9 class="mt-0 pt-0">Kelas : <?= $kelas; ?></h9><br>
-                </div>
+        <div class="table-container">
+            <h1 class="m-4 mb-1">List Pelanggaran</h1>
 
+            <!-- toggle button untuk navigasi table -->
+            <div class="table-nav" data-toggle="buttons">
+                <ul id="tab-nav">
+                    <li class="nav-table-button active"><a href="#Dosen"><img src="../../assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Pelanggaran Pribadi</span class="title-btn"></a></li>
+                </ul>
+            </div>
+            <div class="line">
+                <div class="line-active" id="line-active" style="width: 243px"></div>
+            </div>
+
+            <!-- Tempat untuk memuat konten tabel -->
+            <div id="table-content-container" class="table-content-container">
+                <!-- Konten tabel akan dimuat di sini -->
+                <?php include 'karyawan-table-pribadi.php';?>
             </div>
         </div>
 
         <!-- Footer -->
         <?php include '../../assets/footer.php'; ?>
     </div>
+
     <script src="script.js"></script>
     <!-- Jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->

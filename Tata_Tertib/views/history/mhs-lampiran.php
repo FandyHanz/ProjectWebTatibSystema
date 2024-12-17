@@ -1,12 +1,13 @@
 <?php
 include '../../core/Session.php';
-include '../../models/Dpa.php';
+include '../../models/Mhs.php';
 $session = new Session();
-$obj = new Dpa();
+$obj = new Mhs();
 $id_pelanggaran = $_GET['id_pelanggaran'];
 $data = $obj->getLampiranById($id_pelanggaran);
 $level = $session->get('level');
 
+$sanksiData = $obj->getSanksiById($id_pelanggaran);
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ $level = $session->get('level');
             <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="rightside col-12 p-4">
-                    <h3 class="mb-0"><?= $data['nama']; ?></h3>
+                    <h3 class="mb-0"><?= $data['nama_pelanggaran']; ?></h3>
                     <h9 class="mt-0 pt-0">Tanggal: <?= $data['tanggal_lapor']; ?></h9><br>
                     <br>
                     <h9 class="mt-0 pt-0">Deskripsi :</h9><br>
@@ -50,18 +51,20 @@ $level = $session->get('level');
                     <div class="container d-flex flex-row p-0" style="margin-left: 0px;">
                         <div class="" style="margin-right: 100px;">
                             <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/dosen/show-lampiran.php?id=<?= $data['id_pelanggaran_dosen']?>" target="_blank"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
+                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/mhs/show-lampiran.php?id=<?= $data['id_pelanggaran_mhs'] ?>" target="_blank"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
                         </div>
                         <div class="">
                             <h9 class="mt-0 pt-0">Sanksi :</h9>
-                            <form action="">
-                                <textarea class="textarea p-2" name="" id="" cols="55" rows="3" disabled><?= $data['sanksi']?></textarea><br>
+                            <div class="textarea p-2" style="border: none; background-color: #FAFAFC; border-radius: 10px; overflow-y: auto; width:800px">
+                                <?php
+                                foreach ($sanksiData as $sanksi) {
+                                    echo "<p>- " . htmlspecialchars($sanksi['sanksi']) . "</p>";
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <br>
-                    <div class="buttons">   
-                        </form>
-                    </div>
 
                 </div>
             </div>
