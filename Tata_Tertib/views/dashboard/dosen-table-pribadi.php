@@ -6,14 +6,6 @@ $nip = $session->get('username');
 $data = $obj->getPelPribadi($nip);
 ?>
 
-<form action="" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
-    <div class="search">
-        <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
-        </div>
-    </div>
-</form>
-
 <div class="scrollable-table" style="height: 80%; overflow-y: auto">
     <table class="custom-table">
         <thead>
@@ -30,7 +22,7 @@ $data = $obj->getPelPribadi($nip);
                 <tr>
                     <td><?= ($i + 1) ?>.</td>
                     <td><?= $data[$i]["nama"] ?></td>
-                    <td><?= getStatusUi($data[$i]["status"])?></td>
+                    <td><?= getStatusUi($data[$i]["status"]) ?></td>
                     <td><?= $data[$i]["tanggal_lapor"] ?></td> <!-- Diganti Tanggal Waktu -->
                     <td>
                         <div class="btn-group dropleft">

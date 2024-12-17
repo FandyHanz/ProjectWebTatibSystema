@@ -6,26 +6,6 @@ $obj = new Admin();
 $data = $obj->getTabelPelMhs();
 ?>
 
-<form action="" class="filter d-flex flex-row justify-content-between align-items-center mx-auto mb-4">
-    <div class="filter-button" id="filter-button">
-        <select class="form-select" id="kelas" name="kelas" aria-label="Default select example">
-            <option value="" disabled selected>Kelas</option>
-            <option value="TI-1A">TI - 1A</option>
-            <option value="TI-1B">TI - 1B</option>
-            <option value="TI-1C">TI - 1C</option>
-            <option value="SIB-1A">SIB - 1A</option>
-            <option value="SIB-1B">SIB - 1B</option>
-            <option value="SIB-1C">SIB - 1C</option>
-        </select>
-    </div>
-
-    <div class="search">
-        <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
-        </div>
-    </div>
-</form>
-
 <div class="scrollable-table" style="height: 80%; overflow-y: auto">
     <table class="custom-table">
         <thead>

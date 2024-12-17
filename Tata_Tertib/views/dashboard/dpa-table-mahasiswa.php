@@ -37,14 +37,6 @@ function getTombolSelesai($data, $i)
 
 ?>
 
-<form action="" class="filter d-flex flex-row justify-content-end align-items-center mx-auto mb-4">
-    <div class="search">
-        <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
-        </div>
-    </div>
-</form>
-
 <div class="scrollable-table" style="height: 80%; overflow-y: auto">
     <table class="custom-table">
         <thead>

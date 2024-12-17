@@ -7,15 +7,6 @@ $data = $obj->getTabelUserKaryawan();
 
 // Menampilkan tabel dengan perulangan for
 ?>
-<div class="filter d-flex flex-row justify-content-end mx-auto mb-4">
-    <div class="search">
-        <form action="">
-            <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search">
-            </div>
-        </form>
-    </div>
-</div>
 
 <div class="scrollable-table" style="height: 80%; overflow-y: auto">
     <table class="custom-table">
