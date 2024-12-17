@@ -24,9 +24,9 @@ $status = $session->get('status');
 //         # code...
 //         break;
 // }
-$img = $obj->getSimpleDataDosen($nip);
+// $img = $obj->getSimpleDataDosen($nip);
 
-$base64_image = base64_encode($data['foto_profile']);
+// $base64_image = base64_encode($data['foto_profile']);
 ?>
 
 <header class="header d-flex align-items-center justify-content-between p-3">
