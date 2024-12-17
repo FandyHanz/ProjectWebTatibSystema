@@ -7,6 +7,8 @@ $id_pelanggaran = $_GET['id_pelanggaran'];
 
 $data = $obj->getKaryawanWithNip($id_pelanggaran);
 $level = $session->get('level');
+$img= base64_encode($obj->getImgProfileKaryawan($nip));
+
 ?>
 
 <!DOCTYPE html>

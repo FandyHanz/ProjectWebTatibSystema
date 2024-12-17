@@ -7,6 +7,8 @@ $nip = $_GET['nip'];
 
 $data = $obj->getDetailDosen($nip);
 $kelas = isset($data['nama_kelas']) ? $data['nama_kelas'] : '-';
+$img= base64_encode($obj->getImgProfileDosen($nip));
+
 
 function getHeader($level)
 {
@@ -25,8 +27,8 @@ function getHeader($level)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -44,7 +46,7 @@ function getHeader($level)
         <div class="table-container d-flex justify-content-center align-items-center" style="overflow-y:auto;">
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?php echo $base64_image; ?>" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>

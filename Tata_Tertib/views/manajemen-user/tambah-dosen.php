@@ -12,8 +12,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST['password'];
     $email = $_POST['email'];
     $status = $_POST['status'];
-    $kelas = $_POST['kelas'];
-    $fotoProfile = $_POST['foto_profile'];
+    $kelas = isset($_POST['kelas']) && !empty($_POST['kelas']) ? $_POST['kelas'] : null;
+    $fotoProfile = base64_encode(file_get_contents($_FILES['foto_profile']['tmp_name']));
     $addDosen = $admin -> addTabelUserDosen($nama, $nip, $noTelp, $password, $email, $status, $kelas, $fotoProfile);
     return $addDosen;
 }
@@ -49,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Dosen</h4>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
@@ -88,10 +88,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label class="" for="nama">Kelas:</label>
                     </div>
                     <select class="form-select" id="kelas" name="kelas">
+                        <option value="" disabled selected>select</option>
                         <?php
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
-                            echo '<option value="' ."". '">' . "" . '</option>';
                         }
                         ?>
                     </select>
@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" accept="image/png," name="foto_profile" required>
+                    <input class="form-control" type="file" id="formFile" accept="image/jpeg," name="foto_profile" required>
                     <div class="col-2"></div>
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>

@@ -8,6 +8,17 @@ class Dosen extends Koneksi
         parent::__construct();
     }
 
+    public function getImgProfile($id)
+    {
+        $stmt = $this->db->prepare("SELECT foto_profile FROM dosen WHERE nip = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            return $row['foto_profile'];
+        }
+    }
+
     public function getPelPribadi($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL

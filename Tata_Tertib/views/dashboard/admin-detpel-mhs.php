@@ -10,6 +10,7 @@ $level = $session->get('level');
 
 $sanksiJson = file_get_contents('../../assets/sanksi.json');
 $sanksiData = json_decode($sanksiJson, true);
+$img= base64_encode($obj->getImgProfileMhs($nim));
 
 ?>
 

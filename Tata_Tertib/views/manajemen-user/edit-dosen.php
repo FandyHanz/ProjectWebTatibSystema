@@ -6,6 +6,7 @@ $admin = new Admin();
 $kelas = $admin->getKelasMhs();
 $id = $_GET['nip'];
 $edit = $admin -> reaByIdDosen($id);
+$dataDosen = $admin->getDosenByIdDosen($id);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nama = $_POST['nama'];
@@ -56,42 +57,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="nama" name="nama" required value="<?php echo $dataDosen['nama']; ?>">
                     <div class="col-2"></div>
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="no_telp">No Telepon:</label>
                     </div>
-                    <input class="col-3" type="text" id="no_telp" name="no_telp" required>
+                    <input class="col-3" type="text" id="no_telp" name="no_telp" required value="<?php echo $dataDosen['no_telp']; ?>">
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="password">Password:</label>
                     </div>
-                    <input class="col-3" type="text" id="status" name="password" required>
+                    <input class="col-3" type="text" id="status" name="password" required value="<?php echo $dataDosen['password']; ?>">
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="email">Email:</label>
                     </div>
-                    <input class="col-3" type="text" id="email" name="email" required>
+                    <input class="col-3" type="text" id="email" name="email" required value="<?php echo $dataDosen['email']; ?>">
 
                     <div class="col-2"></div>
 
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="status">Status:</label>
                     </div>
-                    <input class="col-3" type="text" id="status" name="status" required>
+                    <input class="col-3" type="text" id="status" name="status" required value="<?php echo $dataDosen['status']; ?>">
                 </div>
                 <div class="baris-empat d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row">
                         <label class="" for="nama">Kelas:</label>
                     </div>
                     <select class="form-select" id="kelas" name="kelas">
+                        <option value="" selected disabled>select</option>
                         <?php
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
-                            echo '<option value="' ."". '">' . "" . '</option>';
                         }
                         ?>
                     </select>

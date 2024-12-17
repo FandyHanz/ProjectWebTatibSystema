@@ -8,7 +8,7 @@ $data = $obj->getTabelUserKaryawan();
 // Menampilkan tabel dengan perulangan for
 ?>
 
-<div class="scrollable-table" style="height: 80%; overflow-y: auto">
+<div class="scrollable-table" style="height: 100%; overflow-y: auto">
     <table class="custom-table">
         <thead>
             <tr>
@@ -37,18 +37,15 @@ $data = $obj->getTabelUserKaryawan();
                             </button>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi">
+                                <a class="dropdown-item" href="admin-detail-data-karyawan.php?nip=<?= $data[$i]['nip'] ?>" class="dropdown-item">
                                     Lihat Detail data
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                    <a href="edit-karyawan.php?nip=<?= $data[$i]['nip'] ?>"> Edit data</a>
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#detailDataMahasiswa">
-                                    <a href="deleteKaryawan.php?nip=<?= $data[$i]['nip'] ?>">Hapus data</a>
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                    Selesai
-                                </button>
+                                </a>
+                                <a href="edit-karyawan.php?nip=<?= $data[$i]['nip'] ?>" class="dropdown-item">
+                                    Edit data
+                                </a>
+                                <a href="deleteKaryawan.php?nip=<?= $data[$i]['nip'] ?>" class="dropdown-item">
+                                    Hapus data
+                                </a>
                             </div>
                     </td>
                 </tr>

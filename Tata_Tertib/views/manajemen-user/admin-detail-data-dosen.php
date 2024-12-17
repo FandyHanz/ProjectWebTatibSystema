@@ -5,9 +5,9 @@ $session = new Session();
 $obj = new Admin();
 $nip = $_GET['nip'];
 
-$data = $obj->getDetailKaryawan($nip);
+$data = $obj->getDetailDosen($nip);
 $kelas = isset($data['nama_kelas']) ? $data['nama_kelas'] : '-';
-$img= base64_encode($obj->getImgProfileKaryawan($nip));
+$img= base64_encode($obj->getImgProfileDosen($nip));
 
 function getHeader($level)
 {
@@ -26,8 +26,8 @@ function getHeader($level)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -45,7 +45,7 @@ function getHeader($level)
         <div class="table-container d-flex justify-content-center align-items-center" style="overflow-y:auto;">
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?php echo $base64_image; ?>" />
+                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
@@ -54,6 +54,7 @@ function getHeader($level)
                     <h9 class="mt-0 pt-0">NIP: <?= $data['nip']; ?></h9><br>
                     <h9 class="mt-0 pt-0">No Telp : <?= $data['no_telp']; ?></h9><br>
                     <h9 class="mt-0 pt-0">Email : <?= $data['email']; ?></h9><br>
+                    <h9 class="mt-0 pt-0">Kelas : <?= $kelas; ?></h9><br>
                 </div>
 
             </div>
@@ -70,4 +71,5 @@ function getHeader($level)
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -4,16 +4,17 @@ include '../../core/Session.php';
 $session = new Session();
 $admin = new Admin();
 $id = $_GET['nip'];
-$edit = $admin -> readByIdKaryawan($id);
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+$edit = $admin->readByIdKaryawan($id);
+$dataKaryawan = $admin->getAllDataKaryawanWithId($id);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $nama = $_POST['nama'];
     $status = $_POST['status'];
-    $noTelp = $_POST['no_telp'];
+    $no_telp = $_POST['no_telp'];
     $email = $_POST['email'];
     $fotoProfile = $_POST['foto_profile'];
 
-    $result = $admin -> editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id);
+    $result = $admin->editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id);
     header("Location:manajemen-user.php");
     exit();
 }
@@ -25,10 +26,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         .form-group {
             gap: 35px
@@ -38,13 +39,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
     <!-- Sidebar -->
-    <?php include 'assets/sidebar.php'; ?>
+    <?php include '../../assets/sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
         <?php
-        include 'assets/header.php';
+        include '../../assets/header.php';
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Karyawan</h4>
@@ -53,31 +54,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="nama" name="nama" required value="<?php echo $dataKaryawan['nama']; ?>">
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="no_telp">No Telepon:</label>
                     </div>
-                    <input class="col-3" type="text" id="no_telp" name="no_telp" required>
+                    <input class="col-3" type="text" id="no_telp" name="no_telp" required value="<?php echo $dataKaryawan['no_telp']; ?>">
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="password">Password:</label>
                     </div>
-                    <input class="col-3" type="text" id="status" name="password" required>
+                    <input class="col-3" type="text" id="status" name="password" required value="<?php echo $dataKaryawan['password']; ?>">
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="email">Email:</label>
                     </div>
-                    <input class="col-3" type="text" id="email" name="email" required>
-                    
+                    <input class="col-3" type="text" id="email" name="email" required value="<?php echo $dataKaryawan['email']; ?>">
                     <div class="col-2"></div>
 
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nim">Status:</label>
                     </div>
-                    <input class="col-3" type="text" id="status" name="status" required>
+                    <input class="col-3" type="text" id="status" name="status" required value="<?php echo $dataKaryawan['status']; ?>">
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
@@ -92,8 +92,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 </div>
 
-
-
                 <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
@@ -101,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
         </div>
         <?php
-        include 'assets/footer.php';
+        include '../../assets/footer.php';
         ?>
     </div>
     <script src="../views/dashboard/script.js"></script>

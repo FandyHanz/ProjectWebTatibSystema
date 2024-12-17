@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nip = $_POST['nip'];
     $noTelp = $_POST['no_telp'];
     $email = $_POST['email'];
-    $fotoProfile = $_POST['foto_profile'];
+    $fotoProfile = base64_encode(file_get_contents($_FILES['foto_profile']['tmp_name']));
 
     $result = $admin -> addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile);
     header("Location:manajemen-user.php");
@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" name="foto_profile" required>
+                    <input class="form-control" type="file" id="formFile" name="foto_profile" required accept="image/jpeg,">
 
                     <div class="col-2"></div>
 
@@ -95,8 +95,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
 
                 </div>
-
-
 
                 <div class="baris-tiga d-flex flex-row col-12 justify-content-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

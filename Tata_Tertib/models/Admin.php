@@ -13,6 +13,50 @@ class Admin extends Koneksi
         parent::__construct();
     }
 
+    public function getImgProfile($id)
+    {
+        $stmt = $this->db->prepare("SELECT foto_profile FROM admin WHERE nip = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            return $row['foto_profile'];
+        }
+    }
+
+    public function getImgProfileDosen($id)
+    {
+        $stmt = $this->db->prepare("SELECT foto_profile FROM dosen WHERE nip = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            return $row['foto_profile'];
+        }
+    }
+
+    public function getImgProfileKaryawan($id)
+    {
+        $stmt = $this->db->prepare("SELECT foto_profile FROM karyawan WHERE nip = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            return $row['foto_profile'];
+        }
+    }
+
+    public function getImgProfileMhs($id)
+    {
+        $stmt = $this->db->prepare("SELECT foto_profile FROM mahasiswa WHERE nim = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            return $row['foto_profile'];
+        }
+    }
+
     public function getTabelPelMhs()
     {
         $sql = "SELECT 
@@ -109,7 +153,8 @@ class Admin extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function getDetailPelMhs($id_pelanggaran_mhs){
+    public function getDetailPelMhs($id_pelanggaran_mhs)
+    {
         $sql = "SELECT
         pelanggaran_mahasiswa.id_pelanggaran_mhs,
         pelanggaran_mahasiswa.lampiran,
@@ -169,7 +214,7 @@ class Admin extends Koneksi
         $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
+
     public function getDosenWithNip($id_pelanggaran_dosen)
     {
         $sql = " SELECT 
@@ -214,7 +259,7 @@ class Admin extends Koneksi
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
-    
+
     public function getDetailDosen($nip)
     {
         $sql = "SELECT 
@@ -292,35 +337,40 @@ class Admin extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function setSelesaiMhsById($id_pel) {
+    public function setSelesaiMhsById($id_pel)
+    {
         $sql = "UPDATE pelanggaran_mahasiswa SET status_pelanggaran = '1' WHERE id_pelanggaran_mhs = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id_pel);
         return $stmt->execute();
     }
 
-    public function setSelesaiDosenById($id_pel) {
+    public function setSelesaiDosenById($id_pel)
+    {
         $sql = "UPDATE pelanggaran_dosen SET status = '1' WHERE id_pelanggaran_dosen = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id_pel);
         return $stmt->execute();
     }
 
-    public function setSelesaiKaryawanById($id_pel) {
+    public function setSelesaiKaryawanById($id_pel)
+    {
         $sql = "UPDATE pelanggaran_tendik SET status = '1' WHERE id_pelanggaran_tendik = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id_pel);
         return $stmt->execute();
     }
 
-    public function setSanksiDosenById($id_pel, $sanksi) {
+    public function setSanksiDosenById($id_pel, $sanksi)
+    {
         $sql = "UPDATE pelanggaran_dosen SET status = '3', sanksi = ? WHERE id_pelanggaran_dosen = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("si", $sanksi, $id_pel);
         return $stmt->execute();
     }
 
-    public function setSanksiKaryawanById($id_pel, $sanksi) {
+    public function setSanksiKaryawanById($id_pel, $sanksi)
+    {
         $sql = "UPDATE pelanggaran_tendik SET status = '3', sanksi = ? WHERE id_pelanggaran_tendik = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("si", $sanksi, $id_pel);
@@ -337,21 +387,24 @@ class Admin extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function dropPelTendik($id_pel) {
+    public function dropPelTendik($id_pel)
+    {
         $sql = "DELETE FROM pelanggaran_tendik WHERE id_pelanggaran_tendik = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id_pel);
         return $stmt->execute();
     }
 
-    public function dropPelDosen($id_pel) {
+    public function dropPelDosen($id_pel)
+    {
         $sql = "DELETE FROM pelanggaran_dosen WHERE id_pelanggaran_dosen = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id_pel);
         return $stmt->execute();
     }
 
-    public function dropPelMhs($id_pel) {
+    public function dropPelMhs($id_pel)
+    {
         $sql = "DELETE FROM pelanggaran_mahasiswa WHERE id_pelanggaran_mhs = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id_pel);
@@ -383,10 +436,10 @@ class Admin extends Koneksi
         ON dosen.id_kelas = kelas.id_kelas";
         $result = $this->db->query($sql);
 
-        if ($result-> num_rows > 0) {
+        if ($result->num_rows > 0) {
             // Menggunakan fetch_all untuk mendapatkan semua data
             return $result->fetch_all(MYSQLI_ASSOC);
-        } else  {
+        } else {
             return []; // Jika tidak ada data, kembalikan array kosong
         }
     }
@@ -443,14 +496,15 @@ class Admin extends Koneksi
         }
     }
 
-    public function addTabelUserDosen($nama , $nip, $no_telp, $password, $email, $status, $kelas, $fotoProfile) {
+    public function addTabelUserDosen($nama, $nip, $no_telp, $password, $email, $status, $kelas, $fotoProfile)
+    {
         $role = ($kelas === "") ? 3 : 2;
         $id_kelas = ($kelas === "") ? null : $kelas;
 
         $sql = 'INSERT INTO dosen (nip, password, nama, status, no_telp, email, role, id_kelas, foto_profile) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $stmt = $this->db->prepare($sql);
-        echo($role == 2);
+        echo ($role == 2);
         if ($stmt) {
             // Bind parameters
             $stmt->bind_param(
@@ -537,9 +591,12 @@ class Admin extends Koneksi
     }
     public function getKelasMhs()
     {
-        $sql = "SELECT * FROM kelas";
+        $sql = "SELECT kelas.id_kelas, kelas.nama, kelas.id_prodi
+        FROM kelas
+        LEFT JOIN dosen ON kelas.id_kelas = dosen.id_kelas
+        WHERE dosen.id_kelas IS NULL;";
         $result = $this->db->query($sql);
-        return $result;
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $id, $fotoProfile)
@@ -561,32 +618,33 @@ class Admin extends Koneksi
         return $result;
     }
 
-public function deleteMhs($nim) {
-    // Step 1: Delete related records in pelanggaran_mahasiswa
-    $sqlDeletePelanggaran = "DELETE FROM pelanggaran_mahasiswa WHERE nim = ?";
-    $stmt = $this->db->prepare($sqlDeletePelanggaran);
-    $stmt->bind_param("s", $nim);
-    
-    if ($stmt->execute()) {
-        echo "Related records in pelanggaran_mahasiswa deleted successfully. ";
-    } else {
-        echo "Error deleting related records: " . $stmt->error;
-    }
-    $stmt->close();
+    public function deleteMhs($nim)
+    {
+        // Step 1: Delete related records in pelanggaran_mahasiswa
+        $sqlDeletePelanggaran = "DELETE FROM pelanggaran_mahasiswa WHERE nim = ?";
+        $stmt = $this->db->prepare($sqlDeletePelanggaran);
+        $stmt->bind_param("s", $nim);
 
-    // Step 2: Now, delete from mahasiswa
-    $sqlDeleteMahasiswa = "DELETE FROM mahasiswa WHERE nim = ?";
-    $stmt = $this->db->prepare($sqlDeleteMahasiswa);
-    $stmt->bind_param("s", $nim);
+        if ($stmt->execute()) {
+            echo "Related records in pelanggaran_mahasiswa deleted successfully. ";
+        } else {
+            echo "Error deleting related records: " . $stmt->error;
+        }
+        $stmt->close();
 
-    if ($stmt->execute()) {
-        echo "Mahasiswa with NIM $nim deleted successfully.";
-    } else {
-        echo "Error deleting mahasiswa: " . $stmt->error;
+        // Step 2: Now, delete from mahasiswa
+        $sqlDeleteMahasiswa = "DELETE FROM mahasiswa WHERE nim = ?";
+        $stmt = $this->db->prepare($sqlDeleteMahasiswa);
+        $stmt->bind_param("s", $nim);
+
+        if ($stmt->execute()) {
+            echo "Mahasiswa with NIM $nim deleted successfully.";
+        } else {
+            echo "Error deleting mahasiswa: " . $stmt->error;
+        }
+        $stmt->close();
+        header("Location: ../../views/manajemen-user/manajemen-user.php");
     }
-    $stmt->close();
-    header("Location: ../../views/manajemen-user/manajemen-user.php");
-}
 
 
     public function reaByIdMhs($id)
@@ -596,7 +654,15 @@ public function deleteMhs($nim) {
         return $result;
     }
 
-    public function editDosen($password, $nama, $status, $no_telp, $email, $kelas, $fotoProfil, $id){
+    public function getAllDataMhsWithId($id)
+    {
+        $sql = "SELECT * FROM mahasiswa WHERE nim = '$id'";
+        $result = $this->db->query($sql);
+        return $result->fetch_assoc();
+    }
+
+    public function editDosen($password, $nama, $status, $no_telp, $email, $kelas, $fotoProfil, $id)
+    {
         $role = ($kelas === "") ? 3 : 2;
         $id_kelas = ($kelas === "") ? null : $kelas;
         $sql = "UPDATE dosen SET 
@@ -608,7 +674,7 @@ public function deleteMhs($nim) {
         role = $role,
         id_kelas = $id_kelas,
         foto_profile = '$fotoProfil' WHERE nip = '$id'";
-        $result = $this -> db -> query($sql);
+        $result = $this->db->query($sql);
         return $result;
     }
 
@@ -619,19 +685,39 @@ public function deleteMhs($nim) {
         return $result;
     }
 
-    public function deleteDosen($id){
+    public function getDosenByIdDosen($id)
+    {
+        $sql = "SELECT * FROM dosen WHERE nip = '$id'";
+        $result = $this->db->query($sql);
+        return $result->fetch_assoc();
+    }
+
+    public function deleteDosen($id)
+    {
+        $sql1 = "DELETE FROM pelanggaran_dosen WHERE nip = '$id'";
+        $result = $this->db->query($sql1);
+
         $sql = "DELETE FROM dosen WHERE nip = '$id'";
-        $result = $this -> db -> query($sql);
+        $result = $this->db->query($sql);
         return $result;
     }
 
-    public function readByIdKaryawan($id){
+    public function readByIdKaryawan($id)
+    {
         $sql = "SELECT * FROM karyawan WHERE nip = '$id'";
-        $result = $this -> db -> query($sql);
+        $result = $this->db->query($sql);
         return $result;
     }
 
-    public function editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id){
+    public function getAllDataKaryawanWithId($id)
+    {
+        $sql = "SELECT * FROM karyawan WHERE nip = '$id'";
+        $result = $this->db->query($sql);
+        return $result->fetch_assoc();
+    }
+
+    public function editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id)
+    {
         $sql = "UPDATE karyawan SET
         password = '$password',
         nama = '$nama',
@@ -639,14 +725,18 @@ public function deleteMhs($nim) {
         no_telp = '$no_telp',
         email = '$email',
         foto_profile = '$fotoProfile' WHERE nip = '$id'";
-        $result = $this -> db -> query($sql);
+        $result = $this->db->query($sql);
         return $result;
     }
 
-    public function deleteKaryawan($id){
+    public function deleteKaryawan($id)
+    {
+        // Hapus data terkait di tabel pelanggaran_tendik
+        $sql1 = "DELETE FROM pelanggaran_tendik WHERE nip = '$id'";
+        $this->db->query($sql1);
+
         $sql = "DELETE FROM karyawan WHERE nip = '$id'";
-        $result = $this ->  db -> query($sql);
+        $result = $this->db->query($sql);
         return $result;
     }
-
 }

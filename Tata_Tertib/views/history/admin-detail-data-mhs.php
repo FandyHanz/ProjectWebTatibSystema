@@ -6,6 +6,8 @@ $obj = new Admin();
 $nim = $_GET['nim'];
 
 $data = $obj->getDetailMhs($nim);
+$img= base64_encode($obj->getImgProfileMhs($nim));
+
 $level = $session->get('level');
 function getHeader($level) {
     switch ($level) {

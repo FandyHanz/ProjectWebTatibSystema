@@ -46,7 +46,8 @@ function getSubmit($level) {
 
         <!-- Content -->
         <div class="table-container" style="overflow-y:auto;">
-            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px; width:500px;"> </a>
+            <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px;"> </a>
+
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="rightside col-6 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>

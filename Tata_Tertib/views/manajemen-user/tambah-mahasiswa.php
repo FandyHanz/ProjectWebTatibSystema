@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $noTelpAyah = $_POST['no_telp_ayah'];
     $namaIbu = $_POST['nama_ibu'];
     $noTelpIbu = $_POST['no_telp_ibu'];
-    $fotoProfile = $_POST['foto_profile'];
+    $fotoProfile = base64_encode(file_get_contents($_FILES['foto_profile']['tmp_name']));
 
     $tabelMahasiswa = $data->addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile);
     return $tabelMahasiswa;
@@ -132,7 +132,7 @@ $kelas = $data->getKelasMhs();
                     <div class="form-group col-2 d-flex flex-row mb ">
                         <label for="formFile" class="form-label">Upload</label>
                     </div>
-                    <input class="form-control" type="file" name="foto_profile" id="formFile">
+                    <input class="form-control" type="file" name="foto_profile" id="formFile" accept="image/jpeg," required>
                     <div class="col-2"></div>
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>

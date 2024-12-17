@@ -6,6 +6,7 @@ $order = new Admin();
 $kelas = $order -> getKelasMhs();
 $id = $_GET['nim'];
 $edit = $order -> reaByIdMhs($id);
+$dataMhs = $order->getAllDataMhsWithId($id);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nama = $_POST['nama'];
@@ -24,6 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     header("Location:manajemen-user.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama" name="nama" required>
+                    <input class="col-3" type="text" id="nama" name="nama" required value="<?= $dataMhs['nama']?>">
                 </div>
                 <div class="baris-dua d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row">
@@ -67,8 +69,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <select class="form-select" id="kelas" name="kelas" required>
                         <?php
-                        
-                        
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
                         }
@@ -78,51 +78,51 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="password">Password:</label>
                     </div>
-                    <input class="col-3" type="text" id="status" name="password" required>
+                    <input class="col-3" type="text" id="status" name="password" required value="<?= $dataMhs['password']?>">
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="no_telp">No Telepon:</label>
                     </div>
-                    <input class="col-3" type="text" id="no_telp" name="no_telp" required>
+                    <input class="col-3" type="text" id="no_telp" name="no_telp" required value="<?= $dataMhs['no_telp']?>">
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nim">Status:</label>
                     </div>
-                    <input class="col-3" type="text" id="status" name="status" required>
+                    <input class="col-3" type="text" id="status" name="status" required value="<?= $dataMhs['status']?>">
                 </div>
                 <div class="baris-empat d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="alamat">Alamat:</label>
                     </div>
-                    <input class="col-3" type="text" id="alamat" name="alamat" required>
+                    <input class="col-3" type="text" id="alamat" name="alamat" required value="<?= $dataMhs['alamat']?>">
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="email">Email:</label>
                     </div>
-                    <input class="col-3" type="text" id="email" name="email" required>
+                    <input class="col-3" type="text" id="email" name="email" required value="<?= $dataMhs['email']?>">
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama_ayah">Nama Ayah:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama_ayah" name="nama_ayah" required>
+                    <input class="col-3" type="text" id="nama_ayah" name="nama_ayah" required value="<?= $dataMhs['nama_ayah']?>">
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="no_telp_ayah">No Telepon Ayah:</label>
                     </div>
-                    <input class="col-3" type="text" id="no_telp_ayah" name="no_telp_ayah" required>
+                    <input class="col-3" type="text" id="no_telp_ayah" name="no_telp_ayah" required value="<?= $dataMhs['no_telp_ayah']?>">
                 </div>
                 <div class="baris-tiga d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama_ibu">Nama Ibu:</label>
                     </div>
-                    <input class="col-3" type="text" id="nama_ibu" name="nama_ibu" required>
+                    <input class="col-3" type="text" id="nama_ibu" name="nama_ibu" required value="<?= $dataMhs['nama_ibu']?>">
                     <div class="col-2"></div>
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="no_telp_ibu">No Telepon Ibu:</label>
                     </div>
-                    <input class="col-3" type="text" id="no_telp_ibu" name="no_telp_ibu" required>
+                    <input class="col-3" type="text" id="no_telp_ibu" name="no_telp_ibu" required value="<?= $dataMhs['no_telp_ibu']?>">
                 </div>
                 <div class="baris-empat d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row mb ">

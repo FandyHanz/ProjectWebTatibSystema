@@ -6,7 +6,7 @@ $obj = new Admin();
 $data = $obj->getHistoryPelDosen();
 ?>
 
-<div class="scrollable-table" style="height: 80%; overflow-y: auto">
+<div class="scrollable-table" style="height: 100%; overflow-y: auto">
     <table class="custom-table">
         <thead>
             <tr>

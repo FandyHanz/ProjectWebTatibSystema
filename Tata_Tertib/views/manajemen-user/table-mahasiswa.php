@@ -6,7 +6,7 @@ $obj = new Admin();
 $data = $obj->getTabelUserMahasiswa();
 ?>
 
-<div class="scrollable-table" style="height: 80%; overflow-y: auto">
+<div class="scrollable-table" style="height: 100%; overflow-y: auto">
     <table class="custom-table">
         <thead>
             <tr>
@@ -16,7 +16,7 @@ $data = $obj->getTabelUserMahasiswa();
                 <th>No telp</th>
                 <th>Kelas</th>
                 <th>email</th>
-                <th></th>
+                <th></th> 
             </tr>
         </thead>
         <tbody>
@@ -35,18 +35,15 @@ $data = $obj->getTabelUserMahasiswa();
                             </button>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#lihatDetailPelanggaranDanKonfirmasi">
+                                <a href="admin-detail-data-mhs.php?nim=<?= $data[$i]['nim'] ?>" class="dropdown-item">
                                     Lihat Detail data
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                   <a href="edit-mhs.php?nim=<?=$data[$i]['nim']?>"> Edit data</a>
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#detailDataMahasiswa">
-                                <a href="deleteMhs.php?nim=<?=$data[$i]['nim']?>">Hapus data</a>
-                                </button>
-                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
-                                    Selesai
-                                </button>
+                                </a>
+                                <a href="edit-mhs.php?nim=<?= $data[$i]['nim'] ?>" class="dropdown-item">
+                                    Edit data
+                                </a>
+                                <a href="deleteMhs.php?nim=<?= $data[$i]['nim'] ?>" class="dropdown-item">
+                                    Hapus data
+                                </a>
                             </div>
                         </div>
                     </td>

@@ -1,12 +1,12 @@
 <?php
 // Membuat array yang menyimpan data tabel
-include '../../models/Dosen.php';
+// include '../../models/Dosen.php';
 $obj = new Dosen();
 $nip = $session->get('username');
 $data = $obj->getPelPribadi($nip);
 ?>
 
-<div class="scrollable-table" style="height: 80%; overflow-y: auto">
+<div class="scrollable-table" style="height: 100%; overflow-y: auto">
     <table class="custom-table">
         <thead>
             <tr>

@@ -1,6 +1,6 @@
 <?php
 // Membuat array yang menyimpan data tabel
-include '../../models/Mhs.php';
+// include '../../models/Mhs.php';
 $obj = new Mhs();
 $nip = $session->get('username');
 $data = $obj->getPelPribadiHistory($nip);
@@ -14,7 +14,7 @@ $data = $obj->getPelPribadiHistory($nip);
     </div>
 </form>
 
-<div class="scrollable-table" style="height: 80%; overflow-y: auto">
+<div class="scrollable-table" style="height: 100%; overflow-y: auto">
     <table class="custom-table">
         <thead>
             <tr>
