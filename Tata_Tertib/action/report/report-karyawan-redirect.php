@@ -13,7 +13,7 @@ $input = $_GET['input'];
 
 if ($cari == 'nip') {
     $data = $obj->searchByIdKaryawan($input);
-
+    
     if ($data != null) {
         header('location:../../views/report/form-karyawan.php?nip=' . $input);
     } else {

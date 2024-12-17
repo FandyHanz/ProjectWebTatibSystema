@@ -34,6 +34,7 @@ if ($session->get('is_login') === true) {
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/assets/icon/logo_polinema.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <style>
@@ -92,6 +93,7 @@ if ($session->get('is_login') === true) {
 
 <body>
     <div class="login-container">
+        <h3>SISTEM TATA TERTIB POLINEMA</h3>
         <img src="assets/icon/logo_polinema.png" alt="Polinema Logo">
         <?php
         $status = $session->getFlash('status');

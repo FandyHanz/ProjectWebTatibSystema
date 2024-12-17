@@ -18,7 +18,8 @@ $base64_image = base64_encode($data['foto_profile']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website with Sidebar</title>
+        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+<title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
