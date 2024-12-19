@@ -11,11 +11,11 @@ $data = $obj->getTabelUserDosen();
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>nip</th>
-                <th>email</th>
-                <th>kelas</th>
-                <th>no_telp</th>
-                <th>status</th>
+                <th>NIP</th>
+                <th>Email</th>
+                <th>Kelas</th>
+                <th>No Teelp</th>
+                <th>Status</th>
                 <th></th>
             </tr>
         </thead>

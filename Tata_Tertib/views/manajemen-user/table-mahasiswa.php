@@ -15,7 +15,7 @@ $data = $obj->getTabelUserMahasiswa();
                 <th>NIM</th>
                 <th>No telp</th>
                 <th>Kelas</th>
-                <th>email</th>
+                <th>Email</th>
                 <th></th> 
             </tr>
         </thead>

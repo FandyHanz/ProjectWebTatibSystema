@@ -14,10 +14,10 @@ $data = $obj->getTabelUserKaryawan();
             <tr>
                 <th></th>
                 <th>Nama</th>
-                <th>nip</th>
-                <th>email</th>
-                <th>no telp</th>
-                <th>status</th>
+                <th>NIP</th>
+                <th>Email</th>
+                <th>No Telp</th>
+                <th>Status</th>
                 <th></th>
             </tr>
         </thead>

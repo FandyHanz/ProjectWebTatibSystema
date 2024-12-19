@@ -7,7 +7,6 @@ $id_pelanggaran_dosen = $_GET['id_pelanggaran_dosen'];
 
 $data = $obj->getDosenWithNip($id_pelanggaran_dosen);
 $level = $session->get('level');
-$img= base64_encode($obj->getImgProfileDosen($nip));
 
 ?>
 
