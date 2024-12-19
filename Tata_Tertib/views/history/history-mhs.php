@@ -26,7 +26,7 @@ $session = new Session();
 
         <!-- Content -->
         <div class="table-container">
-            <h1 class="m-4 mb-1">List Pelanggaran <span id="title-table">Mahasiswa</span></h1>
+            <h1 class="m-4 mb-1">History Pelanggaran <span id="title-table">Mahasiswa</span></h1>
 
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
