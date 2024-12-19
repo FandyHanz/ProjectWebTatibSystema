@@ -57,8 +57,7 @@ $base64_image = base64_encode($data['foto_profile']);
                 <form action="../../action/report/add-lapor-dosen.php" method="post" enctype="multipart/form-data">
                     <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                         <div class="left d-flex flex-column justify-content-center">
-                            <img src="data:image/jpeg;base64,<?php echo $base64_image; ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">
-                            <div class="photo bg-primary"></div>
+                            <img src="../../assets/foto-mahasiswa/contoh-profile.png" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">                            <div class="photo bg-primary"></div>
                             <p class="align-self-center mt-2 mb-0"><?= $data['nama']; ?></p>
                             <p class="align-self-center"><?= $data['nip']; ?></p>
                             <input type="text" value="<?= $data['nip']; ?>" name="nip" id="nip" hidden>
@@ -79,7 +78,7 @@ $base64_image = base64_encode($data['foto_profile']);
                     </div><br>
                     <div class="buttons d-flex flex-row align-items-center justify-content-center" style="gap:30px">
                         <button class="btn btn-danger" style="width:100px" type="submit">report</button>
-                        <a href="" class="btn btn-light border-secondary" style="width:100px">cancel</a>
+                        <a href="report.php" class="btn btn-light border-secondary" style="width:100px">cancel</a>
                     </div>
                 </form>
             </div>
