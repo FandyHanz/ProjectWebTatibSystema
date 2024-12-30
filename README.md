@@ -20,4 +20,7 @@ git clone https://github.com/FandyHanz/ProjectWebTatibSystema.git
 
 ### 2. **Jalankan Program**
 
-Buka terminal di vscode atau di cmd bawaan lalu masukkan perintah "php -S localhost:8080"
+Buka terminal di vscode atau di cmd bawaan lalu arahkan ke tempat anda mengunduh proyek. Setelah itu masukkan perintah
+```bash
+php -S localhost:8080
+```
