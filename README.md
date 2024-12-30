@@ -18,6 +18,13 @@ Buka terminal atau command prompt dan jalankan perintah berikut untuk mengunduh 
 git clone https://github.com/FandyHanz/ProjectWebTatibSystema.git
 ```
 
+### 3. **Import Database**
+
+Buka phpmyadmin di browser dengan memasukkan url
+```bash
+http://localhost/phpmyadmin/
+```
+
 ### 2. **Jalankan Program**
 
 Buka terminal di vscode atau di cmd bawaan lalu arahkan ke tempat anda mengunduh proyek. Setelah itu masukkan perintah
