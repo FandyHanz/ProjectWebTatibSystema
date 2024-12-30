@@ -28,7 +28,7 @@ Setelah itu buat database baru dengan nama pbl_tatib dan import menggunakan file
 
 ### 3. **Jalankan Program**
 
-Buka terminal di vscode atau di cmd bawaan lalu arahkan ke tempat anda mengunduh proyek. Setelah itu masukkan perintah
+Buka terminal di vscode atau di cmd bawaan lalu arahkan ke folder Tata_Tertib di tempat anda mengunduh proyek. Setelah itu masukkan perintah
 ```bash
 php -S localhost:8080
 ```
