@@ -16,6 +16,7 @@ Buka terminal atau command prompt dan jalankan perintah berikut untuk mengunduh 
 
 ```bash
 git clone https://github.com/FandyHanz/ProjectWebTatibSystema.git
+```
 
 ### 2. **Jalankan Program**
 
