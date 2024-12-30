@@ -9,7 +9,7 @@ $listPelanggaran = $obj->getPelanggaran();
 $nip = isset($_GET['nip']) ? $_GET['nip'] : '';
 $data = $obj->getSimpleDataKaryawan($nip);
 
-$base64_image = base64_encode($data['foto_profile']);
+$img = $obj->getImgProfileKaryawan($nip);
 
 ?>
 
@@ -57,7 +57,7 @@ $base64_image = base64_encode($data['foto_profile']);
                 <form action="../../action/report/add-lapor-karyawan.php" method="post" enctype="multipart/form-data">
                     <div class="form d-flex flex-row" style="padding-left: 100px; gap:100px">
                         <div class="left d-flex flex-column justify-content-center">
-                            <img src="../../assets/foto-mahasiswa/contoh-profile.png" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">                            <div class="photo bg-primary"></div>
+                            <img src="data:image/jpeg;base64,<?= base64_encode($img) ?>" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" alt="">                            <div class="photo bg-primary"></div>
                             <p class="align-self-center mt-2 mb-0"><?= $data['nama']; ?></p>
                             <p class="align-self-center"><?= $data['nip']; ?></p>
                             <input type="text" value="<?= $data['nip']; ?>" name="nip" id="nip" hidden>

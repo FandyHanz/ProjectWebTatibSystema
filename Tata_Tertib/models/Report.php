@@ -37,6 +37,39 @@ class Report extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getImgProfileMhs($nim)
+    {
+        $query = "SELECT foto_profile FROM mahasiswa WHERE nim = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nim);
+        $stmt->execute();
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
+    }
+
+    public function getImgProfileKaryawan($nip)
+    {
+        $query = "SELECT foto_profile FROM karyawan WHERE nip = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nip);
+        $stmt->execute();
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;  // Mengembalikan data foto dalam format biner
+    }
+
+    public function getImgProfileDosen($nip)
+    {
+        $query = "SELECT foto_profile FROM dosen WHERE nip = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nip);
+        $stmt->execute();
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
+    }
+
     public function searchByIdMhs($id)
     {
         $sql = "SELECT 1 FROM mahasiswa WHERE nim = ? LIMIT 1"; // SELECT 1 untuk mengecek keberadaan data

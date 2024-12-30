@@ -31,7 +31,7 @@ $session = new Session();
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
                 <ul id="tab-nav">
-                    <li class="nav-table-button active"><a href="#Dosen"><img src="../../assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Pelanggaran Pribadi</span class="title-btn"></a></li>
+                    <li class="nav-table-button active"><a href="#"><img src="../../assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Pelanggaran Pribadi</span class="title-btn"></a></li>
                 </ul>
             </div>
             <div class="line">
