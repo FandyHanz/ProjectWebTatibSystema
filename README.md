@@ -18,14 +18,15 @@ Buka terminal atau command prompt dan jalankan perintah berikut untuk mengunduh 
 git clone https://github.com/FandyHanz/ProjectWebTatibSystema.git
 ```
 
-### 3. **Import Database**
+### 2. **Import Database**
 
 Buka phpmyadmin di browser dengan memasukkan url
 ```bash
 http://localhost/phpmyadmin/
 ```
+Setelah itu buat database baru dengan nama pbl_tatib dan import menggunakan file sql yang tersedia di proyek yang telah diunduh
 
-### 2. **Jalankan Program**
+### 3. **Jalankan Program**
 
 Buka terminal di vscode atau di cmd bawaan lalu arahkan ke tempat anda mengunduh proyek. Setelah itu masukkan perintah
 ```bash
