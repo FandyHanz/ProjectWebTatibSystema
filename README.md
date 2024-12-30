@@ -32,3 +32,6 @@ Buka terminal di vscode atau di cmd bawaan lalu arahkan ke folder Tata_Tertib di
 ```bash
 php -S localhost:8080
 ```
+### 4. **Buka Program**
+
+Buka program di url yang disediakan oleh cmd
