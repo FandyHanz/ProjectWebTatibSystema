@@ -1,9 +1,42 @@
+<?php
+include('core/Session.php');
+include('core/Koneksi.php');
+
+$session = new Session();
+$koneksi = new Koneksi(); // Akan menggunakan nilai default
+$db = $koneksi->db;
+
+if ($session->get('is_login') === true) {
+    switch ($session->get('level')) {
+        case '1':
+            header('Location: views/dashboard/dashboard-admin.php');
+            break;
+        case '2':
+            header('Location: views/dashboard/dashboard-dpa.php');
+            break;
+        case '3':
+            header('Location: views/dashboard/dashboard-karyawan.php');
+            break;
+        case '4':
+            header('Location: views/dashboard/dashboard-mhs.php');
+            break;
+        case '5':
+            header('Location: views/dashboard/dashboard-dosen.php');
+            break;
+        default:
+            break;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/assets/icon/logo_polinema.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login e-TibPol</title>
+    <title>Login Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +47,7 @@
             height: 100vh;
             margin: 0;
         }
+
         .login-container {
             background: #fff;
             padding: 20px;
@@ -22,50 +56,68 @@
             width: 350px;
             text-align: center;
         }
-        .login-container h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
-        }
+
         .login-container img {
             width: 150px;
+            /* Ukuran logo diperbesar */
             margin-bottom: 20px;
         }
-        .login-container .dropdown {
-            margin: 20px 0;
-        }
-        .login-container select {
-            width: 100%;
+
+        .login-container input {
+            width: calc(100% - 40px);
             padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .login-container p {
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .dropdown {
             margin: 10px 0;
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
-        <h1>SELAMAT DATANG</h1>
-        <img src="login/img/logo_polinema.png" alt="Polinema Logo">
-        
-        <div class="dropdown">
-            <select id="role" onchange="redirectToPage()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                <option value="" disabled selected>Pilih Role</option>
-                <option value="login\login_mahasiswa.php">Mahasiswa</option>
-                <option value="login\Login_Admin.php">Tenaga Kependidikan</option>
-            </select>
-    <script>
-        function redirectToPage() {
-            const role = document.getElementById("role").value;
-
-            if (role) {
-                window.location.href = role;
-            } else {
-                alert("Please select a valid role.");
-            }
+        <h3>SISTEM TATA TERTIB POLINEMA</h3>
+        <img src="assets/icon/logo_polinema.png" alt="Polinema Logo">
+        <?php
+        $status = $session->getFlash('status');
+        if ($status === false) {
+            $message = $session->getFlash('message');
+            echo '<div class="alert alert-warning">' . $message .
+                '<span aria-hidden="true"></span></div>';
         }
-    </script>
+        ?>
+        <form action="action/auth.php" method="post" id="form-login">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <div class="dropdown">
+                <select id="act" name="act" style="width: 332px; padding: 10px; margin-bottom: 25px; border: 1px solid #ccc; border-radius: 5px;" required>
+                    <option value="" disabled selected>Pilih Role</option>
+                    <option value="login-mhs">Mahasiswa</option>
+                    <option value="login-tendik">Tenaga Kependidikan</option>
+                </select>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p><a href="#">Lupa Password?</a></p>
+    </div>
+
 </body>
+
 </html>

@@ -1,0 +1,48 @@
+{
+  "sanksi": [
+    {
+      "tingkat": "5",
+      "deskripsi_pelanggaran": "Pelanggaran ringan",
+      "sanksi": [
+        "Teguran lisan disertai dengan surat pernyataan tidak mengulangi perbuatan tersebut",
+        "Surat pernyataan dibubuhi materai dan ditandatangani mahasiswa dan DPA"
+      ]
+    },
+    {
+      "tingkat": "4",
+      "deskripsi_pelanggaran": "Pelanggaran menengah",
+      "sanksi": [
+        "Teguran tertulis disertai dengan pemanggilan orang tua/wali",
+        "Membuat surat pernyataan tidak mengulangi perbuatan tersebut, dibubuhi materai",
+        "Surat pernyataan ditandatangani mahasiswa, orang tua/wali, dan DPA"
+      ]
+    },
+    {
+      "tingkat": "3",
+      "deskripsi_pelanggaran": "Pelanggaran moderat",
+      "sanksi": [
+        "Membuat surat pernyataan tidak mengulangi perbuatan tersebut, dibubuhi materai",
+        "Surat pernyataan ditandatangani mahasiswa, orang tua/wali, dan DPA",
+        "Melakukan tugas khusus, seperti memperbaiki atau membersihkan kembali"
+      ]
+    },
+    {
+      "tingkat": "2",
+      "deskripsi_pelanggaran": "Pelanggaran serius",
+      "sanksi": [
+        "Dikenakan penggantian kerugian atau penggantian benda/barang semacamnya",
+        "Melakukan tugas layanan sosial dalam jangka waktu tertentu",
+        "Diberikan nilai D pada mata kuliah terkait saat melakukan pelanggaran"
+      ]
+    },
+    {
+      "tingkat": "1",
+      "deskripsi_pelanggaran": "Pelanggaran sangat serius",
+      "sanksi": [
+        "Dinonaktifkan (Cuti Akademik/Terminal) selama dua semester",
+        "Diberhentikan sebagai mahasiswa"
+      ]
+    }
+  ],
+  "catatan": "Pemberian sanksi dan mekanisme ditetapkan dalam peraturan tersendiri."
+}

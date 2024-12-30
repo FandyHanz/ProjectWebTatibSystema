@@ -1,7 +1,7 @@
 <?php
 include_once '../../core/Koneksi.php';
 
-class Dosen extends Koneksi
+class Karyawan extends Koneksi
 {
     public function __construct()
     {
@@ -9,7 +9,7 @@ class Dosen extends Koneksi
     }
 
     public function getImgProfile($nip) {
-        $query = "SELECT foto_profile FROM dosen WHERE nip = ?";
+        $query = "SELECT foto_profile FROM karyawan WHERE nip = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("s", $nip);
         $stmt->execute();
@@ -18,10 +18,20 @@ class Dosen extends Koneksi
         return $fotoProfile;
     }
 
+    public function getLampiranById($id_pel)
+    {
+        $sql = "SELECT * FROM pelanggaran_tendik WHERE id_pelanggaran_tendik = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $id_pel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
     public function getPelPribadi($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('2', '3')";
+        $sql = "SELECT * FROM pelanggaran_tendik WHERE nip = ? AND pelanggaran_tendik.status IN ('2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
@@ -38,7 +48,7 @@ class Dosen extends Koneksi
     public function getPelPribadiHistory($nip)
     {
         // Pastikan nama tabel (misalnya 'pelanggaran_tendik') disebutkan di SQL
-        $sql = "SELECT * FROM pelanggaran_dosen WHERE nip = ? AND pelanggaran_dosen.status IN ('1', '2', '3')";
+        $sql = "SELECT * FROM pelanggaran_tendik WHERE nip = ? AND pelanggaran_tendik.status IN ('1', '2', '3')";
 
         // Menggunakan prepared statement untuk keamanan
         $stmt = $this->db->prepare($sql);
@@ -50,5 +60,20 @@ class Dosen extends Koneksi
 
         // Memastikan hasil dikembalikan dalam bentuk array asosiatif
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function setBuktiSelesaiById($id_pel, $bukti_selesai)
+    {
+        $sql = "UPDATE pelanggaran_tendik SET bukti_selesai = ?, status = '2' WHERE id_pelanggaran_tendik = ?";
+        $stmt = $this->db->prepare($sql);
+
+        // Bind parameter: "si" (s = string, i = integer)
+        $stmt->bind_param("si", $bukti_selesai, $id_pel);
+
+        // Eksekusi query
+        $stmt->execute();
+
+        // Tutup statement
+        $stmt->close();
     }
 }
