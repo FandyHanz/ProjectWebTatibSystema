@@ -1,6 +1,6 @@
 # Project Web Tata Tertib Sistem
 
-Selamat datang di repositori Project Web Tata Tertib Sistem! Sistem ini dirancang untuk mempermudah pengelolaan tata tertib di lingkungan pendidikan atau organisasi. Ikuti panduan di bawah untuk menginstal dan menjalankan aplikasi di lokal menggunakan **XAMPP**.
+Selamat datang di repositori Project Web Tata Tertib Sistem! Sistem ini dirancang untuk mempermudah pengelolaan tata tertib di lingkungan kampus. Ikuti panduan di bawah untuk menginstal dan menjalankan aplikasi di lokal menggunakan **XAMPP**.
 
 ## Prasyarat
 
