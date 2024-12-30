@@ -17,12 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $noTelpAyah = $_POST['no_telp_ayah'];
     $namaIbu = $_POST['nama_ibu'];
     $noTelpIbu = $_POST['no_telp_ibu'];
-    $fotoProfile = base64_encode(file_get_contents($_FILES['foto_profile']['tmp_name']));
+    $img = $_FILES['foto_profile']['tmp_name'];
+    $fotoProfile = file_get_contents($img);
 
     $tabelMahasiswa = $data->addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $noTelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile);
     return $tabelMahasiswa;
 }
-$kelas = $data->getKelasMhs();
+$kelas = $data->getKelasForMhs();
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ $kelas = $data->getKelasMhs();
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
-            <form action="" method="post" enctype="multipart/formdata">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
@@ -132,7 +133,7 @@ $kelas = $data->getKelasMhs();
                     <div class="form-group col-2 d-flex flex-row mb ">
                         <label for="formFile" class="form-label">Upload</label>
                     </div>
-                    <input class="form-control" type="file" name="foto_profile" id="formFile" accept="image/jpeg," required>
+                    <input class="form-control" type="file" name="foto_profile" id="formFile" accept="image/jpeg" required>
                     <div class="col-2"></div>
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>

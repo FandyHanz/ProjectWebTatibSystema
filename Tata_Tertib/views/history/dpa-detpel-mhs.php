@@ -11,7 +11,7 @@ $level = $session->get('level');
 $sanksiJson = file_get_contents('../../assets/sanksi.json');
 $sanksiData = json_decode($sanksiJson, true);
 
-$img= base64_encode($obj->getImgProfileMhs($nim));
+$imgMhs = $obj->getImgProfileMhs($data['nim']);
 
 ?>
 
@@ -49,7 +49,7 @@ $img= base64_encode($obj->getImgProfileMhs($nim));
             <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?=base64_encode($imgMhs) ?>" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>

@@ -13,48 +13,49 @@ class Admin extends Koneksi
         parent::__construct();
     }
 
-    public function getImgProfile($id)
+    public function getImgProfile($nip)
     {
-        $stmt = $this->db->prepare("SELECT foto_profile FROM admin WHERE nip = ?");
-        $stmt->bind_param("s", $id);
+        $query = "SELECT foto_profile FROM admin WHERE nip = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nip);
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            return $row['foto_profile'];
-        }
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
     }
 
-    public function getImgProfileDosen($id)
+    public function getImgProfileDosen($nip)
     {
-        $stmt = $this->db->prepare("SELECT foto_profile FROM dosen WHERE nip = ?");
-        $stmt->bind_param("s", $id);
+        $query = "SELECT foto_profile FROM dosen WHERE nip = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nip);
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            return $row['foto_profile'];
-        }
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
     }
 
-    public function getImgProfileKaryawan($id)
+    public function getImgProfileKaryawan($nip)
     {
-        $stmt = $this->db->prepare("SELECT foto_profile FROM karyawan WHERE nip = ?");
-        $stmt->bind_param("s", $id);
+        $query = "SELECT foto_profile FROM karyawan WHERE nip = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nip);
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            return $row['foto_profile'];
-        }
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;  // Mengembalikan data foto dalam format biner
     }
 
-    public function getImgProfileMhs($id)
+
+    public function getImgProfileMhs($nim)
     {
-        $stmt = $this->db->prepare("SELECT foto_profile FROM mahasiswa WHERE nim = ?");
-        $stmt->bind_param("s", $id);
+        $query = "SELECT foto_profile FROM mahasiswa WHERE nim = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nim);
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            return $row['foto_profile'];
-        }
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
     }
 
     public function getTabelPelMhs()
@@ -203,7 +204,9 @@ class Admin extends Koneksi
         $sql = "SELECT 
         dosen.nip,
         dosen.nama,
+        pelanggaran_dosen.nama AS nama_pelanggaran,
         pelanggaran_dosen.id_pelanggaran_dosen,
+        pelanggaran_dosen.deskripsi,
         pelanggaran_dosen.status,
         pelanggaran_dosen.tanggal_lapor
     FROM 
@@ -306,7 +309,9 @@ class Admin extends Koneksi
         $sql = "SELECT 
         karyawan.nip,
         karyawan.nama,
+        pelanggaran_tendik.nama AS nama_pelanggaran,
         pelanggaran_tendik.id_pelanggaran_tendik,
+        pelanggaran_tendik.deskripsi,
         pelanggaran_tendik.status,
         pelanggaran_tendik.tanggal_lapor
     FROM 
@@ -460,14 +465,16 @@ class Admin extends Koneksi
     public function addTabelUserMahasiswa($nama, $password, $status, $nim, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $fotoProfile)
     {
         $role = 4;
-        $sql = "INSERT INTO mahasiswa (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role, foto_profile)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mahasiswa 
+            (nim, password, id_kelas, status, nama, no_telp, email, alamat, nama_ayah, no_telp_ayah, nama_ibu, no_telp_ibu, role, foto_profile)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->db->prepare($sql);
 
         if ($stmt) {
+            // Bind parameters tanpa foto profile terlebih dahulu
             $stmt->bind_param(
-                "ississssssssis",
+                "ississssssssib",
                 $nim,
                 $password,
                 $kelas,
@@ -481,9 +488,13 @@ class Admin extends Koneksi
                 $namaIbu,
                 $noTelpIbu,
                 $role,
-                $fotoProfile
+                $null // Placeholder untuk blob
             );
 
+            // Mengirim data BLOB secara terpisah
+            $stmt->send_long_data(13, $fotoProfile); // Parameter ke-14 (0-indexed)
+
+            // Eksekusi statement
             if ($stmt->execute()) {
                 header("Location: ../../views/manajemen-user/manajemen-user.php");
             } else {
@@ -536,15 +547,39 @@ class Admin extends Koneksi
 
     public function addTabelUserKaryawan($nama, $password, $status, $nip, $noTelp, $email, $fotoProfile)
     {
-        $role = 3;
-        $sql = "INSERT INTO karyawan (nip, password, nama, status, no_telp, email, role, foto_profile)
-        VALUES ('$nip', '$password', '$nama', '$status', '$noTelp', '$email', $role, '$fotoProfile')";
-        $result = $this->db->query($sql);
-        if ($result) {
-            echo "data berhasil ditambah";
-            return $result;
+        $role = 3; // Role selalu 3 untuk Karyawan
+
+        $sql = 'INSERT INTO karyawan (nip, password, nama, status, no_telp, email, role, foto_profile) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt) {
+            // Bind parameters
+            $stmt->bind_param(
+                "ssssssss", // Tipe data: 7 string (s) untuk nip, password, nama, status, no_telp, email, dan role; dan satu b (binary) untuk foto_profile
+                $nip,
+                $password,
+                $nama,
+                $status,
+                $noTelp,
+                $email,
+                $role,
+                $fotoProfile // Foto profile sebagai BLOB
+            );
+
+            if ($stmt->execute()) {
+                echo "Data berhasil ditambah.";
+                header("Location: ../../views/manajemen-user/manajemen-user.php");
+                exit(); // Menghentikan eksekusi script setelah redirect
+            } else {
+                echo "Gagal: " . $stmt->error;
+            }
+
+            // Close the statement
+            $stmt->close();
         } else {
-            echo "gagal";
+            echo "Gagal menyiapkan statement: " . $this->db->error;
         }
     }
 
@@ -599,24 +634,75 @@ class Admin extends Koneksi
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getKelasForMhs()
+    {
+        $sql = "SELECT kelas.id_kelas, kelas.nama, kelas.id_prodi
+        FROM kelas
+        LEFT JOIN dosen ON kelas.id_kelas = dosen.id_kelas;";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $id, $fotoProfile)
     {
         $sql = "UPDATE mahasiswa SET 
-        password = '$password', 
-        id_kelas = '$kelas', 
-        status = '$status', 
-        nama = '$nama',
-        no_telp = '$notelp',
-        email = '$email',
-        alamat = '$alamat',
-        nama_ayah = '$namaAyah',
-        no_telp_ayah = '$noTelpAyah',
-        nama_ibu = '$namaIbu',
-        foto_profile = '$fotoProfile',
-        no_telp_ibu = '$noTelpIbu' WHERE nim = '$id'";
-        $result = $this->db->query($sql);
-        return $result;
+            password = ?, 
+            id_kelas = ?, 
+            status = ?, 
+            nama = ?,
+            no_telp = ?,
+            email = ?,
+            alamat = ?,
+            nama_ayah = ?,
+            no_telp_ayah = ?,
+            nama_ibu = ?,
+            no_telp_ibu = ?,
+            foto_profile = ?
+            WHERE nim = ?";
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt) {
+            // Variabel untuk placeholder foto_profile
+            $fotoPlaceholder = null;
+
+            // Bind parameters tanpa foto_profile terlebih dahulu
+            $stmt->bind_param(
+                "sisssssssssbs",
+                $password,
+                $kelas,
+                $status,
+                $nama,
+                $notelp,
+                $email,
+                $alamat,
+                $namaAyah,
+                $noTelpAyah,
+                $namaIbu,
+                $noTelpIbu,
+                $fotoPlaceholder, // Placeholder untuk foto_profile
+                $id
+            );
+
+            // Mengirim data BLOB secara terpisah
+            if ($fotoProfile !== null) {
+                $stmt->send_long_data(11, $fotoProfile); // Parameter ke-12 (0-indexed)
+            }
+
+            // Eksekusi statement
+            if ($stmt->execute()) {
+                echo "Data berhasil diperbarui.";
+            } else {
+                echo "Gagal: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } else {
+            echo "Gagal: " . $this->db->error;
+        }
     }
+
+
 
     public function deleteMhs($nim)
     {
@@ -661,22 +747,60 @@ class Admin extends Koneksi
         return $result->fetch_assoc();
     }
 
-    public function editDosen($password, $nama, $status, $no_telp, $email, $kelas, $fotoProfil, $id)
+    public function editDosen($password, $nama, $status, $no_telp, $email, $kelas, $fotoProfile, $id)
     {
         $role = ($kelas === "") ? 3 : 2;
         $id_kelas = ($kelas === "") ? null : $kelas;
+
         $sql = "UPDATE dosen SET 
-        password = '$password',
-        nama = '$nama',
-        status = '$status',
-        no_telp = '$no_telp',
-        email = '$email',
-        role = $role,
-        id_kelas = $id_kelas,
-        foto_profile = '$fotoProfil' WHERE nip = '$id'";
-        $result = $this->db->query($sql);
-        return $result;
+            password = ?, 
+            nama = ?, 
+            status = ?, 
+            no_telp = ?, 
+            email = ?, 
+            role = ?, 
+            id_kelas = ?, 
+            foto_profile = ?
+            WHERE nip = ?";
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt) {
+            // Variabel untuk placeholder foto_profile
+            $fotoPlaceholder = null;
+
+            // Bind parameters tanpa foto_profile terlebih dahulu
+            $stmt->bind_param(
+                "sssssisbs",
+                $password,
+                $nama,
+                $status,
+                $no_telp,
+                $email,
+                $role,
+                $id_kelas,
+                $fotoPlaceholder, // Placeholder untuk foto_profile
+                $id
+            );
+
+            // Mengirim data BLOB secara terpisah
+            if ($fotoProfile !== null) {
+                $stmt->send_long_data(7, $fotoProfile); // Parameter ke-8 (0-indexed)
+            }
+
+            // Eksekusi statement
+            if ($stmt->execute()) {
+                echo "Data dosen berhasil diperbarui.";
+            } else {
+                echo "Gagal: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } else {
+            echo "Gagal: " . $this->db->error;
+        }
     }
+
 
     public function reaByIdDosen($id)
     {
@@ -718,16 +842,51 @@ class Admin extends Koneksi
 
     public function editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id)
     {
-        $sql = "UPDATE karyawan SET
-        password = '$password',
-        nama = '$nama',
-        status = '$status',
-        no_telp = '$no_telp',
-        email = '$email',
-        foto_profile = '$fotoProfile' WHERE nip = '$id'";
-        $result = $this->db->query($sql);
-        return $result;
+        $sql = "UPDATE karyawan SET 
+            password = ?, 
+            nama = ?, 
+            status = ?, 
+            no_telp = ?, 
+            email = ?, 
+            foto_profile = ?
+            WHERE nip = ?";
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt) {
+            // Variabel untuk placeholder foto_profile
+            $fotoPlaceholder = null;
+
+            // Bind parameters tanpa foto_profile terlebih dahulu
+            $stmt->bind_param(
+                "sssssbs",
+                $password,
+                $nama,
+                $status,
+                $no_telp,
+                $email,
+                $fotoPlaceholder, // Placeholder untuk foto_profile
+                $id
+            );
+
+            // Mengirim data BLOB secara terpisah
+            if ($fotoProfile !== null) {
+                $stmt->send_long_data(11, $fotoProfile); // Parameter ke-12 (0-indexed)
+            }
+
+            // Eksekusi statement
+            if ($stmt->execute()) {
+                echo "Data berhasil diperbarui.";
+            } else {
+                echo "Gagal: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } else {
+            echo "Gagal: " . $this->db->error;
+        }
     }
+
 
     public function deleteKaryawan($id)
     {

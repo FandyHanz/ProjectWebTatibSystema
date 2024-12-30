@@ -3,7 +3,7 @@ require_once '../../models/Admin.php';
 include '../../core/Session.php';
 $session = new Session();
 $order = new Admin();
-$kelas = $order -> getKelasMhs();
+$kelas = $order -> getKelasForMhs();
 $id = $_GET['nim'];
 $edit = $order -> reaByIdMhs($id);
 $dataMhs = $order->getAllDataMhsWithId($id);
@@ -20,7 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $noTelpAyah = $_POST['no_telp_ayah'];
     $namaIbu = $_POST['nama_ibu'];
     $noTelpIbu = $_POST['no_telp_ibu'];
-    $fotoProfile = $_POST['foto_profile'];
+    $img = $_FILES['foto_profile']['tmp_name'];
+    $fotoProfile = file_get_contents($img);
     $editmhs = $order -> editMhs($nama, $password, $status, $kelas, $notelp, $alamat, $email, $namaAyah, $noTelpAyah, $namaIbu, $noTelpIbu, $id, $fotoProfile);
     header("Location:manajemen-user.php");
     exit();
@@ -56,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Mahasiswa</h4>
-            <form action="" method="post" enctype="multipart/formdata">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
@@ -68,6 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label class="" for="nama">Kelas:</label>
                     </div>
                     <select class="form-select" id="kelas" name="kelas" required>
+                        <option value="" disabled selected>Select</option>
                         <?php
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';

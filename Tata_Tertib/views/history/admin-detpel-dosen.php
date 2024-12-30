@@ -7,7 +7,7 @@ $id_pelanggaran_dosen = $_GET['id_pelanggaran_dosen'];
 
 $data = $obj->getDosenWithNip($id_pelanggaran_dosen);
 $level = $session->get('level');
-
+$img = $obj->getImgProfileDosen($data['nip']);
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +16,8 @@ $level = $session->get('level');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -44,7 +44,7 @@ $level = $session->get('level');
             <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?=base64_encode($img) ?>" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
@@ -56,11 +56,11 @@ $level = $session->get('level');
                     <div class="container d-flex flex-row p-0">
                         <div class="" style="margin-right: 100px;">
                             <h9 class="mt-0 pt-0">Lampiran :</h9><br>
-                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" href="../../action/dosen/show-lampiran.php?id=<?= $data['id_pelanggaran_dosen']?>" target="_blank" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
+                            <a class="lampiran-btn btn btn-light align-items-center justify-content-center" href="../../action/dosen/show-lampiran.php?id=<?= $data['id_pelanggaran_dosen'] ?>" target="_blank" style="border-color: #D9D9D9;color:#4A4A4A"><img src="../../assets/icon/pdf-icon.svg" alt=""> Bukti Pelanggaran</a><br>
                         </div>
                         <div class="">
                             <h9 class="mt-0 pt-0">Berikan Sanksi :</h9>
-                            <form action="../../action/dosen/beri-sanksi-action.php?id=<?= $data['id_pelanggaran_dosen']?>" method="post">
+                            <form action="../../action/dosen/beri-sanksi-action.php?id=<?= $data['id_pelanggaran_dosen'] ?>" method="post">
                                 <textarea class="textarea p-2" name="sanksi" id="sanksi" cols="55" rows="3"></textarea><br>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ $level = $session->get('level');
                         <button class="tindakan-btn btn btn-danger" style="margin-right: 15px;" type="submit">
                             Konfirmasi
                         </button>
-                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/dosen/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_dosen']?>">
+                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/dosen/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_dosen'] ?>">
                             Hapus Laporan
                         </a>
                     </div>

@@ -9,8 +9,8 @@ $session = new Session();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,11 +22,14 @@ $session = new Session();
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
-        <?php include '../../assets/header.php'; ?>
+        <?php include '../../assets/header.php';?>
 
         <!-- Content -->
         <div class="table-container">
-            <h1 class="m-4 mb-1">History Pelanggaran <span id="title-table">Mahasiswa</span></h1>
+            <div class="d-flex flex-row justify-content-between align-items-center p-4 pb-0">
+                <h1 class="m-0 mb-0">History Pelanggaran <span id="title-table">Mahasiswa</span></h1>
+                <a href="../../action/mhs/download-pel-table.php" class="btn btn-primary" id="tambah-button">Download Pelanggaran</a>
+            </div>
 
             <!-- toggle button untuk navigasi table -->
             <div class="table-nav" data-toggle="buttons">
@@ -34,7 +37,6 @@ $session = new Session();
                     <li class="nav-table-button active"><a href="#Mahasiswa"><img src="../../assets/icon/student-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Mahasiswa</span class="title-btn"></a></li>
                     <li class="nav-table-button"><a href="#Dosen"><img src="../../assets/icon/teacher-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Dosen</span class="title-btn"></a></li>
                     <li class="nav-table-button"><a href="#Karyawan"><img src="../../assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Karyawan</span class="title-btn"></a></li>
-                    <!-- <li class="nav-table-button"><a href="#Karyawan"><img src="../../assets/icon/karyawan-icon.svg" class="icon" style="opacity: 1;" alt=""><span class="title-btn">Karyawan</span class="title-btn"></a></li> -->
                 </ul>
             </div>
             <div class="line">

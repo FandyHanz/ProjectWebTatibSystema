@@ -5,18 +5,19 @@ $session = new Session();
 $admin = new Admin();
 $kelas = $admin->getKelasMhs();
 $id = $_GET['nip'];
-$edit = $admin -> reaByIdDosen($id);
+$edit = $admin->reaByIdDosen($id);
 $dataDosen = $admin->getDosenByIdDosen($id);
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST['nama'];
     $noTelp = $_POST['no_telp'];
     $password = $_POST['password'];
     $email = $_POST['email'];
     $status = $_POST['status'];
     $kelas = $_POST['kelas'];
-    $fotoProfil = $_POST['foto_profile'];
-    $addDosen = $admin -> editDosen($password, $nama, $status, $noTelp, $email, $kelas, $fotoProfil, $id);
+    $img = $_FILES['foto_profile']['tmp_name'];
+    $fotoProfile = file_get_contents($img);
+    $addDosen = $admin->editDosen($password, $nama, $status, $noTelp, $email, $kelas, $fotoProfile, $id);
 
     header("Location:manajemen-user.php");
     exit();
@@ -29,8 +30,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -52,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Dosen</h4>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
@@ -89,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label class="" for="nama">Kelas:</label>
                     </div>
                     <select class="form-select" id="kelas" name="kelas">
-                        <option value="" selected disabled>select</option>
+                        <option value="<?= $dataDosen['id_kelas']?>" selected disabled>select</option>
                         <?php
                         foreach ($kelas as $row) {
                             echo '<option value="' . $row['id_kelas'] . '">' . $row['nama'] . '</option>';
@@ -108,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" accept="image/png," name="foto_profile" required>
+                    <input class="form-control" type="file" id="formFile" accept="image/jpeg," name="foto_profile" required>
 
                     <div class="col-2"></div>
 

@@ -8,15 +8,14 @@ class Karyawan extends Koneksi
         parent::__construct();
     }
 
-    public function getImgProfile($id)
-    {
-        $stmt = $this->db->prepare("SELECT foto_profile FROM karyawan WHERE nip = ?");
-        $stmt->bind_param("s", $id);
+    public function getImgProfile($nip) {
+        $query = "SELECT foto_profile FROM karyawan WHERE nip = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nip);
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            return $row['foto_profile'];
-        }
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
     }
 
     public function getLampiranById($id_pel)

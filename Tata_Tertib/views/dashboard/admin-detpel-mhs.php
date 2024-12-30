@@ -10,6 +10,7 @@ $level = $session->get('level');
 
 $sanksiJson = file_get_contents('../../assets/sanksi.json');
 $sanksiData = json_decode($sanksiJson, true);
+$imgMhs = $obj->getImgProfileMhs($data['nim']);
 
 ?>
 
@@ -19,8 +20,8 @@ $sanksiData = json_decode($sanksiJson, true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -47,7 +48,7 @@ $sanksiData = json_decode($sanksiJson, true);
             <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?=base64_encode($imgMhs) ?>" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
@@ -93,7 +94,7 @@ $sanksiData = json_decode($sanksiJson, true);
                             Konfirmasi
                         </button>
                         </form>
-                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/mhs/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_mhs']?>">
+                        <a class="tindakan-btn btn btn-light" style="border-color: #D9D9D9;color:#4A4A4A" href="../../action/mhs/hapus-laporan-action.php?id=<?= $data['id_pelanggaran_mhs'] ?>">
                             Hapus Laporan
                         </a>
                     </div>

@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = $_POST['status'];
     $no_telp = $_POST['no_telp'];
     $email = $_POST['email'];
-    $fotoProfile = $_POST['foto_profile'];
+    $img = $_FILES['foto_profile']['tmp_name'];
+    $fotoProfile = file_get_contents($img);
 
     $result = $admin->editKaryawan($password, $nama, $status, $no_telp, $email, $fotoProfile, $id);
     header("Location:manajemen-user.php");
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
         <div class="table-container p-4 pb-0" style="overflow-y: auto;">
             <h4 class="mb-4">Input Data Karyawan</h4>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="baris-satu d-flex flex-row mb-3">
                     <div class="form-group col-2 d-flex flex-row ">
                         <label class="" for="nama">Nama:</label>
@@ -83,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" name="foto_profile" required>
+                    <input class="form-control" type="file" name="foto_profile" id="formFile" accept="image/jpeg" required>
 
                     <div class="col-2"></div>
 

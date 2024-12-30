@@ -7,6 +7,7 @@ function initializeTabs() {
             // Menghapus class 'active' dari semua tab
             document.querySelectorAll('.nav-table-button').forEach(btn => btn.classList.remove('active'));
             const title = document.getElementById('title-table');
+            const tambahButton = document.getElementById('tambah-button');
 
             // Menambahkan class 'active' pada tab yang diklik
             this.classList.add('active');
@@ -22,12 +23,18 @@ function initializeTabs() {
             if (activeTabText === "Mahasiswa") {
                 fileToLoad = 'admin-table-mahasiswa.php';
                 title.textContent = "Mahasiswa";
+                tambahButton.textContent = 'Download Pelanggaran';
+                tambahButton.setAttribute('href', '../../action/mhs/download-pel-table.php'); // Mengatur atribut href = 'Tambah Mahasiswa';
             } else if (activeTabText === "Dosen") {
                 fileToLoad = 'admin-table-dosen.php';
                 title.textContent = "Dosen";
+                tambahButton.textContent = 'Download Pelanggaran';
+                tambahButton.setAttribute('href', '../../action/dosen/download-pel-table.php'); // Mengatur atribut href = 'Tambah Dosen';
             } else if (activeTabText === "Karyawan") {
                 fileToLoad = 'admin-table-karyawan.php';
                 title.textContent = "Karyawan";
+                tambahButton.textContent = 'Download Pelanggaran';
+                tambahButton.setAttribute('href', '../../action/karyawan/download-pel-table.php'); // Mengatur atribut href = 'Tambah Karyawan';
             }
 
             // Memuat konten sesuai tab yang dipilih

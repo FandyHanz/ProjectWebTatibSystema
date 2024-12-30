@@ -5,7 +5,7 @@ $session = new Session();
 $admin = new Admin();
 $kelas = $admin->getKelasMhs();
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST['nama'];
     $nip = $_POST['nip'];
     $noTelp = $_POST['no_telp'];
@@ -13,8 +13,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST['email'];
     $status = $_POST['status'];
     $kelas = isset($_POST['kelas']) && !empty($_POST['kelas']) ? $_POST['kelas'] : null;
-    $fotoProfile = base64_encode(file_get_contents($_FILES['foto_profile']['tmp_name']));
-    $addDosen = $admin -> addTabelUserDosen($nama, $nip, $noTelp, $password, $email, $status, $kelas, $fotoProfile);
+    $img = $_FILES['foto_profile']['tmp_name'];
+    $fotoProfile = file_get_contents($img);
+    $addDosen = $admin->addTabelUserDosen($nama, $nip, $noTelp, $password, $email, $status, $kelas, $fotoProfile);
     return $addDosen;
 }
 
@@ -26,8 +27,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
-<title>Sistem Tata Tertib | Polinema</title>
+    <link rel="icon" href="../../assets/icon/logo_polinema.png" type="image/png">
+    <title>Sistem Tata Tertib | Polinema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -103,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group col-2 d-flex flex-row ">
                         <label for="formFile" class="form-label">Foto Profil</label>
                     </div>
-                    <input class="form-control" type="file" id="formFile" accept="image/jpeg," name="foto_profile" required>
+                    <input class="form-control" type="file" name="foto_profile" id="formFile" accept="image/jpeg" required>
                     <div class="col-2"></div>
                     <div class="form-group col-5 d-flex flex-row ">
                     </div>

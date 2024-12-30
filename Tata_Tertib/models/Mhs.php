@@ -8,15 +8,14 @@ class Mhs extends Koneksi
         parent::__construct();
     }
 
-    public function getImgProfile($id)
-    {
-        $stmt = $this->db->prepare("SELECT foto_profile FROM mahasiswa WHERE nim = ?");
-        $stmt->bind_param("s", $id);
+    public function getImgProfile($nim) {
+        $query = "SELECT foto_profile FROM mahasiswa WHERE nim = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $nim);
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            return $row['foto_profile'];
-        }
+        $stmt->bind_result($fotoProfile);
+        $stmt->fetch();
+        return $fotoProfile;
     }
 
     public function getPelPribadi($nim)

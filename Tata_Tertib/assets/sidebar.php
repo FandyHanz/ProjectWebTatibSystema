@@ -90,7 +90,6 @@ function getHistoryPage($level): string
         <li></li>
         <li></li>
         <li></li>
-        <li></li>
         <li><a href="../../action/auth.php?act=logout"><img src="../../assets/icon/log-out-icon.svg" alt=""><span>Log Out</span></a></li>
     </ul>
 </div>

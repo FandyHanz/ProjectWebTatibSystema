@@ -9,37 +9,35 @@ switch ($level) {
         # code...
         include_once '../../models/Admin.php';
         $forImg = new Admin();
-        $base64_image = base64_encode($forImg->getImgProfile($idUsername));
+        $account_profile = $forImg->getImgProfile($idUsername);
         break;
     case '2':
         # code...
         include_once '../../models/Dpa.php';
         $forImg = new Dpa();
-        $base64_image = base64_encode($forImg->getImgProfile($idUsername));
+        $account_profile = $forImg->getImgProfile($idUsername);
         break;
     case '3':
         include_once '../../models/Karyawan.php';
         $forImg = new Karyawan();
-        $base64_image = base64_encode($forImg->getImgProfile($idUsername));
+        $account_profile = $forImg->getImgProfile($idUsername);
         # code...
         break;
     case '4':
         include_once '../../models/Mhs.php';
         $forImg = new Mhs();
-        $base64_image = base64_encode($forImg->getImgProfile($idUsername));
+        $account_profile = $forImg->getImgProfile($idUsername);
         # code...
         break;
     case '5':
         # code...
         include_once '../../models/Dosen.php';
         $forImg = new Dosen();
-        $base64_image = base64_encode($forImg->getImgProfile($idUsername));
+        $account_profile = $forImg->getImgProfile($idUsername);
         break;
     default:
         break;
 }
-
-
 ?>
 
 <header class="header d-flex align-items-center justify-content-between p-3">
@@ -48,7 +46,7 @@ switch ($level) {
         <p>Sistem Tata Tertib | Polinema</p>
     </div>
     <div class="header-kanan">
-        <img src="../../assets/foto-mahasiswa/contoh-profile.png" alt="">
+        <img src="data:image/jpeg;base64,<?=base64_encode($account_profile) ?>" alt="">
         <p>
             <!-- Diganti sql -->
             <span class="nama-header"><?= $name ?></span><br> <!-- Nama -->

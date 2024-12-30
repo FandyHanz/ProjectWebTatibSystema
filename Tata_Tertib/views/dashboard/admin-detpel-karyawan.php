@@ -7,6 +7,7 @@ $id_pelanggaran = $_GET['id_pelanggaran'];
 
 $data = $obj->getKaryawanWithNip($id_pelanggaran);
 $level = $session->get('level');
+$img = $obj->getImgProfileKaryawan($data['nip']);
 
 ?>
 
@@ -44,7 +45,7 @@ $level = $session->get('level');
             <a href="../../index.php" ?> <img src="../../assets/icon/x.svg" class="justify-self-end rounded-circle mt-3" style="position:absolute; right: 40px; width:20px;height:20px; font-size:10px; justify-content:center; justify-items:center; cursor:pointer; z-index:3; border-radius: 40px"> </a>
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 130px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                <img class="mx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?= base64_encode($img) ?>" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>

@@ -7,7 +7,7 @@ $nip = $_GET['nip'];
 
 $data = $obj->getDetailKaryawan($nip);
 $kelas = isset($data['nama_kelas']) ? $data['nama_kelas'] : '-';
-$img = base64_encode($obj->getImgProfileKaryawan($nip));
+$img = $obj->getImgProfileKaryawan($nip);
 
 function getHeader($level)
 {
@@ -45,7 +45,7 @@ function getHeader($level)
         <div class="table-container d-flex justify-content-center align-items-center" style="overflow-y:auto;">
             <div class="modal-body d-flex flex-row p-0 m-0">
                 <div class="lefside col-4 d-flex flex-column align-items-center">
-                    <img class="xmx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="../../assets/foto-mahasiswa/contoh-profile.png" />
+                <img class="mx-auto mt-5" style="width: 200px; top: 140px; position:fixed;" alt="avatar" src="data:image/jpeg;base64,<?= base64_encode($img) ?>" />
                 </div>
                 <div class="rightside col-8 p-4">
                     <h3 class="mb-0"><?= $data['nama']; ?></h3>
